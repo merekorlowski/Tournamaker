@@ -1,5 +1,6 @@
 package com.example.merek.tournamaker;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -20,6 +21,12 @@ public class Round {
     }
 
     public void randomizePlayOrder() {
+
+        Collections.shuffle(teams);
+
+        for(int i = 0; i < numOfGames; i++) {
+            games[i] = new Game(teams.getFirst(), teams.getFirst());
+        }
 
     }
 

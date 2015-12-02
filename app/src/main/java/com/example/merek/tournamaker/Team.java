@@ -17,7 +17,6 @@ public class Team implements Comparable {
         this.numGamesWon = numGamesWon;
         this.numGamesLost = numGamesLost;
         this.leaguePosition = leaguePosition;
-
     }
 
     public String getName() {

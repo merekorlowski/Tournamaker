@@ -13,7 +13,7 @@ public class Round {
     private Game[] games;
     private ArrayList<Team> teams;
 
-    public Round(int roundNumber,ArrayList<Team> teams, int numOfGames) {
+    public Round(int roundNumber, ArrayList<Team> teams, int numOfGames) {
         this.roundNumber = roundNumber;
         this.teams = teams;
         this.numOfGames = numOfGames;

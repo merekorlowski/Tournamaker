@@ -7,22 +7,25 @@ public class Team {
 
     private String name;
     private int numOfGoals;
+    private int numGamesWon;
+    private int numGamesLost;
     private int leaguePosition;
-    private Team next;
 
-    public Team(String name, int numOfGoals, int leaguePosition, Team next) {
+    public Team(String name, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition) {
         this.name = name;
         this.numOfGoals = numOfGoals;
+        this.numGamesWon = numGamesWon;
+        this.numGamesLost = numGamesLost;
         this.leaguePosition = leaguePosition;
-        this.next = next;
+
     }
 
-    public Team getNext() {
-        return next;
+    public String getName() {
+        return name;
     }
 
-    public int getLeaguePosition() {
-        return leaguePosition;
+    public void setName(String n) {
+        name = n;
     }
 
     public int getNumOfGoals() {
@@ -31,6 +34,26 @@ public class Team {
 
     public void setNumOfGoals(int goals) {
         numOfGoals = goals;
+    }
+
+    public int getNumGamesWon() {
+        return numGamesWon;
+    }
+
+    public void incrementNumGamesWon() {
+        numGamesWon++;
+    }
+
+    public int getNumGamesLost() {
+        return numGamesLost;
+    }
+
+    public void incrementNumGamesLost() {
+        numGamesLost++;
+    }
+
+    public int getLeaguePosition() {
+        return leaguePosition;
     }
 
     public void setLeaguePosition(int position) {

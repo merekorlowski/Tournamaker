@@ -1,6 +1,6 @@
 package com.example.merek.tournamaker;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Created by Merek on 2015-12-01.
@@ -10,15 +10,15 @@ public class Tournament {
     private String type;
     private String name;
     private boolean completed;
-    private LinkedList<Team> teams;
+    private ArrayList<Team> teams;
     private Round[] rounds;
 
-    public Tournament(String type, String name, boolean completed, LinkedList<Team> teams, Round[] rounds) {
+    public Tournament(String type, String name, boolean completed, ArrayList<Team> teams) {
         this.type = type;
         this.name = name;
         this.completed = completed;
         this.teams = teams;
-        this.rounds = rounds;
+        rounds = new Round[teams.size() - 1];
     }
 
     public String getType() {
@@ -37,11 +37,11 @@ public class Tournament {
         return completed;
     }
 
-    public LinkedList<Team> getTeams() {
+    public ArrayList<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(LinkedList<Team> t) {
+    public void setTeams(ArrayList<Team> t) {
         teams = t;
     }
 
@@ -58,6 +58,7 @@ public class Tournament {
             }
 
             return winner;
+
         //return last team in the list
         } else
             return teams.get(0);

@@ -8,7 +8,7 @@ public class EditTeam extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_team);
+        setContentView(R.layout.activity_team_edit);
     }
     /*public void goToTeam(View view) {
         Intent intent = new Intent(this, edit.class);

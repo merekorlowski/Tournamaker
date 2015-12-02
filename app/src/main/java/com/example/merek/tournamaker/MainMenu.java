@@ -1,4 +1,5 @@
-/*package com.example.merek.tournamaker;
+/*
+package com.example.merek.tournamaker;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainMenu extends AppCompatActivity
+
+
+
+
+
+
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -98,4 +105,5 @@ public class MainMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-}*/
+}
+*/

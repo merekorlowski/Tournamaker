@@ -1,5 +1,6 @@
 package com.example.merek.tournamaker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -35,8 +36,9 @@ public class TeamManager extends AppCompatActivity {
     }
 */
     public void createTeamClick(View view) {
-        //Intent intent = new Intent(getApplicationContext(), TeamCreation.class); //Application Context and Activity
-        //startActivityForResult(intent, 0);
+
+        Intent intent = new Intent(this, TeamCreate.class);
+        startActivity(intent);
     }
 
     public void editTeamClick (View view) {

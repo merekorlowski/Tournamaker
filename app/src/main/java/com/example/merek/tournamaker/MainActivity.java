@@ -9,16 +9,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-        @Override
+
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            //show the home menu
             setContentView(com.example.merek.tournamaker.R.layout.activity_main);
             TournamentMaker tournamaker = TournamentMaker.getInstance();
         }
 
-        public void startHere(View v){
-
-            //Open the stats page
+        public void goToCreatTournament(View v){
             Intent intent = new Intent(this, SelectTypeActivity.class);
             startActivity(intent);
         }

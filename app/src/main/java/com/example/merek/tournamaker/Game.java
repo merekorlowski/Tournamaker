@@ -14,10 +14,16 @@ public class Game {
     }
 
     public Team getWinner() {
-        if(t1.getNumOfGoals() > t2.getNumOfGoals())
+        if(t1.getNumOfGoals() > t2.getNumOfGoals()) {
+            t1.incrementNumGamesWon();
+            t2.incrementNumGamesLost();
             return t1;
-        else
+        } else {
+            t1.incrementNumGamesLost();
+            t2.incrementNumGamesWon();
             return t2;
+        }
     }
+
 
 }

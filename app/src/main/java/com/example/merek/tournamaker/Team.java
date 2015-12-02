@@ -19,6 +19,8 @@ public class Team implements Comparable {
         this.leaguePosition = leaguePosition;
     }
 
+    public Team(){}
+
     public String getName() {
         return name;
     }

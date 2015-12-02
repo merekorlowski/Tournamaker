@@ -1,5 +1,6 @@
 package com.example.merek.tournamaker;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.ArrayList;
 
@@ -9,9 +10,10 @@ import java.util.ArrayList;
 public class Round {
 
     private int roundNumber;
+    private ArrayList<Team> teams;
     private int numOfGames;
     private Game[] games;
-    private ArrayList<Team> teams;
+
 
     public Round(int roundNumber, ArrayList<Team> teams, int numOfGames) {
         this.roundNumber = roundNumber;
@@ -20,27 +22,23 @@ public class Round {
         games = new Game[numOfGames];
     }
 
-    public void randomizePlayOrder() {
+    public void playGames() {
 
-        Collections.shuffle(teams);
-
-        int j = 0;
-        for(int i = 0; i < numOfGames; i++) {
-           /* if(teams.size() % 2 == 1 && i == numOfGames - 1) {
-                games[numOfGames - 1] = new Game(teams.get(j), null);
-            }
-            else {
-
-            }*/
-            try {
-                games[i] = new Game(teams.get(j), teams.get(j + 1));
-                j = j + 2;
-            } catch(NullPointerException e) {
-
-            }
+        Team pass = new Team();
+        //if there is an impair number of teams, pass the last one to the next round
+        if(teams.size() % 2 == 1) {
+            pass = teams.get(teams.size() - 1);
+            teams.remove(teams.size() - 1);
         }
-
-
+        for(int i = 0; i < numOfGames; i++) {
+            for(int j = i + 1; j < numOfGames; j++)
+                games[i] = new Game(teams.get(i), teams.get(j));
+        }
+        //randomize play order
+        Collections.shuffle(Arrays.asList(games));
+        //place pass team to the front of the list to ensure it plays text round
+        if(pass != new Team())
+            teams.add(0, pass);
 
     }
 

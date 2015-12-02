@@ -47,6 +47,10 @@ public class Tournament {
 
     }
 
+    public void playRound(int i, ArrayList<Team> teams) {
+        rounds[i] = new Round(i, teams, teams.size()/2);
+    }
+
     public String getType() {
         return type;
     }
@@ -68,7 +72,10 @@ public class Tournament {
     }
 
     public void add(Team t) {
-        teams.add(t);
+        if(!teams.contains(t))
+            teams.add(t);
+        else//temporary, need a way to pop up error
+            System.out.println("Team already exists in tournament.");
     }
 
     public void remove(Team t) {

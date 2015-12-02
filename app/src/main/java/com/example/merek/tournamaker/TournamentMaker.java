@@ -22,6 +22,10 @@ public class TournamentMaker {
         return instance;
     }
 
+    public ArrayList<Tournament> getTournaments() {
+        return tournaments;
+    }
+
     public void addTournament(Tournament t) {
         tournaments.add(t);
     }

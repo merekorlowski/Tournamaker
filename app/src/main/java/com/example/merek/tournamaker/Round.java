@@ -26,9 +26,21 @@ public class Round {
 
         int j = 0;
         for(int i = 0; i < numOfGames; i++) {
-            games[i] = new Game(teams.get(j), teams.get(j+1));
-            j = j + 2;
+           /* if(teams.size() % 2 == 1 && i == numOfGames - 1) {
+                games[numOfGames - 1] = new Game(teams.get(j), null);
+            }
+            else {
+
+            }*/
+            try {
+                games[i] = new Game(teams.get(j), teams.get(j + 1));
+                j = j + 2;
+            } catch(NullPointerException e) {
+
+            }
         }
+
+
 
     }
 

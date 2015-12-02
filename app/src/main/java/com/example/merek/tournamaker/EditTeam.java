@@ -35,43 +35,6 @@ public class EditTeam extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
-
-
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-
-
-
-    <TextView
-    android:id="@+id/tv_long"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="@string/really_long_string" >
-    </TextView>
-
-    int numTeams = 5;
-    Button [] = new Button[numTeams];//
-    for (int i=0;i<oNumber;i++){
-        btn[i] = new Button(this); // initialize it
-        btn[i].setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
-        btn[i].setText(oName[i]);
-        System.out.println("Team" + i);
-        layout.addView(btn[i]);
-    }
-
-    <Button
-    android:id="@+id/btn_act"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="View" >
-    </Button>
-    </LinearLayout>
-    </ScrollView>*/
 }

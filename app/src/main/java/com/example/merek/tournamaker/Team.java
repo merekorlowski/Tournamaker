@@ -55,10 +55,6 @@ public class Team implements Comparable {
         return leaguePosition;
     }
 
-    public void setLeaguePosition(int position) {
-        leaguePosition = position;
-    }
-
     @Override
     public int compareTo(Object another) {
         return getNumGamesWon() - ((Team)another).getNumGamesWon();

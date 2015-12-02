@@ -10,7 +10,7 @@ public class Tournament {
 
     private String type;
     private String name;
-    private boolean completed;
+    private boolean active;
     private ArrayList<Team> teams;
     private Round[] rounds;
     private Bracket[] brackets;
@@ -18,10 +18,10 @@ public class Tournament {
     private ArrayList<Team> secondHalf;
     private ArrayList<Team> winningTeams;
 
-    public Tournament(String type, String name, boolean completed, ArrayList<Team> teams) {
+    public Tournament(String type, String name, boolean active, ArrayList<Team> teams) {
         this.type = type;
         this.name = name;
-        this.completed = completed;
+        this.active = active;
         this.teams = teams;
 
         if(type.equals("RoundRobin"))
@@ -59,12 +59,20 @@ public class Tournament {
         name = n;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public boolean isActive() {
+        return active;
     }
 
     public ArrayList<Team> getTeams() {
         return teams;
+    }
+
+    public void add(Team t) {
+        teams.add(t);
+    }
+
+    public void remove(Team t) {
+        teams.remove(t);
     }
 
     public void setTeams(ArrayList<Team> t) {
@@ -74,5 +82,13 @@ public class Tournament {
     public Team getWinner() {
         Collections.sort(teams);
         return teams.get(teams.size() - 1);
+    }
+
+    public Round getRound(int i) {
+        return rounds[i];
+    }
+
+    public void setRound(int i, ArrayList<Team> teams, int numOfGames) {
+        rounds[i] = new Round(i, teams, numOfGames);
     }
 }

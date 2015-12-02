@@ -13,10 +13,10 @@ public class Round {
     private Game[] games;
     private ArrayList<Team> teams;
 
-    public Round(int roundNumber,ArrayList<Team> teams) {
+    public Round(int roundNumber,ArrayList<Team> teams, int numOfGames) {
         this.roundNumber = roundNumber;
         this.teams = teams;
-        numOfGames = teams.size()/2;
+        this.numOfGames = numOfGames;
         games = new Game[numOfGames];
     }
 
@@ -25,7 +25,6 @@ public class Round {
         Collections.shuffle(teams);
 
         int j = 0;
-
         for(int i = 0; i < numOfGames; i++) {
             games[i] = new Game(teams.get(j), teams.get(j+1));
             j = j + 2;

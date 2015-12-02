@@ -3,7 +3,7 @@ package com.example.merek.tournamaker;
 /**
  * Created by Merek on 2015-12-01.
  */
-public class Team {
+public class Team implements Comparable {
 
     private String name;
     private int numOfGoals;
@@ -60,4 +60,8 @@ public class Team {
         leaguePosition = position;
     }
 
+    @Override
+    public int compareTo(Object another) {
+        return getNumGamesWon() - ((Team)another).getNumGamesWon();
+    }
 }

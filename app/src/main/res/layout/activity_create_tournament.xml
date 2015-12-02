@@ -46,7 +46,8 @@
             android:textSize="20dp"
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="createTournamentClick" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -17,10 +17,10 @@ public class CreateTournament extends AppCompatActivity {
     }
 
 
-    public void createClick(View view) {
+    public void createTournamentClick(View view) {
         //create an instance of tournament, according to type
 
-        Intent intent = new Intent(this, edit.class);
+        Intent intent = new Intent(this, TournamentSetup.class);
         startActivity(intent);
 
     }

@@ -9,7 +9,7 @@ public class TeamCreate extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_load_screen);
+        setContentView(R.layout.activity_team_create);
     }
 
     public void createTeam(View v){

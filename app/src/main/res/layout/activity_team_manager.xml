@@ -7,48 +7,42 @@
     tools:context="com.uottawa.tournamentsetup.TeamManager"
     android:background="@drawable/adidas_soccer_ball">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Team"
+        android:id="@+id/editTeam"
+        android:onClick="editTeamClick"
+        android:textSize="20dp"
+        android:layout_below="@+id/buttonCreateTeam"
+        android:layout_marginTop="44dp"
+        android:layout_alignRight="@+id/buttonCreateTeam"
+        android:layout_alignEnd="@+id/buttonCreateTeam"
+        android:layout_alignLeft="@+id/buttonCreateTeam"
+        android:layout_alignStart="@+id/buttonCreateTeam"
+        android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Team manager"
-            android:id="@+id/textView3"
-            android:textSize="30dp"
-            android:textColor="@color/abc_background_cache_hint_selector_material_dark"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Team"
+        android:id="@+id/buttonCreateTeam"
+        android:onClick="createTeamClick"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Team"
-            android:id="@+id/createTeam"
-            android:onClick="createTeamClick"
-            android:textSize="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_below="@+id/textView3"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit Team"
-            android:id="@+id/editTeam"
-            android:onClick="editTeamClick"
-            android:textSize="20dp"
-            android:layout_below="@+id/createTeam"
-            android:layout_marginTop="44dp"
-            android:layout_alignRight="@+id/createTeam"
-            android:layout_alignEnd="@+id/createTeam"
-            android:layout_alignLeft="@+id/createTeam"
-            android:layout_alignStart="@+id/createTeam"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team manager"
+        android:id="@+id/textView3"
+        android:textSize="30dp"
+        android:textColor="@color/abc_background_cache_hint_selector_material_dark"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
 
 </RelativeLayout>

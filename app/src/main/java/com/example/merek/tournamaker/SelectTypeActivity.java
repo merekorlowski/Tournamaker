@@ -22,29 +22,25 @@ public class SelectTypeActivity extends AppCompatActivity {
     }
 
 
-    //reguardless of type selected, the next screen is the same
-    private Intent creatTournamentIntent(){
-       Intent intent = new Intent(this, CreateTournament.class);
-        return intent;
-    }
-
-
     public void roundRobin(View view){
         //something happens, or get's passed to the next activity
 
-        startActivity(creatTournamentIntent());
+        Intent intent = new Intent(this, CreateTournament.class);
+        startActivity(intent);
     }
 
     public void knockout(View view){
         //something happens, or get's passed to the next activity
 
-        startActivity(creatTournamentIntent());
+        Intent intent = new Intent(this, CreateTournament.class);
+        startActivity(intent);
     }
 
     public void roundRobinKnockout(View view){
         //something happens, or get's passed to the next activity
 
-        startActivity(creatTournamentIntent());
+        Intent intent = new Intent(this, CreateTournament.class);
+        startActivity(intent);
     }
 
 

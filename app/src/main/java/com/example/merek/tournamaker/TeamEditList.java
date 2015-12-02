@@ -5,23 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class TeamManager extends AppCompatActivity {
+public class TeamEditList extends AppCompatActivity {
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_team_manager);
+        setContentView(R.layout.activity_team_edit_list);
     }
-
 
     public void createTeamClick(View view) {
+        //on the user clicking a team in the list, launch the edit....
 
-        Intent intent = new Intent(this, TeamCreate.class);
+        Intent intent = new Intent(this, TeamEdit.class);
         startActivity(intent);
     }
 
-    public void editTeamClick (View view) {
-        Intent intent = new Intent(this, TeamEditList.class);
-        startActivity(intent);
-    }
+
 }

@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.merek.tournamaker.StatisticsActivity"
+    tools:context=".StatisticsActivity"
     android:padding="0dp"
     android:gravity="fill"
     android:showDividers="middle|beginning|end">
@@ -24,10 +24,9 @@
         android:layout_marginLeft="10dp"
         android:textSize="30dp" />
 
-    <ExpandableListView
-        android:layout_width="match_parent"
+    <ListView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/expandableListView5"
-        android:layout_marginRight="15dp" />
+        android:id="@+id/listViewStats" />
 
 </LinearLayout>

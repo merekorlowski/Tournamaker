@@ -15,10 +15,10 @@ public class Round {
     private Game[] games;
 
 
-    public Round(int roundNumber, ArrayList<Team> teams, int numOfGames) {
+    public Round(int roundNumber, ArrayList<Team> teams) {
         this.roundNumber = roundNumber;
         this.teams = teams;
-        this.numOfGames = numOfGames;
+        numOfGames = teams.size()/2;
         games = new Game[numOfGames];
     }
 
@@ -30,13 +30,18 @@ public class Round {
             pass = teams.get(teams.size() - 1);
             teams.remove(teams.size() - 1);
         }
-        for(int i = 0; i < numOfGames; i++) {
+        /*for(int i = 0; i < numOfGames; i++) {
             for(int j = i + 1; j < numOfGames; j++)
                 games[i] = new Game(teams.get(i), teams.get(j));
+        }*/
+
+        for(int i = 0; i < numOfGames; i += 2) {
+            games[i] = new Game(teams.get(i), teams.get(i + 1));
         }
+
         //randomize play order
         Collections.shuffle(Arrays.asList(games));
-        //place pass team to the front of the list to ensure it plays text round
+        //place pass team to the front of the list to ensure it plays next round
         if(pass != new Team())
             teams.add(0, pass);
 

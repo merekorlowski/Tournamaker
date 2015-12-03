@@ -8,16 +8,9 @@ import android.widget.TextView;
 
 public class TournamentSetup extends AppCompatActivity {
 
-    String s;
-    TextView t;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
-        Intent i = getIntent();
-        s = i.getStringExtra("text_label");
-        t = (TextView) findViewById(R.id.textView5); ;
-        t.setText(s);
     }
 
 

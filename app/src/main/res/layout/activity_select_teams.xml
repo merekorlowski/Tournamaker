@@ -19,10 +19,11 @@
         android:textColor="@color/abc_background_cache_hint_selector_material_dark"
         android:layout_marginBottom="20dp" />
 
-    <ExpandableListView
-        android:layout_width="fill_parent"
+    <ListView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/expandableListView3"
-        android:layout_below="@+id/textView8" />
+        android:id="@+id/listviewSelectTeams"
+        android:layout_marginTop="50dp"
+        android:divider="@android:color/black" />
 
 </RelativeLayout>

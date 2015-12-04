@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 public class TournamentSetup extends AppCompatActivity {
 
-    public String name;
+    Tournament tournament;
 
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        name = (String)i.getSerializableExtra("Tournament");
+        tournament = (Tournament)i.getSerializableExtra("Tournament");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
     }
@@ -20,19 +20,20 @@ public class TournamentSetup extends AppCompatActivity {
 
     public void selectTeamsClick(View view) {
         Intent intent = new Intent(this, SelectTeams.class); //Application Context and Activity
-        intent.putExtra("name", name);
+        intent.putExtra("Tournament", tournament);
         startActivity(intent);
     }
 
     public void teamManagerClick (View view) {
         Intent intent = new Intent(this, TeamManager.class); //Application Context and Activity
-        intent.putExtra("name", name);
+        intent.putExtra("Tournament", tournament);
         startActivity(intent);
     }
 
     public void startClick (View view) {
         Intent intent = new Intent(this, RoundActivity.class); //Application Context and Activity
-        intent.putExtra("name", name);
+        intent.putExtra("Tournament", tournament);
+        intent.putExtra("roundNumber", 0);
         startActivity(intent);
     }
 

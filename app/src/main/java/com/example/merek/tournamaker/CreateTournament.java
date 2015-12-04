@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,8 @@ import java.util.ArrayList;
 
 public class CreateTournament extends AppCompatActivity {
 
-    public String type;
+    String type;
+    Tournament tournament;
 
 
     @Override
@@ -27,15 +30,20 @@ public class CreateTournament extends AppCompatActivity {
 
 
     public void createTournamentClick(View view) {
-        //create an instance of tournament, according to type
+
+        ListView listView = (ListView) findViewById(R.id.listViewEdit);
+        ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
+        adapter.notifyDataSetChanged();
+
         EditText inputTxt = (EditText) findViewById(R.id.editTextTournament);
 
         // Store EditText in Variable
         String name = inputTxt.getText().toString();
+        tournament = new Tournament(type, name, false, new ArrayList<Team>());
+        TournamentMaker.getInstance().addTournament(tournament);
 
-        TournamentMaker.getInstance().addTournament(new Tournament(type, name, false, new ArrayList<Team>()));
         Intent intent = new Intent(this, TournamentSetup.class);
-        intent.putExtra("Tournament", name);
+        intent.putExtra("Tournament", tournament);
         startActivity(intent);
 
     }

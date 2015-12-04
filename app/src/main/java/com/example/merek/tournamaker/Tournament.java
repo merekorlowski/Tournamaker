@@ -91,6 +91,14 @@ public class Tournament implements Serializable {
         teams.remove(t);
     }
 
+    public Team getTeam(String name) {
+        int i = 0;
+        while(teams.get(i).getName() != name) {
+            i++;
+        }
+        return teams.get(i);
+    }
+
     public void setTeams(ArrayList<Team> t) {
         teams = t;
     }

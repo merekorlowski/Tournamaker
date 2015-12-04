@@ -12,14 +12,15 @@ import java.util.ArrayList;
 
 public class GameList extends AppCompatActivity {
 
-    String name;
-    int round;
+    Tournament tournament;
+    int roundNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        name = (String)i.getSerializableExtra("name");
-        round = (int)i.getSerializableExtra("round");
+        tournament = (Tournament)i.getSerializableExtra("Tournament");
+        roundNumber = (int)i.getSerializableExtra("roundNumber");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_list);
         populateListView();
@@ -27,7 +28,7 @@ public class GameList extends AppCompatActivity {
     }
 
     public void populateListView() {
-        ArrayList<String> games = TournamentMaker.getInstance().getTournament(name).getRound(round).getGameList();
+        ArrayList<String> games = tournament.getRound(roundNumber).getGameList();
         ArrayAdapter<String> adapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, games);
         ListView listview = (ListView) findViewById(R.id.listViewEdit);
@@ -46,6 +47,12 @@ public class GameList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void nextRound() {
+        Intent intent = new Intent(this, RoundActivity.class);
+        intent.putExtra("Tournament", tournament);
+        intent.putExtra("roundNumber", roundNumber++);
     }
 
 }

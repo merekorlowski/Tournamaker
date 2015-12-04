@@ -13,19 +13,19 @@ import java.util.Collections;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    String name;
+    Tournament tournament;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        name = (String)i.getSerializableExtra("name");
+        tournament = (Tournament)i.getSerializableExtra("Tournament");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         populateListView();
     }
 
     public void populateListView() {
-        ArrayList<String> names = TournamentMaker.getInstance().getTournament(name).getTeamNames();
+        ArrayList<String> names = tournament.getTeamNames();
         Collections.sort(names);
         ArrayAdapter<String> adapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, names);

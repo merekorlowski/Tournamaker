@@ -36,6 +36,7 @@ public class LoadScreen extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listViewLoad);
         listview.setAdapter(adapter);
     }
+    //
 
     public void registerClickCallback() {
 

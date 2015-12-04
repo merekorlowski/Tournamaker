@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -32,6 +33,10 @@ public class TeamEdit extends AppCompatActivity {
 
         TournamentMaker.getInstance().setTeamName(position, name);
 
+        ListView listView = (ListView) findViewById(R.id.listViewEdit);
+        ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
+        adapter.notifyDataSetChanged();
+
         Intent intent = new Intent(this, TeamEditList.class);
         startActivity(intent);
     }
@@ -39,6 +44,9 @@ public class TeamEdit extends AppCompatActivity {
     public void deleteTeam(View view) {
 
         TournamentMaker.getInstance().deleteTeam(position);
+        ListView listView = (ListView) findViewById(R.id.listViewEdit);
+        ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
+        adapter.notifyDataSetChanged();
 
         Intent intent = new Intent(this, TeamEditList.class);
         startActivity(intent);

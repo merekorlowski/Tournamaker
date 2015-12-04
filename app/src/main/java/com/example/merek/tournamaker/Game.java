@@ -24,4 +24,8 @@ public class Game {
             return t2;
         }
     }
+
+    public String toString() {
+        return t1.getName() + " vs " + t2.getName();
+    }
 }

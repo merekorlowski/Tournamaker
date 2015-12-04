@@ -34,7 +34,7 @@ public class RoundActivity extends AppCompatActivity {
     public void startRoundClick(View v){
 
         //Open the result page
-        Intent intent = new Intent(this, ResultsActivity.class);
+        Intent intent = new Intent(this, GameList.class);
 
         //track round by sending it as an extra
         //Intent roundIncrease = intent.putExtra("roundNumber", roundNumber);

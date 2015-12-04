@@ -30,11 +30,6 @@ public class Round {
             pass = teams.get(teams.size() - 1);
             teams.remove(teams.size() - 1);
         }
-        /*for(int i = 0; i < numOfGames; i++) {
-            for(int j = i + 1; j < numOfGames; j++)
-                games[i] = new Game(teams.get(i), teams.get(j));
-        }*/
-
         for(int i = 0; i < numOfGames; i += 2) {
             games[i] = new Game(teams.get(i), teams.get(i + 1));
         }
@@ -54,9 +49,16 @@ public class Round {
         for(int i = 0; i < numOfGames; i++) {
             winners.add(games[i].getWinner());
         }
-
         return winners;
 
+    }
+
+    public ArrayList<String> getGameList() {
+        ArrayList<String> gameList = new ArrayList<>();
+        for(int i = 0; i < games.length; i++) {
+            gameList.add(games[i].toString());
+        }
+        return gameList;
     }
 
 }

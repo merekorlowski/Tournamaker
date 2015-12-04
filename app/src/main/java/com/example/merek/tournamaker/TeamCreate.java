@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,10 @@ public class TeamCreate extends AppCompatActivity {
         String name = inputTxt.getText().toString();
 
         TournamentMaker.getInstance().addTeam(new Team(name, 0, 0, 0, 0));
+
+        ListView listView = (ListView) findViewById(R.id.listViewEdit);
+        ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
+        adapter.notifyDataSetChanged();
 
         Intent intent = new Intent(this, TeamManager.class);
         startActivity(intent);

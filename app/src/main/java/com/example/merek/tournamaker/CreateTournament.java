@@ -14,14 +14,12 @@ import java.util.ArrayList;
 
 public class CreateTournament extends AppCompatActivity {
 
-    private TournamentMaker tournamaker;
-    private String type;
+    public String type;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        tournamaker = (TournamentMaker)i.getSerializableExtra("Tournamaker");
         type = (String)i.getSerializableExtra("type");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tournament);
@@ -35,9 +33,9 @@ public class CreateTournament extends AppCompatActivity {
         // Store EditText in Variable
         String name = inputTxt.getText().toString();
 
-        tournamaker.addTournament(new Tournament(type, name, false, new ArrayList<Team>()));
+        TournamentMaker.getInstance().addTournament(new Tournament(type, name, false, new ArrayList<Team>()));
         Intent intent = new Intent(this, TournamentSetup.class);
-        intent.putExtra("Tournament", tournamaker.getTournament(name));
+        intent.putExtra("Tournament", name);
         startActivity(intent);
 
     }

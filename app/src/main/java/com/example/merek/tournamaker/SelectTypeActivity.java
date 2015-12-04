@@ -14,11 +14,7 @@ public class SelectTypeActivity extends AppCompatActivity {
     /*Dialog selectTypeDialog;
     String theText;*/
 
-    private TournamentMaker tournamaker;
-
     protected void onCreate(Bundle savedInstanceState) {
-        Intent i = getIntent();
-        tournamaker = (TournamentMaker)i.getSerializableExtra("Tournamaker");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_type);
     }
@@ -29,7 +25,6 @@ public class SelectTypeActivity extends AppCompatActivity {
         String type = btnTxt.getText().toString();
 
         Intent intent = new Intent(this, CreateTournament.class);
-        intent.putExtra("Tournamaker", tournamaker);
         intent.putExtra("type", type);
         startActivity(intent);
     }
@@ -40,7 +35,6 @@ public class SelectTypeActivity extends AppCompatActivity {
         String type = btnTxt.getText().toString();
 
         Intent intent = new Intent(this, CreateTournament.class);
-        intent.putExtra("Tournamaker", tournamaker);
         intent.putExtra("type", type);
         startActivity(intent);
     }
@@ -51,7 +45,6 @@ public class SelectTypeActivity extends AppCompatActivity {
         String type = btnTxt.getText().toString();
 
         Intent intent = new Intent(this, CreateTournament.class);
-        intent.putExtra("Tournamaker", tournamaker);
         intent.putExtra("type", type);
         startActivity(intent);
     }

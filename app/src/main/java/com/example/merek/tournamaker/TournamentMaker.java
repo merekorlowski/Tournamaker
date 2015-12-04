@@ -1,5 +1,7 @@
 package com.example.merek.tournamaker;
 
+import android.app.Application;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Created by Merek on 2015-12-02.
  */
-public class TournamentMaker implements Serializable{
+public class TournamentMaker {
 
     private ArrayList<Tournament> tournaments;
     private ArrayList<Team> teams;
@@ -72,8 +74,12 @@ public class TournamentMaker implements Serializable{
             System.out.println("Team already exists in tournamament maker.");
     }
 
-    public void deleteTeam(Team t) {
-        teams.remove(t);
+    public void setTeamName(int i, String name) {
+        teams.get(i).setName(name);
+    }
+
+    public void deleteTeam(int i) {
+        teams.remove(i);
     }
 
 }

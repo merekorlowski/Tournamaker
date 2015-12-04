@@ -47,7 +47,7 @@
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
-            android:onClick="createTeam" />
+            android:onClick="editTeam" />
 
         <Button
             android:layout_width="250dp"
@@ -58,7 +58,7 @@
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
-            android:onClick="createTeam" />
+            android:onClick="deleteTeam" />
     </LinearLayout>
 
 </RelativeLayout>

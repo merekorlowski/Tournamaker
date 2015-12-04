@@ -1,12 +1,13 @@
 package com.example.merek.tournamaker;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  * Created by Merek on 2015-12-01.
  */
-public class Tournament {
+public class Tournament implements Serializable {
 
     private String type;
     private String name;
@@ -48,7 +49,7 @@ public class Tournament {
     }
 
     public void playRound(int i, ArrayList<Team> teams) {
-        rounds[i] = new Round(i, teams, teams.size()/2);
+        rounds[i] = new Round(i, teams);
     }
 
     public String getType() {
@@ -69,6 +70,14 @@ public class Tournament {
 
     public ArrayList<Team> getTeams() {
         return teams;
+    }
+
+    public ArrayList<String> getTeamNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for(int i = 0; i < teams.size(); i++) {
+            names.add(teams.get(i).getName());
+        }
+        return names;
     }
 
     public void add(Team t) {
@@ -96,6 +105,6 @@ public class Tournament {
     }
 
     public void setRound(int i, ArrayList<Team> teams, int numOfGames) {
-        rounds[i] = new Round(i, teams, numOfGames);
+        rounds[i] = new Round(i, teams);
     }
 }

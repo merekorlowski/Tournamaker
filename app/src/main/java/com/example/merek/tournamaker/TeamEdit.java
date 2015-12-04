@@ -14,13 +14,13 @@ public class TeamEdit extends AppCompatActivity {
     }
 
 
-    public void confirmChangesClick(View view) {
+    public void editTeam(View view) {
 
         Intent intent = new Intent(this, TeamCreate.class);
         startActivity(intent);
     }
 
-    public void deleteTeamClick(View view) {
+    public void deleteTeam(View view) {
 
         Intent intent = new Intent(this, TeamCreate.class);
         startActivity(intent);

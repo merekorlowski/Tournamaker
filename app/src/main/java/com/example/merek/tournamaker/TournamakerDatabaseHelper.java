@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.back_end;
 
 import android.content.ContentValues;
 import android.content.Context;

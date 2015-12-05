@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.merek.tournamaker.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             //show the home menu
             setContentView(com.example.merek.tournamaker.R.layout.activity_main);
 
-            // Background Image Thread
+            //Background Image Thread
             new Thread(new Runnable() {
                 public void run() {
                     RelativeLayout layout =(RelativeLayout)findViewById(R.id.backgroundRelativeLayout);

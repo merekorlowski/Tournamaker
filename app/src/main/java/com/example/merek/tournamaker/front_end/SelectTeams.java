@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.merek.tournamaker.R;
+import com.example.merek.tournamaker.back_end.Team;
+import com.example.merek.tournamaker.back_end.Tournament;
+import com.example.merek.tournamaker.back_end.TournamentMaker;
 
 import java.util.ArrayList;
 
@@ -18,20 +23,30 @@ public class SelectTeams extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Intent i = getIntent();
-        //retrieve objects from intent
+
+        //initialize tournament from intent
         tournament = (Tournament) i.getSerializableExtra("Tournament");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_teams);
+
         populateList();
         registerClickCallback();
+
     }
-    //populate list view with all teams in tournamaker
+
+    //populate list view with all teams in tournament maker
     public void populateList() {
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, TournamentMaker.getInstance().getTeams());
+
+        //initialize arraylist of teams
+        ArrayList<Team> teams = TournamentMaker.getInstance().getTeams();
+
+        //add to listview
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, teams);
         ListView listview = (ListView) findViewById(R.id.listviewSelectTeams);
         listview.setAdapter(adapter);
+
     }
 
     //add selected teams to this tournament
@@ -41,9 +56,16 @@ public class SelectTeams extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                tournament.add(TournamentMaker.getInstance().getTeams().get(position));
+
+                //get team at position selected
+                Team team = TournamentMaker.getInstance().getTeams().get(position);
+
+                //add team to tournament
+                tournament.add(team);
+
             }
         });
+
     }
 }
 

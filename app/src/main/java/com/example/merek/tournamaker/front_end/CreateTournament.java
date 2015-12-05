@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+
+import com.example.merek.tournamaker.R;
+import com.example.merek.tournamaker.back_end.Team;
+import com.example.merek.tournamaker.back_end.Tournament;
+import com.example.merek.tournamaker.back_end.TournamentMaker;
 
 import java.util.ArrayList;
 
-//import android.view.Menu;
-//import android.view.MenuItem;
+
 
 public class CreateTournament extends AppCompatActivity {
 

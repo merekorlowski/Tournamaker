@@ -1,7 +1,11 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.back_end;
 
+/**
+ * Created by Merek on 2015-12-01.
+ */
 public class Team implements Comparable {
 
+    //declare variables
     private String name;
     private int numOfGoals;
     private int numGamesWon;
@@ -10,6 +14,7 @@ public class Team implements Comparable {
     private String iconPath;
     private boolean isIconDrawable;
 
+    //team constructor
     public Team(String name, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition, String iconPath, boolean isIconDrawable) {
         this.name = name;
         this.numOfGoals = numOfGoals;
@@ -32,6 +37,7 @@ public class Team implements Comparable {
 
     public Team(){}
 
+    //getters and setters
     public String getName() {
         return name;
     }
@@ -52,16 +58,8 @@ public class Team implements Comparable {
         return numGamesWon;
     }
 
-    public void incrementNumGamesWon() {
-        numGamesWon++;
-    }
-
     public int getNumGamesLost() {
         return numGamesLost;
-    }
-
-    public void incrementNumGamesLost() {
-        numGamesLost++;
     }
 
     public int getLeaguePosition() {
@@ -84,8 +82,23 @@ public class Team implements Comparable {
         this.isIconDrawable = isIconDrawable;
     }
 
+    //increment this teams number of games won
+    public void incrementNumGamesWon() {
+        numGamesWon++;
+    }
+
+    //increment this teams number of games lost
+    public void incrementNumGamesLost() {
+        numGamesLost++;
+    }
+
+    //used to sort teams by order of number of games won
     @Override
     public int compareTo(Object another) {
         return getNumGamesWon() - ((Team)another).getNumGamesWon();
+    }
+
+    public String getStats() {
+        return getName() + ", " + numGamesWon + " wins, " + numGamesLost + " loses";
     }
 }

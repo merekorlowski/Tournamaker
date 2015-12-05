@@ -13,21 +13,38 @@
     android:gravity="fill"
     android:background="@drawable/adidas_soccer_ball">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Round 1"
-        android:id="@+id/textViewRound"
-        android:layout_marginTop="20dp"
-        android:textSize="30dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Round"
+            android:id="@+id/roundTextView"
+            android:layout_marginTop="20dp"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/roundNumberTextView"
+            android:textSize="30dp"
+            android:text="#" />
+    </LinearLayout>
 
     <Button
         android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:text="Start Round"
-        android:id="@+id/buttonStartRound"
+        android:id="@+id/startRoundBtn"
         android:layout_gravity="center_horizontal"
         android:onClick="startRoundClick"
         android:textSize="20dp"
@@ -37,7 +54,7 @@
         android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:text="View Stats"
-        android:id="@+id/buttonViewStats"
+        android:id="@+id/viewStatsBtn"
         android:layout_gravity="center_horizontal"
         android:onClick="viewStatsClick"
         android:textSize="20dp"

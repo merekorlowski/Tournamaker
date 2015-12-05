@@ -8,38 +8,38 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity android:name=".front_end.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectTypeActivity" >
+        <activity android:name=".front_end.SelectTypeActivity" >
         </activity>
-        <activity android:name=".ResultsActivity" >
+        <activity android:name=".front_end.ResultsActivity" >
         </activity>
-        <activity android:name=".RoundActivity" >
+        <activity android:name=".front_end.RoundActivity" >
         </activity>
-        <activity android:name=".StatisticsActivity" >
+        <activity android:name=".front_end.StatisticsActivity" >
         </activity>
-        <activity android:name=".CreateTournament" >
+        <activity android:name=".front_end.CreateTournament" >
         </activity>
-        <activity android:name=".TeamEdit" >
+        <activity android:name=".front_end.TeamEdit" >
         </activity>
-        <activity android:name=".TeamManager" >
+        <activity android:name=".front_end.TeamManager" >
         </activity>
-        <activity android:name=".TournamentSetup" >
+        <activity android:name=".front_end.TournamentSetup" >
         </activity>
-        <activity android:name=".LoadScreen" >
+        <activity android:name=".front_end.LoadScreen" >
         </activity>
-        <activity android:name=".TeamEditList" >
+        <activity android:name=".front_end.TeamEditList" >
         </activity>
-        <activity android:name=".TeamCreate" >
+        <activity android:name=".front_end.TeamCreate" >
         </activity>
-        <activity android:name=".SelectTeams" >
+        <activity android:name=".front_end.SelectTeams" >
         </activity>
-        <activity android:name=".GameActivity" >
+        <activity android:name=".front_end.GameActivity" >
         </activity>
     </application>
 

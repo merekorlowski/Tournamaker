@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,35 +8,38 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class LoadScreen extends AppCompatActivity {
+import com.example.merek.tournamaker.R;
+import com.example.merek.tournamaker.back_end.TournamentMaker;
 
+public class TeamEditList extends AppCompatActivity {
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_load_screen);
+        setContentView(R.layout.activity_team_edit_list);
         populateListView();
         registerClickCallback();
     }
 
     public void populateListView() {
-
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, TournamentMaker.getInstance().getTournamentNames());
-        ListView listview = (ListView) findViewById(R.id.listViewLoad);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, TournamentMaker.getInstance().getTeamNames());
+        ListView listview = (ListView) findViewById(R.id.listViewEdit);
         listview.setAdapter(adapter);
     }
 
     public void registerClickCallback() {
 
-        ListView list = (ListView) findViewById(R.id.listViewLoad);
+        ListView list = (ListView) findViewById(R.id.listViewEdit);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), TournamentSetup.class);
+                Intent intent = new Intent(getApplicationContext(), TeamEdit.class);
+                intent.putExtra("position", position);
                 intent.putExtra("id", String.valueOf(id));
                 startActivity(intent);
             }
         });
     }
-
 
 }

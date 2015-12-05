@@ -1,44 +1,40 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.back_end;
 
-import android.app.Application;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Merek on 2015-12-02.
  */
+
+//Singleton
 public class TournamentMaker {
 
-    private ArrayList<Tournament> tournaments;
-    private ArrayList<Team> teams;
+    //initialize variables
+    private ArrayList<Tournament> tournaments = new ArrayList<>();
+    private ArrayList<Team> teams = new ArrayList<>();
     private static TournamentMaker instance = null;
 
-    private TournamentMaker(ArrayList<Tournament> tournaments, ArrayList<Team> teams) {
-        this.tournaments = tournaments;
-        this.teams = teams;
-    }
+    //private tournament maker constructor
+    private TournamentMaker() {}
 
+    //used to make sure only one instance can be created
     public static TournamentMaker getInstance() {
         if(instance == null) {
-            instance = new TournamentMaker(new ArrayList<Tournament>(), new ArrayList<Team>());
+            instance = new TournamentMaker();
         }
         return instance;
     }
 
+    //getters and setters
     public ArrayList<Tournament> getTournaments() {
         return tournaments;
     }
 
-    public Tournament getTournament(String name) {
-        int i = 0;
-        while(tournaments.get(i).getName() != name) {
-            i++;
-        }
+    public Tournament getTournament(int i) {
         return tournaments.get(i);
     }
 
+    //used to populate load list
     public ArrayList<String> getTournamentNames() {
         ArrayList<String> names = new ArrayList<>();
         for(int i = 0; i < tournaments.size(); i++) {
@@ -59,6 +55,7 @@ public class TournamentMaker {
         return teams;
     }
 
+    //used to populate team list
     public ArrayList<String> getTeamNames() {
         ArrayList<String> names = new ArrayList<>();
         for(int i = 0; i < teams.size(); i++) {
@@ -67,11 +64,14 @@ public class TournamentMaker {
         return names;
     }
 
-    public void addTeam(Team t) {
-        if(!teams.contains(t))
+    //returns true if doesnt already contain team and adds tournament
+    //returns false if already contains
+    public boolean add(Team t) {
+        if(!teams.contains(t)) {
             teams.add(t);
-        else//temporary, need a way to pop up error
-            System.out.println("Team already exists in tournamament maker.");
+            return true;
+        } else
+            return false;
     }
 
     public void setTeamName(int i, String name) {

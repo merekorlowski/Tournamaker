@@ -1,12 +1,13 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.merek.tournamaker.R;
+import com.example.merek.tournamaker.back_end.Tournament;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     public void populateListView() {
         ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, tournament.getRound(roundNumber - 1).getGameTextList());
+                android.R.layout.simple_list_item_1, tournament.getRound(roundNumber - 1).getGameScoreList());
         ListView listview = (ListView) findViewById(R.id.listViewEdit);
         listview.setAdapter(adapter);
     }

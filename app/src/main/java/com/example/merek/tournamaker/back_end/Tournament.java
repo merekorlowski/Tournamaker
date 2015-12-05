@@ -1,57 +1,44 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.back_end;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by Merek on 2015-12-01.
  */
 public class Tournament implements Serializable {
 
+    //declare variables
     private String type;
     private String name;
     private boolean active;
     private ArrayList<Team> teams;
     private Round[] rounds;
-    private Bracket[] brackets;
-    private ArrayList<Team> firstHalf;
-    private ArrayList<Team> secondHalf;
-    private ArrayList<Team> winningTeams;
 
+    //tournament constructor
     public Tournament(String type, String name, boolean active, ArrayList<Team> teams) {
         this.type = type;
         this.name = name;
         this.active = active;
         this.teams = teams;
 
+        //determine number of rounds by type
         if(type.equals("RoundRobin"))
             rounds = new Round[teams.size() - 1];
         else if(type.equals("Knockout"))
             rounds = new Round[(int)Math.log(2)*teams.size()];
         else {
-            /*brackets = new Bracket[2];
-            firstHalf = new ArrayList<Team>();
-            secondHalf = new ArrayList<Team>();
-            winningTeams = new ArrayList<Team>();
-
-            for(int i = 0; i < teams.size()/2; i++)
-                firstHalf.set(i, teams.get(i));
-            for(int i = teams.size()/2; i < teams.size(); i++)
-                secondHalf.set(i, teams.get(i));
-
-            brackets[1] = new Bracket(firstHalf);
-            brackets[2] = new Bracket(secondHalf);*/
-
             rounds = new Round[(teams.size() - 1)/2 + (int)Math.log(2)*((teams.size() - 1)/2)];
         }
 
     }
 
-    public void playRound(int i, ArrayList<Team> teams) {
+    //initialize a new round
+    public void initializeRound(int i, ArrayList<Team> teams) {
         rounds[i] = new Round(i, teams);
     }
 
+    //getters and setters
     public String getType() {
         return type;
     }
@@ -64,15 +51,13 @@ public class Tournament implements Serializable {
         name = n;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
     public ArrayList<Team> getTeams() {
         return teams;
     }
 
     public ArrayList<String> getTeamNames() {
+        //initialize arraylist of team names,
+        //used to populate team select and edit lists
         ArrayList<String> names = new ArrayList<>();
         for(int i = 0; i < teams.size(); i++) {
             names.add(teams.get(i).getName());
@@ -80,17 +65,7 @@ public class Tournament implements Serializable {
         return names;
     }
 
-    public void add(Team t) {
-        if(!teams.contains(t))
-            teams.add(t);
-        else//temporary, need a way to pop up error
-            System.out.println("Team already exists in tournament.");
-    }
-
-    public void remove(Team t) {
-        teams.remove(t);
-    }
-
+    //returns team by a specific name
     public Team getTeam(String name) {
         int i = 0;
         while(teams.get(i).getName() != name) {
@@ -103,16 +78,28 @@ public class Tournament implements Serializable {
         teams = t;
     }
 
-    public Team getWinner() {
-        Collections.sort(teams);
-        return teams.get(teams.size() - 1);
-    }
-
     public Round getRound(int i) {
         return rounds[i];
     }
 
-    public void setRound(int i, ArrayList<Team> teams, int numOfGames) {
-        rounds[i] = new Round(i, teams);
+    //returns true if doesnt already contain team and adds to tournament
+    //returns false if already contains
+    public boolean add(Team t) {
+        if(!teams.contains(t)) {
+            teams.add(t);
+            return true;
+        } else
+            return false;
     }
+
+    //remove team from tournament
+    public void remove(Team t) {
+        teams.remove(t);
+    }
+
+    //tests to see if this tournament is active
+    public boolean isActive() {
+        return active;
+    }
+
 }

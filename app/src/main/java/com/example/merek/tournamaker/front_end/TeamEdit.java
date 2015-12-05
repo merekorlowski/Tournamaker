@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.example.merek.tournamaker.R;
+import com.example.merek.tournamaker.back_end.TournamentMaker;
 
 public class TeamEdit extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+package com.example.merek.tournamaker.front_end;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import com.example.merek.tournamaker.R;
+import com.example.merek.tournamaker.back_end.Team;
+import com.example.merek.tournamaker.back_end.TournamentMaker;
 
 public class TeamCreate extends AppCompatActivity {
 

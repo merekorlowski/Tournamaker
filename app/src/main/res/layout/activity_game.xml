@@ -5,7 +5,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.merek.tournamaker.GameActivity"
+    tools:context="com.example.merek.tournamaker.front_end.GameActivity"
     android:background="@drawable/adidas_soccer_ball">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Team1"
-        android:id="@+id/team1text"
+        android:id="@+id/teamOneTextView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Team2"
-        android:id="@+id/team2text"
-        android:layout_alignTop="@+id/team1text"
+        android:id="@+id/teamTwoTextView"
+        android:layout_alignTop="@+id/teamOneTextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="30dp" />
@@ -37,54 +37,71 @@
         android:text="VS"
         android:id="@+id/vsTextView"
         android:textSize="20dp"
-        android:layout_alignBottom="@+id/team2text"
+        android:layout_alignBottom="@+id/teamTwoTextView"
         android:layout_centerHorizontal="true"
         android:textColor="@color/abc_background_cache_hint_selector_material_dark" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker"
+        android:id="@+id/teamOneScore"
         android:layout_below="@+id/vsTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/team1text"
-        android:layout_alignEnd="@+id/team1text"
+        android:layout_alignRight="@+id/teamOneTextView"
+        android:layout_alignEnd="@+id/teamOneTextView"
         tools:ignore="NewApi"
-        android:onClick="setTeam1Score" />
+        android:onClick="setTeamOneScore" />
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numberPicker3"
+        android:id="@+id/teamTwoScore"
         android:layout_below="@+id/vsTextView"
-        android:layout_alignRight="@+id/team2text"
-        android:layout_alignEnd="@+id/team2text"
-        android:layout_alignLeft="@+id/team2text"
-        android:layout_alignStart="@+id/team2text"
+        android:layout_alignRight="@+id/teamTwoTextView"
+        android:layout_alignEnd="@+id/teamTwoTextView"
+        android:layout_alignLeft="@+id/teamTwoTextView"
+        android:layout_alignStart="@+id/teamTwoTextView"
         tools:ignore="NewApi"
-        android:onClick="setTeam2Score" />
+        android:onClick="setTeamTwoScore" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="next game"
-        android:id="@+id/nextGame"
+        android:id="@+id/nextGameBtn"
         android:onClick="nextGame"
         android:textSize="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/numberPicker3"
-        android:layout_alignEnd="@+id/numberPicker3" />
+        android:layout_alignRight="@+id/teamTwoScore"
+        android:layout_alignEnd="@+id/teamTwoScore" />
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Game 1"
-        android:id="@+id/gameTextView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp" />
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Game"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:id="@+id/gameTextView"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="#"
+            android:id="@+id/gameNumberTextView"
+            android:textSize="30dp" />
+    </LinearLayout>
 
 
 </RelativeLayout>

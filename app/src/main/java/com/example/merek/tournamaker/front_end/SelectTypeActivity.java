@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.example.merek.tournamaker.R;
 
@@ -16,18 +15,10 @@ public class SelectTypeActivity extends AppCompatActivity {
     Button btnTxt;
     String type;
 
-    protected void onCreate(Bundle savedInstanceState) {
 
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_type);
-
-        new Thread(new Runnable() {
-            public void run() {
-                RelativeLayout layout =(RelativeLayout)findViewById(R.id.tournamentTypeBackgroundRelativeLayout);
-                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
-            }
-        }).start();
-
     }
 
     public void roundRobin(View view){

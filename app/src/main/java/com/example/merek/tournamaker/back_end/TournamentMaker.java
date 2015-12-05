@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class TournamentMaker {
 
     //initialize variables
-    private ArrayList<Tournament> tournaments = new ArrayList<>();
-    private ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+    private ArrayList<Team> teams = new ArrayList<Team>();
     private static TournamentMaker instance = null;
 
     //private tournament maker constructor

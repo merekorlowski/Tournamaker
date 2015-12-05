@@ -4,12 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.merek.tournamaker.R;
 import com.example.merek.tournamaker.back_end.Tournament;
 
 public class TeamManager extends AppCompatActivity {
+
+    //for the drawer
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
+
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -22,6 +29,11 @@ public class TeamManager extends AppCompatActivity {
                 layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
             }
         }).start();*/
+
+
+        //setup for drawer
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        addDrawerItems();
 
     }
 
@@ -42,4 +54,12 @@ public class TeamManager extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    //the drawer
+    private void addDrawerItems() {
+        String[] osArray = { "Back to Home", "Back to Tournament", "Load Tournament"};
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(mAdapter);
+    }
+
 }

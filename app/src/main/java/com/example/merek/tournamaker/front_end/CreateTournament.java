@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.merek.tournamaker.R;
@@ -31,6 +32,15 @@ public class CreateTournament extends AppCompatActivity {
         type = (String)i.getSerializableExtra("type");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tournament);
+
+        // Background Thread
+        new Thread(new Runnable() {
+            public void run() {
+                LinearLayout layout =(LinearLayout)findViewById(R.id.createTournamentBackgroundLinearLayout);
+                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
+            }
+        }).start();
+
     }
 
 

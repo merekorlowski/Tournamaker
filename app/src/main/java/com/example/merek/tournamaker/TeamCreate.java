@@ -24,7 +24,7 @@ public class TeamCreate extends AppCompatActivity {
         // Store EditText in Variable
         String name = inputTxt.getText().toString();
 
-        TournamentMaker.getInstance().addTeam(new Team(name, 0, 0, 0, 0));
+        TournamentMaker.getInstance().addTeam(new Team(name));
 
         ListView listView = (ListView) findViewById(R.id.listViewEdit);
         ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();

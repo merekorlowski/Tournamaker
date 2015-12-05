@@ -1,13 +1,9 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.Tournament;
 
 public class TeamManager extends AppCompatActivity {
 

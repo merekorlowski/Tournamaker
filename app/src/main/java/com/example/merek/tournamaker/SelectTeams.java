@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.Team;
-import com.example.merek.tournamaker.back_end.Tournament;
-import com.example.merek.tournamaker.back_end.TournamentMaker;
+import com.example.merek.tournamaker.Team;
+import com.example.merek.tournamaker.Tournament;
+import com.example.merek.tournamaker.TournamentMaker;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class SelectTeams extends AppCompatActivity {
     public void populateList() {
 
         //initialize arraylist of teams
-        ArrayList<Team> teams = TournamentMaker.getInstance().getTeams();
+        ArrayList<String> teams = TournamentMaker.getInstance().getTeamNames();
 
         //add to listview
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, teams);

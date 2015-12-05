@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.Team;
-import com.example.merek.tournamaker.back_end.TournamentMaker;
 
 import java.util.ArrayList;
 
@@ -45,7 +41,6 @@ public class TeamEditList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), TeamEdit.class);
                 intent.putExtra("position", position);
-                intent.putExtra("id", String.valueOf(id));
                 startActivity(intent);
             }
         });

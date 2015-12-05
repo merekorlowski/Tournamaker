@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +7,11 @@ import android.view.View;
 
 import android.widget.Button;
 
-import com.example.merek.tournamaker.R;
-
 public class SelectTypeActivity extends AppCompatActivity {
 
     //declare variables
     Button btnTxt;
     String type;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

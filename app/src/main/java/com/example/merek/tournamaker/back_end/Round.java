@@ -27,7 +27,7 @@ public class Round implements Serializable {
     public void setGames() {
 
         //initialize team to pass
-        Team pass = new Team("",0,0,0,0);
+        Team pass = new Team("");
 
         //if there is an impair number of teams, pass the last one to the next round
         if(teams.size() % 2 == 1) {

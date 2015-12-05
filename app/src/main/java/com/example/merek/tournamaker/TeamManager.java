@@ -31,11 +31,16 @@ public class TeamManager extends AppCompatActivity {
     }
 
     //called when edit team button is clicked
-    public void editTeamClick (View view) {
+    public void editTeamClick(View view) {
 
         //go to team edit list activity
         Intent intent = new Intent(this, TeamEditList.class);
         startActivity(intent);
 
+    }
+
+    public void goToMain(View view) {
+        Intent intent = new Intent(this, TournamentSetup.class);
+        startActivity(intent);
     }
 }

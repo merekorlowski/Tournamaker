@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.back_end;
+package com.example.merek.tournamaker;
 
 import java.util.ArrayList;
 
@@ -81,5 +81,6 @@ public class TournamentMaker {
     public void deleteTeam(int i) {
         teams.remove(i);
     }
+
 
 }

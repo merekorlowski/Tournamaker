@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.back_end;
+package com.example.merek.tournamaker;
 
 import java.io.Serializable;
 import java.util.Arrays;

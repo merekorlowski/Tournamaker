@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.back_end;
+package com.example.merek.tournamaker;
 
 /**
  * Created by Merek on 2015-12-01.

@@ -1,14 +1,10 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.Round;
-import com.example.merek.tournamaker.back_end.Tournament;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -43,9 +39,24 @@ public class ResultsActivity extends AppCompatActivity {
     //go to next round when clicked
     public void gotToNextRoundClick() {
 
-        Intent intent = new Intent(this, RoundActivity.class);
-        intent.putExtra("roundNumber", round.getRoundNumber() + 1);
-        startActivity(intent);
+        Intent intent;
+
+        if(round.getRoundNumber() == tournament.getNumberOfRounds()) {
+
+            intent = new Intent(this, StatisticsActivity.class);
+
+            //sets tournament to inactive
+            tournament.setIsActive(false);
+
+            startActivity(intent);
+
+        } else {
+
+            intent = new Intent(this, RoundActivity.class);
+            intent.putExtra("roundNumber", round.getRoundNumber() + 1);
+            startActivity(intent);
+
+        }
 
     }
 

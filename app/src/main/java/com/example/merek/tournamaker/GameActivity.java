@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,11 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.Game;
-import com.example.merek.tournamaker.back_end.Round;
-import com.example.merek.tournamaker.back_end.Tournament;
 
 public class GameActivity extends AppCompatActivity {
 

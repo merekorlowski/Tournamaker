@@ -1,15 +1,10 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.Round;
-import com.example.merek.tournamaker.back_end.Team;
-import com.example.merek.tournamaker.back_end.Tournament;
 
 import java.util.ArrayList;
 

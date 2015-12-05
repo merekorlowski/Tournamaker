@@ -1,7 +1,8 @@
-package com.example.merek.tournamaker.back_end;
+package com.example.merek.tournamaker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Merek on 2015-12-01.
@@ -77,6 +78,8 @@ public class Tournament implements Serializable {
         //used to populate statistics page
         ArrayList<String> stats = new ArrayList<>();
 
+        Collections.sort(teams);
+
         for(int i = 0; i < teams.size(); i++) {
             stats.add(teams.get(i).getStats());
         }
@@ -103,6 +106,10 @@ public class Tournament implements Serializable {
         return rounds[i];
     }
 
+    public int getNumberOfRounds() {
+        return rounds.length;
+    }
+
     //returns true if doesnt already contain team and adds to tournament
     //returns false if already contains
     public boolean add(Team t) {
@@ -124,6 +131,10 @@ public class Tournament implements Serializable {
     //tests to see if this tournament is active
     public boolean isActive() {
         return active;
+    }
+
+    public void setIsActive(boolean isActive) {
+        active = isActive;
     }
 
 }

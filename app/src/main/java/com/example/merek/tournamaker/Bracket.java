@@ -1,7 +1,4 @@
-package com.example.merek.tournamaker.back_end;
-
-import com.example.merek.tournamaker.back_end.Round;
-import com.example.merek.tournamaker.back_end.Team;
+package com.example.merek.tournamaker;
 
 import java.util.ArrayList;
 import java.util.Collections;

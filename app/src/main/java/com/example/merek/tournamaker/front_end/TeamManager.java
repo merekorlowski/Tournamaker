@@ -16,12 +16,12 @@ public class TeamManager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_manager);
 
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             public void run() {
                 LinearLayout layout =(LinearLayout)findViewById(R.id.teamManagerLinearLayout);
                 layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
             }
-        }).start();
+        }).start();*/
 
     }
 

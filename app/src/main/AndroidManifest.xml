@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".front_end.StatisticsActivity" >
         </activity>
-        <activity android:name=".front_end.CreateTournament" >
+        <activity android:name=".front_end.CreateTournament"
+            android:theme="@style/AppTheme.PopupWindowTheme">
         </activity>
         <activity android:name=".front_end.TeamEdit" >
         </activity>

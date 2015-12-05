@@ -23,12 +23,12 @@ public class TournamentSetup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
 
-        new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
             public void run() {
                 LinearLayout layout =(LinearLayout)findViewById(R.id.tournamentSetupLinearLayout);
                 layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
             }
-        }).start();
+        }).start();*/
 
     }
 

@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.example.merek.tournamaker.R;
 
+
 public class MainActivity extends AppCompatActivity {
 
         protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +17,12 @@ public class MainActivity extends AppCompatActivity {
             setContentView(com.example.merek.tournamaker.R.layout.activity_main);
 
             //Background Image Thread
-            new Thread(new Runnable() {
+            /*new Thread(new Runnable() {
                 public void run() {
                     RelativeLayout layout =(RelativeLayout)findViewById(R.id.backgroundRelativeLayout);
                     layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
                 }
-            }).start();
+            }).start();*/
 
         }
         //go to select type menu

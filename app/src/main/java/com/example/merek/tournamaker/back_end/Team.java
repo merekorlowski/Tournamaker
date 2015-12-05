@@ -65,4 +65,8 @@ public class Team implements Comparable {
     public int compareTo(Object another) {
         return getNumGamesWon() - ((Team)another).getNumGamesWon();
     }
+
+    public String getStats() {
+        return getName() + ", " + numGamesWon + " wins, " + numGamesLost + " loses";
+    }
 }

@@ -11,35 +11,45 @@ import android.widget.ListView;
 import com.example.merek.tournamaker.R;
 import com.example.merek.tournamaker.back_end.TournamentMaker;
 
+import java.util.ArrayList;
+
 public class LoadScreen extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_screen);
+
         populateListView();
         registerClickCallback();
     }
 
+    //populate tournament list view
     public void populateListView() {
 
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, TournamentMaker.getInstance().getTournamentNames());
+        ArrayList<String> tournamentNames = TournamentMaker.getInstance().getTournamentNames();
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tournamentNames);
         ListView listview = (ListView) findViewById(R.id.listViewLoad);
         listview.setAdapter(adapter);
+
     }
 
+    //load tournament when clicked
     public void registerClickCallback() {
 
         ListView list = (ListView) findViewById(R.id.listViewLoad);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+
                 Intent intent = new Intent(getApplicationContext(), TournamentSetup.class);
                 intent.putExtra("id", String.valueOf(id));
                 startActivity(intent);
+
             }
         });
-    }
 
+    }
 
 }

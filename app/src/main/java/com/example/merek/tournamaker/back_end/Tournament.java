@@ -25,8 +25,10 @@ public class Tournament implements Serializable {
         //determine number of rounds by type
         if(type.equals("RoundRobin"))
             rounds = new Round[teams.size() - 1];
+
         else if(type.equals("Knockout"))
             rounds = new Round[(int)Math.log(2)*teams.size()];
+
         else {
             rounds = new Round[(teams.size() - 1)/2 + (int)Math.log(2)*((teams.size() - 1)/2)];
         }
@@ -56,21 +58,40 @@ public class Tournament implements Serializable {
     }
 
     public ArrayList<String> getTeamNames() {
+
         //initialize arraylist of team names,
         //used to populate team select and edit lists
         ArrayList<String> names = new ArrayList<>();
+
         for(int i = 0; i < teams.size(); i++) {
             names.add(teams.get(i).getName());
         }
+
         return names;
+
+    }
+
+    public ArrayList<String> getStatistics() {
+
+        //initialize array list of stats,
+        //used to populate statistics page
+        ArrayList<String> stats = new ArrayList<>();
+
+        for(int i = 0; i < teams.size(); i++) {
+            stats.add(teams.get(i).getStats());
+        }
+
+        return stats;
     }
 
     //returns team by a specific name
     public Team getTeam(String name) {
+
         int i = 0;
         while(teams.get(i).getName() != name) {
             i++;
         }
+
         return teams.get(i);
     }
 
@@ -85,11 +106,14 @@ public class Tournament implements Serializable {
     //returns true if doesnt already contain team and adds to tournament
     //returns false if already contains
     public boolean add(Team t) {
+
         if(!teams.contains(t)) {
             teams.add(t);
             return true;
+
         } else
             return false;
+
     }
 
     //remove team from tournament

@@ -18,9 +18,7 @@ public class GameActivity extends AppCompatActivity {
     Round round;
     int gameNumber;
     Game game;
-    String teamOneName;
     int teamOneGoals;
-    String teamTwoName;
     int teamTwoGoals;
 
     @Override
@@ -70,7 +68,7 @@ public class GameActivity extends AppCompatActivity {
     //set team one score with number picker
     public void setTeamOneScore() {
 
-        NumberPicker num = (NumberPicker) findViewById(R.id.numberPicker);
+        NumberPicker num = (NumberPicker) findViewById(R.id.teamOneScore);
         teamOneGoals = num.getValue();
         game.getTeamOne().setNumOfGoals(teamOneGoals);
 
@@ -100,8 +98,10 @@ public class GameActivity extends AppCompatActivity {
 
         //goes to results page when round is over
         } else {
+
             Intent intent2 = new Intent(this, ResultsActivity.class);
             intent2.putExtra("Round", round);
+
         }
 
     }

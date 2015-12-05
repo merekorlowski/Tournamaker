@@ -15,18 +15,20 @@ import com.example.merek.tournamaker.back_end.TournamentMaker;
 public class TeamCreate extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_create);
+
     }
 
+    //add a new team to the list of teams
     public void createTeam(View v){
-        //add the team to the list of teams
 
         EditText inputTxt = (EditText) findViewById(R.id.editTextTeam);
         // Store EditText in Variable
         String name = inputTxt.getText().toString();
 
-        TournamentMaker.getInstance().addTeam(new Team(name, 0, 0, 0, 0));
+        TournamentMaker.getInstance().add(new Team(name, 0, 0, 0, 0));
 
         ListView listView = (ListView) findViewById(R.id.listViewEdit);
         ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
@@ -34,6 +36,7 @@ public class TeamCreate extends AppCompatActivity {
 
         Intent intent = new Intent(this, TeamManager.class);
         startActivity(intent);
+
     }
 
 

@@ -25,7 +25,16 @@ public class Game {
         }
     }
 
-    public String toString() {
-        return t1.getName() + " vs " + t2.getName();
+    public Team getT1() {
+        return t1;
     }
+
+    public Team getT2() {
+        return t2;
+    }
+
+    public String getScore() {
+        return (t1.getName() + "-" + t1.getNumOfGoals() + " " + t2.getNumOfGoals() + "-" + t2.getName());
+    }
+
 }

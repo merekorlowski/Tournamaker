@@ -9,33 +9,44 @@ import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
-    String name;
-    String game;
-    int round;
-    int id;
+    Tournament tournament;
+    int roundNumber;
+    int gameNumber;
     String team1Name;
     int goals1;
     String team2Name;
     int goals2;
+    String newButtonTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        name = (String)i.getSerializableExtra("name");
-        game = (String)i.getSerializableExtra("game");
-        round = (int)i.getSerializableExtra("round");
-        id = (int)i.getSerializableExtra("id");
+        tournament = (Tournament)i.getSerializableExtra("Tournament");
+        roundNumber = (int)i.getSerializableExtra("roundNumber");
+        gameNumber = (int)i.getSerializableExtra("gameNumber");
+        if(gameNumber == tournament.getRound(roundNumber - 1).getGames().length) {
+            Button nextGameBtn = (Button) findViewById(R.id.nextGame);
+            nextGameBtn.setText("See results");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        setGameNumber();
         setTeamNames();
     }
 
+    public void setGameNumber() {
+        TextView textView = (TextView) findViewById(R.id.gameTextView);
+        String gameText = (String)textView.getText();
+        String ss[] = gameText.split(" ", 2);
+        ss[1] = Integer.toString(gameNumber);
+        textView.setText(ss[0] + " " + ss[1]);
+    }
+
     public void setTeamNames() {
-        String split[] = game.split(" ", 3);
         TextView team1 = (TextView) findViewById(R.id.team1text);
-        team1.setText(split[0]);
+        team1.setText(tournament.getRound(roundNumber - 1).getGame(gameNumber - 1).getT1().getName());
         TextView team2 = (TextView) findViewById(R.id.team2text);
-        team2.setText(split[2]);
+        team2.setText(tournament.getRound(roundNumber - 1).getGame(gameNumber - 1).getT2().getName());
     }
 
     public void setTeam1Score() {
@@ -43,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
         team1Name = (String) team.getText();
         NumberPicker num = (NumberPicker) findViewById(R.id.numberPicker);
         goals1 = num.getValue();
-        TournamentMaker.getInstance().getTournament(name).getTeam(team1Name).setNumOfGoals(goals1);
+        tournament.getTeam(team1Name).setNumOfGoals(goals1);
     }
 
     public void setTeam2Score() {
@@ -51,15 +62,27 @@ public class GameActivity extends AppCompatActivity {
         team2Name = (String) team.getText();
         NumberPicker num = (NumberPicker) findViewById(R.id.numberPicker3);
         goals2 = num.getValue();
-        TournamentMaker.getInstance().getTournament(name).getTeam(team2Name).setNumOfGoals(goals2);
+        tournament.getTeam(team2Name).setNumOfGoals(goals2);
     }
 
-    public void goBack() {
-        String result = team1Name + "-" + goals1 + " " + goals2 + "-" + team2Name;
-        TournamentMaker.getInstance().getTournament(name).getRound(round).getGameList().set(id, result);
-        Intent intent = new Intent(this, GameList.class);
-        startActivity(intent);
-    }
+    public void nextGame() {
 
+        if(gameNumber < tournament.getRound(roundNumber - 1).getGames().length) {
+
+            Intent intent = new Intent(this, Game.class);
+
+            intent.putExtra("Tournament", tournament);
+            intent.putExtra("roundNumber", roundNumber);
+            intent.putExtra("gameNumber", gameNumber++);
+
+            startActivity(intent);
+
+        } else {
+            Intent intent2 = new Intent(this, ResultsActivity.class);
+            intent2.putExtra("Tournament", tournament);
+            intent2.putExtra("roundNumber", roundNumber);
+        }
+
+    }
 
 }

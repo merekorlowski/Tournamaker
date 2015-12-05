@@ -14,17 +14,17 @@ public class MainActivity extends AppCompatActivity {
             //show the home menu
             setContentView(com.example.merek.tournamaker.R.layout.activity_main);
         }
-
+        //go to select type menu
         public void goToCreateTournament(View v){
             Intent intent = new Intent(this, SelectTypeActivity.class);
             startActivity(intent);
         }
-
+        //go to load tournament menu
         public void goToLoadTournament(View v) {
             Intent intent = new Intent(this, LoadScreen.class);
             startActivity(intent);
         }
-
+        //go to team manager menu
         public void goToManageTeams(View v) {
             Intent intent = new Intent(this, TeamManager.class);
             startActivity(intent);

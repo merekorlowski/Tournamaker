@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="VS"
-        android:id="@+id/textView5"
+        android:id="@+id/vsTextView"
         android:textSize="20dp"
         android:layout_alignBottom="@+id/team2text"
         android:layout_centerHorizontal="true"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPicker"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/vsTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/team1text"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPicker3"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/vsTextView"
         android:layout_alignRight="@+id/team2text"
         android:layout_alignEnd="@+id/team2text"
         android:layout_alignLeft="@+id/team2text"
@@ -68,12 +68,23 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/button4"
+        android:text="next game"
+        android:id="@+id/nextGame"
+        android:onClick="nextGame"
+        android:textSize="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goBack" />
+        android:layout_alignRight="@+id/numberPicker3"
+        android:layout_alignEnd="@+id/numberPicker3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Game 1"
+        android:id="@+id/gameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp" />
 
 
 </RelativeLayout>

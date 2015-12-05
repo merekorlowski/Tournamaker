@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class CreateTournament extends AppCompatActivity {
 
     String type;
+    String name;
     Tournament tournament;
 
 
@@ -38,7 +39,7 @@ public class CreateTournament extends AppCompatActivity {
         EditText inputTxt = (EditText) findViewById(R.id.editTextTournament);
 
         // Store EditText in Variable
-        String name = inputTxt.getText().toString();
+        name = inputTxt.getText().toString();
         tournament = new Tournament(type, name, false, new ArrayList<Team>());
         TournamentMaker.getInstance().addTournament(tournament);
 

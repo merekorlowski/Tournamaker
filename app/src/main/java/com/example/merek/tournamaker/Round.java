@@ -1,5 +1,6 @@
 package com.example.merek.tournamaker;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -53,12 +54,20 @@ public class Round {
 
     }
 
-    public ArrayList<String> getGameList() {
+    public ArrayList<String> getGameTextList() {
         ArrayList<String> gameList = new ArrayList<>();
         for(int i = 0; i < games.length; i++) {
-            gameList.add(games[i].toString());
+            gameList.add(games[i].getScore());
         }
         return gameList;
+    }
+
+    public Game getGame(int i) {
+        return games[i];
+    }
+
+    public Game[] getGames() {
+        return games;
     }
 
 }

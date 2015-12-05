@@ -8,9 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
-public class GameList extends AppCompatActivity {
+public class ResultsActivity extends AppCompatActivity {
 
     Tournament tournament;
     int roundNumber;
@@ -22,37 +20,21 @@ public class GameList extends AppCompatActivity {
         roundNumber = (int)i.getSerializableExtra("roundNumber");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_list);
+        setContentView(R.layout.activity_results);
         populateListView();
-        registerClickCallback();
     }
 
     public void populateListView() {
-        ArrayList<String> games = tournament.getRound(roundNumber).getGameList();
         ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, games);
+                android.R.layout.simple_list_item_1, tournament.getRound(roundNumber - 1).getGameTextList());
         ListView listview = (ListView) findViewById(R.id.listViewEdit);
         listview.setAdapter(adapter);
     }
 
-    public void registerClickCallback() {
-
-        ListView list = (ListView) findViewById(R.id.listViewEdit);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                intent.putExtra("position", position);
-                intent.putExtra("id", String.valueOf(id));
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void nextRound() {
+    public void gotToNextRoundClick() {
         Intent intent = new Intent(this, RoundActivity.class);
-        intent.putExtra("Tournament", tournament);
         intent.putExtra("roundNumber", roundNumber++);
+        startActivity(intent);
     }
 
 }

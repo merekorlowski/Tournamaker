@@ -11,8 +11,9 @@ import android.widget.EditText;
 
 public class SelectTypeActivity extends AppCompatActivity {
 
-    /*Dialog selectTypeDialog;
-    String theText;*/
+    //declare variables
+    Button btnTxt;
+    String type;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,29 +22,35 @@ public class SelectTypeActivity extends AppCompatActivity {
 
     public void roundRobin(View view){
 
-        Button btnTxt = (Button) findViewById(R.id.roundRobinBtn);
-        String type = btnTxt.getText().toString();
+        //initialize variables
+        btnTxt = (Button) findViewById(R.id.roundRobinBtn);
+        type = btnTxt.getText().toString();
 
+        //create round-robin tournament
         Intent intent = new Intent(this, CreateTournament.class);
         intent.putExtra("type", type);
         startActivity(intent);
     }
 
     public void knockout(View view){
-        //something happens, or get's passed to the next activity
-        Button btnTxt = (Button) findViewById(R.id.knockoutBtn);
-        String type = btnTxt.getText().toString();
 
+        //initialize variables
+        btnTxt = (Button) findViewById(R.id.knockoutBtn);
+        type = btnTxt.getText().toString();
+
+        //create knockout tournament
         Intent intent = new Intent(this, CreateTournament.class);
         intent.putExtra("type", type);
         startActivity(intent);
     }
 
     public void roundRobinKnockout(View view){
-        //something happens, or get's passed to the next activity
-        Button btnTxt = (Button) findViewById(R.id.roundRobinKnockoutBtn);
-        String type = btnTxt.getText().toString();
 
+        //initialize variables
+        btnTxt = (Button) findViewById(R.id.roundRobinKnockoutBtn);
+        type = btnTxt.getText().toString();
+
+        //create round-robin & knockout tournament
         Intent intent = new Intent(this, CreateTournament.class);
         intent.putExtra("type", type);
         startActivity(intent);

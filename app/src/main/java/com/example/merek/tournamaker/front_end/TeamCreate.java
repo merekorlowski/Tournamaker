@@ -30,9 +30,9 @@ public class TeamCreate extends AppCompatActivity {
 
         TournamentMaker.getInstance().add(new Team(name, 0, 0, 0, 0));
 
-        ListView listView = (ListView) findViewById(R.id.listViewEdit);
+        /*ListView listView = (ListView) findViewById(R.id.listViewEdit);
         ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
 
         Intent intent = new Intent(this, TeamManager.class);
         startActivity(intent);

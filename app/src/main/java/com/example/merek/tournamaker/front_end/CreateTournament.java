@@ -1,6 +1,5 @@
 package com.example.merek.tournamaker.front_end;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 
 
 
-public class CreateTournament extends Activity {
+public class CreateTournament extends AppCompatActivity {
 
     String type;
     String name;
@@ -33,9 +32,6 @@ public class CreateTournament extends Activity {
         type = (String)i.getSerializableExtra("type");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tournament);
-
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         // Background Thread
         /*new Thread(new Runnable() {
@@ -58,9 +54,9 @@ public class CreateTournament extends Activity {
 
         //update list of tournaments
         TournamentMaker.getInstance().addTournament(tournament);
-        ListView listView = (ListView) findViewById(R.id.listViewLoad);
+        /*ListView listView = (ListView) findViewById(R.id.listViewLoad);
         ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
 
         Intent intent = new Intent(this, TournamentSetup.class);
         intent.putExtra("Tournament", tournament);

@@ -8,6 +8,8 @@ import android.view.View;
 import android.app.Dialog;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class SelectTypeActivity extends AppCompatActivity {
 
@@ -18,6 +20,13 @@ public class SelectTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_type);
+        new Thread(new Runnable() {
+            public void run() {
+                RelativeLayout layout =(RelativeLayout)findViewById(R.id.tournamentTypeBackgroundRelativeLayout);
+                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
+            }
+        }).start();
+
     }
 
     public void roundRobin(View view){

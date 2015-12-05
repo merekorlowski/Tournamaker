@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class TournamentSetup extends AppCompatActivity {
@@ -17,6 +18,13 @@ public class TournamentSetup extends AppCompatActivity {
         tournament = (Tournament)i.getSerializableExtra("Tournament");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
+
+        new Thread(new Runnable() {
+            public void run() {
+                LinearLayout layout =(LinearLayout)findViewById(R.id.tournamentSetupLinearLayout);
+                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
+            }
+        }).start();
     }
 
     //select teams to add to tournament

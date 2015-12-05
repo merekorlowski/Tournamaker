@@ -10,7 +10,7 @@
     tools:context=".MainActivity"
     android:padding="0dp"
     android:gravity="fill"
-    android:background="@drawable/adidas_soccer_ball">
+    android:id="@+id/backgroundRelativeLayout">
 
     <LinearLayout
         android:orientation="vertical"

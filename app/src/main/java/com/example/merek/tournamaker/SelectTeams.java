@@ -46,25 +46,6 @@ public class SelectTeams extends AppCompatActivity {
 
     }
 
-    //add selected teams to this tournament
-   /* public void registerClickCallback() {
-
-        list = (ListView) findViewById(R.id.listviewSelectTeams);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-
-                //get team at position selected
-                TeamTournamentStats team = TournamentMaker.getInstance().getTeamTournamentStatsList().get(position);
-
-                //add team to tournament
-                tournament.add(team);
-
-            }
-        });
-
-    }*/
-
     public void submitTeamSelection(View view) {
 
         ArrayList<TeamTournamentStats> teamTournamentStatsList = new ArrayList<>();

@@ -11,7 +11,7 @@ public class TeamTournamentStats implements Comparable {
     private int leaguePosition;
 
 
-    //team constructor
+    //team tournament stats constructor
     public TeamTournamentStats(Team team, Tournament tournament, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition) {
         this.team = team;
         this.tournament = tournament;

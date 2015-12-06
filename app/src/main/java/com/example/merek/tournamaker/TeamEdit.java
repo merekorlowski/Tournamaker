@@ -63,7 +63,7 @@ public class TeamEdit extends AppCompatActivity {
             //edit team name in list
             TournamentMaker.getInstance().setTeamName(position, name);
 
-            Intent intent = new Intent(this, TeamEditList.class);
+            Intent intent = new Intent(this, TeamManager.class);
             startActivity(intent);
 
         }
@@ -74,7 +74,7 @@ public class TeamEdit extends AppCompatActivity {
         //delete team from list
         TournamentMaker.getInstance().deleteTeam(position);
 
-        Intent intent = new Intent(this, TeamEditList.class);
+        Intent intent = new Intent(this, TeamManager.class);
         startActivity(intent);
     }
 

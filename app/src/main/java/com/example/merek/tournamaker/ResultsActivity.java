@@ -52,7 +52,9 @@ public class ResultsActivity extends AppCompatActivity {
 
         } else {
 
+
             intent = new Intent(this, RoundActivity.class);
+            intent.putExtra("teams", round.getRoundWinners());
             intent.putExtra("roundNumber", round.getRoundNumber() + 1);
             startActivity(intent);
 

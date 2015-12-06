@@ -1,9 +1,11 @@
 package com.example.merek.tournamaker;
 
+import java.io.Serializable;
+
 /**
  * Created by Merek on 2015-12-01.
  */
-public class Team implements Comparable {
+public class Team implements Comparable, Serializable {
 
     //declare variables
     private String name;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,12 +15,12 @@ public class MainActivity extends AppCompatActivity {
             setContentView(com.example.merek.tournamaker.R.layout.activity_main);
 
             //Background Image Thread
-            /*new Thread(new Runnable() {
+            new Thread(new Runnable() {
                 public void run() {
                     RelativeLayout layout =(RelativeLayout)findViewById(R.id.backgroundRelativeLayout);
                     layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
                 }
-            }).start();*/
+            }).start();
 
 //            TournamakerDatabaseHelper databaseHelper = TournamakerDatabaseHelper.getInstance(this);
 //

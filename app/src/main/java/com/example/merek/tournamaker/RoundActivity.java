@@ -14,6 +14,7 @@ public class RoundActivity extends AppCompatActivity {
     Tournament tournament;
     Round round;
     int roundNumber;
+    ArrayList<Team> winningTeams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class RoundActivity extends AppCompatActivity {
         //initialize roundNumber and tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
         roundNumber = (int)i.getSerializableExtra("roundNumber");
+        winningTeams = (ArrayList<Team>)i.getSerializableExtra("teams");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
@@ -45,7 +47,20 @@ public class RoundActivity extends AppCompatActivity {
 
         //initialize round
         ArrayList<Team> teams = tournament.getTeams();
-        tournament.initializeRound(roundNumber - 1, teams);
+
+        if(tournament.getType().equals("Round Robin"))
+            tournament.initializeRound(roundNumber - 1, teams);
+        else if(tournament.getType().equals("Knockout"))
+            tournament.initializeRound(roundNumber - 1, winningTeams);
+        else {
+
+            if(roundNumber < teams.size() - 1)
+                tournament.initializeRound(roundNumber - 1, teams);
+            else
+                tournament.initializeRound(roundNumber - 1, winningTeams);
+
+        }
+
         round = tournament.getRound(roundNumber - 1);
 
         Intent intent = new Intent(this, GameActivity.class);

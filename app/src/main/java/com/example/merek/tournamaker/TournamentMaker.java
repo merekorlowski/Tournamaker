@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class TournamentMaker {
 
     //initialize variables
-    private ArrayList<Tournament> tournaments = new ArrayList<>();
-    private ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<Tournament> tournaments = new ArrayList<>(); // All tournaments in the app
+    private ArrayList<Team> teams = new ArrayList<>(); // ALl teams in the app
     private static TournamentMaker instance;
 
     //private tournament maker constructor

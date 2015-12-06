@@ -54,7 +54,8 @@ public class SelectTeams extends AppCompatActivity {
 
         for(int i = 0; i < sba.size(); i++) {
             if(sba.valueAt(i)) {
-                teamTournamentStatsList.add(TournamentMaker.getInstance().getTeamTournamentStatsList().get(sba.keyAt(i)));
+                Team team = TournamentMaker.getInstance().getTeamTournamentStatsList().get(sba.keyAt(i));
+                teamTournamentStatsList.add(new TeamTournamentStats(team, tournament));
             }
         }
 

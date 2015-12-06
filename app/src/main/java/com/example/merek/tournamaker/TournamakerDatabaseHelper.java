@@ -1,9 +1,4 @@
-import android.util.Log;
-
-import com.example.merek.tournamaker.Team;
-import com.example.merek.tournamaker.TeamTournamentStats;
-
-/*package com.example.merek.tournamaker;
+package com.example.merek.tournamaker;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,7 +13,7 @@ import java.util.List;
 /**
  * Created by Alexandre Lara on 05/12/2015.
  */
-/*public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
+public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
     private static TournamakerDatabaseHelper tInstance;
     private static final String TAG = "TournamakerDBHelper";
 
@@ -255,4 +250,4 @@ import java.util.List;
         return teamTournamentStatsList;
     }
 
-}*/
+}

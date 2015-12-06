@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.front_end;
+package com.example.merek.tournamaker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.back_end.TournamentMaker;
 
 import java.util.ArrayList;
 
@@ -43,10 +40,17 @@ public class LoadScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 
-                Intent intent = new Intent(getApplicationContext(), TournamentSetup.class);
-                intent.putExtra("id", String.valueOf(id));
-                startActivity(intent);
+                if(TournamentMaker.getInstance().getTournament(position).isActive() == true) {
 
+                    //go to last saved place
+
+                } else {
+
+                    Intent intent = new Intent(getApplicationContext(), StatisticsActivity.class);
+                    intent.putExtra("id", String.valueOf(id));
+                    startActivity(intent);
+
+                }
             }
         });
 

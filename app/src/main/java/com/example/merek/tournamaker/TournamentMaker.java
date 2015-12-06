@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker.back_end;
+package com.example.merek.tournamaker;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class TournamentMaker {
     //initialize variables
     private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
     private ArrayList<Team> teams = new ArrayList<Team>();
-    private static TournamentMaker instance = null;
+    private static TournamentMaker instance;
 
     //private tournament maker constructor
     private TournamentMaker() {}
@@ -81,5 +81,6 @@ public class TournamentMaker {
     public void deleteTeam(int i) {
         teams.remove(i);
     }
+
 
 }

@@ -25,13 +25,13 @@ public class Tournament implements Serializable {
 
         //determine number of rounds by type
         if(type.equals("Round Robin"))
-            rounds = new Round[teams.size() - 1];
+            rounds = new Round[teams.size()];
 
         else if(type.equals("Knockout"))
             rounds = new Round[(int)Math.log(2)*teams.size()];
 
         else
-            rounds = new Round[(teams.size() - 1) + (int)Math.log(2)*((teams.size() - 1)/3)];
+            rounds = new Round[(teams.size()) + (int)Math.log(2)*((teams.size())/3)];
 
     }
 

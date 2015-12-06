@@ -43,7 +43,7 @@ public class SelectTeams extends AppCompatActivity {
         ArrayList<String> teamNames = TournamentMaker.getInstance().getTeamNames();
 
         //add to listview
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, teamNames);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, teamNames);
         ListView listview = (ListView) findViewById(R.id.listviewSelectTeams);
         listview.setAdapter(adapter);
 

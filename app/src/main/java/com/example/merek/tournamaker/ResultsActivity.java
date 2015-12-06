@@ -31,7 +31,7 @@ public class ResultsActivity extends AppCompatActivity {
     public void populateListView() {
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, round.getGameScoreList());
-        ListView listview = (ListView) findViewById(R.id.listViewEdit);
+        ListView listview = (ListView) findViewById(R.id.gamesList);
         listview.setAdapter(adapter);
 
     }
@@ -51,7 +51,6 @@ public class ResultsActivity extends AppCompatActivity {
             startActivity(intent);
 
         } else {
-
 
             intent = new Intent(this, RoundActivity.class);
             intent.putExtra("teams", round.getRoundWinners());

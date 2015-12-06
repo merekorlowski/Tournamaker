@@ -10,15 +10,15 @@ import java.util.ArrayList;
 public class TournamentMaker {
 
     //initialize variables
-    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
-    private ArrayList<Team> teams = new ArrayList<Team>();
+    private ArrayList<Tournament> tournaments = new ArrayList<>();
+    private ArrayList<Team> teams = new ArrayList<>();
     private static TournamentMaker instance;
 
     //private tournament maker constructor
     private TournamentMaker() {}
 
     //used to make sure only one instance can be created
-    public static TournamentMaker getInstance() {
+    public static synchronized TournamentMaker getInstance() {
         if(instance == null) {
             instance = new TournamentMaker();
         }
@@ -36,11 +36,32 @@ public class TournamentMaker {
 
     //used to populate load list
     public ArrayList<String> getTournamentNames() {
+
         ArrayList<String> names = new ArrayList<>();
+
         for(int i = 0; i < tournaments.size(); i++) {
             names.add(tournaments.get(i).getName());
         }
+
         return names;
+
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    //used to populate team list
+    public ArrayList<String> getTeamNames() {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for(int i = 0; i < teams.size(); i++) {
+            names.add(teams.get(i).getName());
+        }
+
+        return names;
+
     }
 
     public void addTournament(Tournament t) {
@@ -51,27 +72,8 @@ public class TournamentMaker {
         tournaments.remove(t);
     }
 
-    public ArrayList<Team> getTeams() {
-        return teams;
-    }
-
-    //used to populate team list
-    public ArrayList<String> getTeamNames() {
-        ArrayList<String> names = new ArrayList<>();
-        for(int i = 0; i < teams.size(); i++) {
-            names.add(teams.get(i).getName());
-        }
-        return names;
-    }
-
-    //returns true if doesnt already contain team and adds tournament
-    //returns false if already contains
-    public boolean add(Team t) {
-        if(!teams.contains(t)) {
-            teams.add(t);
-            return true;
-        } else
-            return false;
+    public void add(Team t) {
+        teams.add(t);
     }
 
     public void setTeamName(int i, String name) {

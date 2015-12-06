@@ -3,6 +3,7 @@ package com.example.merek.tournamaker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -61,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     //set team one score with number picker
-    public void setTeamOneScore() {
+    public void setTeamOneScore(View view) {
 
         NumberPicker num = (NumberPicker) findViewById(R.id.teamOneScore);
         teamOneGoals = num.getValue();
@@ -70,7 +71,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     //set team two score with number picker
-    public void setTeamTwoScore() {
+    public void setTeamTwoScore(View view) {
 
         NumberPicker num = (NumberPicker) findViewById(R.id.teamTwoScore);
         teamTwoGoals = num.getValue();
@@ -79,7 +80,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     //called when next game or see results button is clicked
-    public void nextGame() {
+    public void nextGame(View view) {
 
         //continues round until until all games are played
         if(gameNumber < round.getGames().length) {

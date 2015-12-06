@@ -67,5 +67,12 @@ public class SelectTeams extends AppCompatActivity {
         });
 
     }
+
+    public void exitTeamSelection(View view) {
+
+        Intent intent = new Intent(this, TournamentSetup.class);
+        startActivity(intent);
+
+    }
 }
 

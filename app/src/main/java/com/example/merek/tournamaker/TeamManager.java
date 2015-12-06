@@ -73,7 +73,7 @@ public class TeamManager extends AppCompatActivity {
 
         ArrayList<String> teamNames = TournamentMaker.getInstance().getTeamNames();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, teamNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, teamNames);
         ListView listview = (ListView) findViewById(R.id.teamListView);
         listview.setAdapter(adapter);
     }

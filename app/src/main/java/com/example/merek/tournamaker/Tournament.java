@@ -109,17 +109,8 @@ public class Tournament implements Serializable {
         return rounds.length;
     }
 
-    //returns true if doesnt already contain team and adds to tournament
-    //returns false if already contains
-    public boolean add(Team t) {
-
-        if(!teams.contains(t)) {
-            teams.add(t);
-            return true;
-
-        } else
-            return false;
-
+    public void add(Team t) {
+        teams.add(t);
     }
 
     //remove team from tournament

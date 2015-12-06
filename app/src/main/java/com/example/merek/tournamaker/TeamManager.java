@@ -11,9 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.merek.tournamaker.R;
 
@@ -27,6 +26,9 @@ public class TeamManager extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
     private String activityTitle;
+    private Intent home;
+    private Intent tournamentSetup;
+    //private Intent tournamentSetup = new Intent(this, MainActivity.class);
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class TeamManager extends AppCompatActivity {
         populateListView();
         registerClickCallback();
 
+        /*
+        ---for the Drawer---
+         */
         //drawer layout title
         drawerList = (ListView)findViewById(R.id.navList);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -52,6 +57,8 @@ public class TeamManager extends AppCompatActivity {
         //setup for drawer list
         addDrawerItems();
         setupDrawer();
+        home = new Intent(this, MainActivity.class);
+        tournamentSetup = new Intent(this, TournamentSetup.class);
 
         //button to get to drawer
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -122,14 +129,24 @@ public class TeamManager extends AppCompatActivity {
      */
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Team Manager", "Back to Tournament"};
+        String[] osArray = { "Home", "Tournament Setup"};
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         drawerList.setAdapter(adapter);
 
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(TeamManager.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                String itemName = ((TextView)view).getText().toString();
+
+                if (itemName == "Home") {
+                    //Toast.makeText(getBaseContext(), "Working", Toast.LENGTH_LONG).show();
+                    startActivity(home);
+                }
+
+                if (itemName == "Tournament Setup") {
+                    //Toast.makeText(getBaseContext(), "Working", Toast.LENGTH_LONG).show();
+                    startActivity(tournamentSetup);
+                }
             }
         });
     }

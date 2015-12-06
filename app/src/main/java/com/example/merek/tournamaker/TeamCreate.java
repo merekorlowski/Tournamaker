@@ -45,7 +45,7 @@ public class TeamCreate extends AppCompatActivity {
             toast.show();
 
         } else {
-            TournamentMaker.getInstance().add(new Team(name));
+            TournamentMaker.getInstance().addTeam(new Team(name));
 
             Intent intent = new Intent(this, TeamManager.class);
             startActivity(intent);

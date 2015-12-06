@@ -63,10 +63,6 @@ public class TeamTournamentStats implements Comparable {
         return leaguePosition;
     }
 
-    public void setTeamIconPath( String teamIconPath ) {
-        team.setIconPath(teamIconPath);
-    }
-
     //increment this teams number of games won
     public void incrementNumGamesWon() {
         numGamesWon++;

@@ -110,7 +110,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-        public void addTeam(Team team, String teamIconName, String iconPath, Boolean isDrawable) {
+    public void addTeam(Team team) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 

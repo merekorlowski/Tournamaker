@@ -69,8 +69,8 @@ public class TournamentMaker {
         tournaments.remove(t);
     }
 
-    public void add(Team t) {
-        teams.add(t);
+    public void addTeam(Team t) {
+        TournamakerDatabaseHelper.getInstance(this).addTeam(t); // Adding to the database
     }
 
     public void setTeamName(int i, String name) {

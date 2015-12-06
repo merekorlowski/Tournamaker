@@ -11,12 +11,14 @@
     tools:context=".SelectTeams"
     android:padding="0dp"
     android:gravity="fill"
-    android:showDividers="middle|beginning|end">
+    android:showDividers="middle|beginning|end"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,25 +28,38 @@
             android:id="@+id/textStatistics"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:textSize="30dp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Exit"
-            android:id="@+id/exitTeamSelectionBtn"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="20dp"
-            android:onClick="exitTeamSelection" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Select teams to add to tournament"
+        android:id="@+id/selectTeamsDescription"
+        android:textSize="14dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="305dp"
         android:id="@+id/listviewSelectTeams"
-        android:layout_marginTop="0dp"
-        android:footerDividersEnabled="false" />
+        android:layout_marginTop="20dp"
+        android:footerDividersEnabled="false"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.89" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitSelectionBtn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="submitTeamSelection"
+        android:textSize="20dp" />
 
 </LinearLayout>
 

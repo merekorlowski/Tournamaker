@@ -1,17 +1,14 @@
 package com.example.merek.tournamaker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.Team;
-import com.example.merek.tournamaker.Tournament;
-import com.example.merek.tournamaker.TournamentMaker;
 
 import java.util.ArrayList;
 
@@ -20,6 +17,7 @@ public class SelectTeams extends AppCompatActivity {
 
     //declare variable
     Tournament tournament;
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class SelectTeams extends AppCompatActivity {
         setContentView(R.layout.activity_select_teams);
 
         populateList();
-        registerClickCallback();
+        //registerClickCallback();
 
     }
 
@@ -44,15 +42,16 @@ public class SelectTeams extends AppCompatActivity {
 
         //add to listview
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, teamNames);
-        ListView listview = (ListView) findViewById(R.id.listviewSelectTeams);
+        listview = (ListView) findViewById(R.id.listviewSelectTeams);
+        listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listview.setAdapter(adapter);
 
     }
 
     //add selected teams to this tournament
-    public void registerClickCallback() {
+   /* public void registerClickCallback() {
 
-        ListView list = (ListView) findViewById(R.id.listviewSelectTeams);
+        list = (ListView) findViewById(R.id.listviewSelectTeams);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
@@ -66,9 +65,22 @@ public class SelectTeams extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
-    public void exitTeamSelection(View view) {
+    public void submitTeamSelection(View view) {
+
+        ArrayList<Team> teams = new ArrayList<>();
+
+        SparseBooleanArray sba = listview.getCheckedItemPositions();
+
+        for(int i = 0; i < sba.size(); i++) {
+            if(sba.valueAt(i)) {
+                teams.add(TournamentMaker.getInstance().getTeams().get(sba.keyAt(i)));
+            }
+        }
+
+        if(!teams.isEmpty())
+            tournament.setTeams(teams);
 
         Intent intent = new Intent(this, TournamentSetup.class);
         startActivity(intent);

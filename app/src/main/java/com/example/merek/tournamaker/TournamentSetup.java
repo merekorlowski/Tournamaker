@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class TournamentSetup extends AppCompatActivity {
 
     //declare variable
@@ -18,6 +20,7 @@ public class TournamentSetup extends AppCompatActivity {
 
         //initialize tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
 
@@ -42,7 +45,7 @@ public class TournamentSetup extends AppCompatActivity {
     }
 
     //go to team manager menu
-    public void teamManagerClick (View view) {
+    public void teamManagerClick(View view) {
 
         Intent intent = new Intent(this, TeamManager.class);
         startActivity(intent);
@@ -50,7 +53,7 @@ public class TournamentSetup extends AppCompatActivity {
     }
 
     //start first round of tournament
-    public void startClick (View view) {
+    public void startClick(View view) {
 
         if(tournament.getTeams().size() < 3) {
 
@@ -77,11 +80,4 @@ public class TournamentSetup extends AppCompatActivity {
 
     }
 
-    //temporary
-    public void goHome(View view) {
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
-    }
 }

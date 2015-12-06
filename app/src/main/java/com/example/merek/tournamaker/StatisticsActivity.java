@@ -48,7 +48,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         Intent intent;
 
-        if(tournament.isActive() == false)
+        if(!tournament.isActive())
             intent = new Intent(this, MainActivity.class);
         else
             intent = new Intent(this, RoundActivity.class);

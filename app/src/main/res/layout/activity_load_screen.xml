@@ -18,15 +18,25 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Load tournament"
         android:id="@+id/textSelectLoad"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:textSize="30dp" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Load saved tournament"
+        android:id="@+id/loadScreenDescription"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listViewLoad" />
+        android:id="@+id/listViewLoad"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

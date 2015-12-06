@@ -27,7 +27,7 @@
             android:id="@+id/textStatistics"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:textSize="30dp" />
 
         <Button
@@ -38,12 +38,23 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="150dp"
             android:textSize="20dp"
-            android:onClick="exitStats" />
+            android:onClick="exitStats"
+            android:layout_marginRight="20dp" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Tournament team statistics"
+        android:id="@+id/statisticsDescription"
+        android:layout_marginLeft="20dp" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/statsListView" />
+        android:id="@+id/statsListView"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp" />
 
 </LinearLayout>

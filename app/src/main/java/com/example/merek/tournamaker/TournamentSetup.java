@@ -34,11 +34,24 @@ public class TournamentSetup extends AppCompatActivity {
     //select teams to add to tournament
     public void selectTeamsClick(View view) {
 
-        Intent intent = new Intent(this, SelectTeams.class);
+        if(tournament.isActive()) {
 
-        //send this tournament to intent
-        intent.putExtra("Tournament", tournament);
-        startActivity(intent);
+            Context context = getApplicationContext();
+            CharSequence text = "Can't select teams if tournament is active.";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        } else {
+
+            Intent intent = new Intent(this, SelectTeams.class);
+
+            //send this tournament to intent
+            intent.putExtra("Tournament", tournament);
+            startActivity(intent);
+
+        }
 
     }
 

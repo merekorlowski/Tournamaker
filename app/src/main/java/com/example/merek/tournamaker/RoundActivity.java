@@ -83,4 +83,25 @@ public class RoundActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Intent intent;
+
+        if(roundNumber > 1) {
+
+            intent = new Intent(this, ResultsActivity.class);
+            intent.putExtra("Tournament", tournament);
+
+        } else {
+
+            intent = new Intent(this, TournamentSetup.class);
+
+        }
+
+        intent.putExtra("round", tournament.getRound(roundNumber));
+        startActivity(intent);
+
+    }
+
 }

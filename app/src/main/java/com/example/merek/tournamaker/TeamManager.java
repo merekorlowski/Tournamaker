@@ -11,10 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.merek.tournamaker.R;
+
+import java.util.ArrayList;
 
 public class TeamManager extends AppCompatActivity {
 
@@ -31,13 +34,15 @@ public class TeamManager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_manager);
 
-        /*new Thread(new Runnable() {
+       /* new Thread(new Runnable() {
             public void run() {
                 LinearLayout layout =(LinearLayout)findViewById(R.id.teamManagerLinearLayout);
                 layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
             }
         }).start();*/
 
+        populateListView();
+        registerClickCallback();
 
         //drawer layout title
         drawerList = (ListView)findViewById(R.id.navList);
@@ -52,9 +57,6 @@ public class TeamManager extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
-
-
     }
 
     //called when create team button is clicked
@@ -66,15 +68,29 @@ public class TeamManager extends AppCompatActivity {
 
     }
 
-    //called when edit team button is clicked
-    public void editTeamClick (View view) {
+    //populates list view with team names
+    public void populateListView() {
 
-        //go to team edit list activity
-        Intent intent = new Intent(this, TeamEditList.class);
-        startActivity(intent);
+        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeamNames();
 
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, teamNames);
+        ListView listview = (ListView) findViewById(R.id.teamListView);
+        listview.setAdapter(adapter);
     }
 
+    //edit selected team
+    public void registerClickCallback() {
+
+        ListView list = (ListView) findViewById(R.id.teamListView);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), TeamEdit.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+        });
+    }
 
 
     /*

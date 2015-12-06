@@ -30,29 +30,19 @@
             android:textSize="30dp"
             android:layout_gravity="center_horizontal" />
 
-        <Button
+        <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Team"
-            android:id="@+id/buttonEditTeam"
-            android:onClick="editTeamClick"
-            android:textSize="20dp"
-            android:layout_below="@+id/buttonCreateTeam"
-            android:layout_marginTop="50dp"
-            android:layout_alignRight="@+id/buttonCreateTeam"
-            android:layout_alignEnd="@+id/buttonCreateTeam"
-            android:layout_alignLeft="@+id/buttonCreateTeam"
-            android:layout_alignStart="@+id/buttonCreateTeam"
-            android:layout_gravity="center_horizontal" />
+            android:layout_height="376dp"
+            android:id="@+id/teamListView"
+            android:layout_marginTop="20dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Create Team"
+            android:text="Create New Team"
             android:id="@+id/buttonCreateTeam"
             android:onClick="createTeamClick"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/textView3"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal" />

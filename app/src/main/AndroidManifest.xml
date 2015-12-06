@@ -34,8 +34,6 @@
         </activity>
         <activity android:name=".LoadScreen" >
         </activity>
-        <activity android:name=".TeamEditList" >
-        </activity>
         <activity android:name=".TeamCreate" >
         </activity>
         <activity android:name=".SelectTeams" >

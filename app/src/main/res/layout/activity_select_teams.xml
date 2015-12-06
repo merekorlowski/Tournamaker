@@ -13,23 +13,38 @@
     android:gravity="fill"
     android:showDividers="middle|beginning|end">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Select Teams"
-        android:id="@+id/textStatistics"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="30dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Select Teams"
+            android:id="@+id/textStatistics"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="30dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exit"
+            android:id="@+id/button2"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="20dp"
+            android:onClick="exitTeamSelection" />
+    </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listviewSelectTeams"
         android:layout_marginTop="0dp"
         android:footerDividersEnabled="false" />
 
-    </LinearLayout>
+</LinearLayout>
 

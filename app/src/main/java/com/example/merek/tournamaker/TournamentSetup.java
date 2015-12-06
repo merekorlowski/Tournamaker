@@ -75,8 +75,6 @@ public class TournamentSetup extends AppCompatActivity {
 
         }
 
-
-
     }
 
     //temporary

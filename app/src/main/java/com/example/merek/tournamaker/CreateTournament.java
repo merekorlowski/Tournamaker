@@ -44,7 +44,7 @@ public class CreateTournament extends AppCompatActivity {
         name = inputTxt.getText().toString();
 
         //displays message if user doesn't input a name
-        if(name == null) {
+        if(name.equals("")) {
 
             Context context = getApplicationContext();
             CharSequence text = "Enter tournament name to continue.";
@@ -63,11 +63,12 @@ public class CreateTournament extends AppCompatActivity {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
+        //initializes new tournament and goes to tournament setup
         } else {
 
             tournament = new Tournament(type, name, false, new ArrayList<Team>());
 
-            //update list of tournaments
+            //add to list of tournaments
             TournamentMaker.getInstance().addTournament(tournament);
 
             Intent intent = new Intent(this, TournamentSetup.class);

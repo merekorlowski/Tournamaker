@@ -40,10 +40,10 @@ public class SelectTeams extends AppCompatActivity {
     public void populateList() {
 
         //initialize arraylist of teams
-        ArrayList<String> teams = TournamentMaker.getInstance().getTeamNames();
+        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeamNames();
 
         //add to listview
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, teams);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, teamNames);
         ListView listview = (ListView) findViewById(R.id.listviewSelectTeams);
         listview.setAdapter(adapter);
 
@@ -65,6 +65,13 @@ public class SelectTeams extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void exitTeamSelection(View view) {
+
+        Intent intent = new Intent(this, TournamentSetup.class);
+        startActivity(intent);
 
     }
 }

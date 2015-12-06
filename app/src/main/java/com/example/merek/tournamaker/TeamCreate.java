@@ -25,7 +25,7 @@ public class TeamCreate extends AppCompatActivity {
         String name = inputTxt.getText().toString();
 
         //displays message if user doesn't input a name
-        if(name == null) {
+        if(name.equals("")) {
 
             Context context = getApplicationContext();
             CharSequence text = "Enter team name to continue.";

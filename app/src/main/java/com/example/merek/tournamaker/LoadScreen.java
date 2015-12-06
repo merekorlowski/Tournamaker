@@ -26,7 +26,7 @@ public class LoadScreen extends AppCompatActivity {
 
         ArrayList<String> tournamentNames = TournamentMaker.getInstance().getTournamentNames();
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tournamentNames);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, tournamentNames);
         ListView listview = (ListView) findViewById(R.id.listViewLoad);
         listview.setAdapter(adapter);
 

@@ -24,15 +24,14 @@ public class Tournament implements Serializable {
         this.teams = teams;
 
         //determine number of rounds by type
-        if(type.equals("RoundRobin"))
-            rounds = new Round[teams.size() - 1];
+        if(type.equals("Round Robin"))
+            rounds = new Round[teams.size()];
 
         else if(type.equals("Knockout"))
             rounds = new Round[(int)Math.log(2)*teams.size()];
 
-        else {
-            rounds = new Round[(teams.size() - 1)/2 + (int)Math.log(2)*((teams.size() - 1)/2)];
-        }
+        else
+            rounds = new Round[(teams.size()) + (int)Math.log(2)*((teams.size())/3)];
 
     }
 
@@ -110,17 +109,8 @@ public class Tournament implements Serializable {
         return rounds.length;
     }
 
-    //returns true if doesnt already contain team and adds to tournament
-    //returns false if already contains
-    public boolean add(Team t) {
-
-        if(!teams.contains(t)) {
-            teams.add(t);
-            return true;
-
-        } else
-            return false;
-
+    public void add(Team t) {
+        teams.add(t);
     }
 
     //remove team from tournament

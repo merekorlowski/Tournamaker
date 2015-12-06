@@ -66,7 +66,7 @@ public class CreateTournament extends AppCompatActivity {
         //initializes new tournament and goes to tournament setup
         } else {
 
-            tournament = new Tournament(type, name, false, new ArrayList<TeamTournamentStats>());
+            tournament = new Tournament(type, name, false, new ArrayList<Team>());
 
             //add to list of tournaments
             TournamentMaker.getInstance().addTournament(tournament);

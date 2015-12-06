@@ -14,7 +14,7 @@ public class RoundActivity extends AppCompatActivity {
     Tournament tournament;
     Round round;
     int roundNumber;
-    ArrayList<TeamTournamentStats> winningTeamTournamentStatsList;
+    ArrayList<Team> winningTeamList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class RoundActivity extends AppCompatActivity {
         roundNumber = (int)i.getSerializableExtra("roundNumber");
 
         if(roundNumber > 1)
-            winningTeamTournamentStatsList = (ArrayList<TeamTournamentStats>)i.getSerializableExtra("teams");
+            winningTeamList = (ArrayList<Team>)i.getSerializableExtra("teams");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
@@ -48,18 +48,18 @@ public class RoundActivity extends AppCompatActivity {
     public void startRoundClick(View v){
 
         //initialize round
-        ArrayList<TeamTournamentStats> teamTournamentStatsList = tournament.getTeamTournamentStatsList();
+        ArrayList<Team> teamList = tournament.getTeamList();
 
         if(tournament.getType().equals("Round Robin"))
-            tournament.initializeRound(roundNumber - 1, teamTournamentStatsList);
+            tournament.initializeRound(roundNumber - 1, teamList);
         else if(tournament.getType().equals("Knockout"))
-            tournament.initializeRound(roundNumber - 1, winningTeamTournamentStatsList);
+            tournament.initializeRound(roundNumber - 1, winningTeamList);
         else {
 
-            if(roundNumber < teamTournamentStatsList.size() - 1)
-                tournament.initializeRound(roundNumber - 1, teamTournamentStatsList);
+            if(roundNumber < teamList.size() - 1)
+                tournament.initializeRound(roundNumber - 1, teamList);
             else
-                tournament.initializeRound(roundNumber - 1, winningTeamTournamentStatsList);
+                tournament.initializeRound(roundNumber - 1, winningTeamList);
 
         }
 

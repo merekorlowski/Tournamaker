@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exit"
-            android:id="@+id/button2"
+            android:id="@+id/exitTeamSelectionBtn"
             android:layout_marginLeft="90dp"
             android:layout_marginTop="20dp"
             android:onClick="exitTeamSelection" />

@@ -18,23 +18,51 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".TeamManager"
         android:padding="0dp"
-        android:gravity="fill">
+        android:gravity="fill"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Team Manager"
+                android:id="@+id/textViewTeamManager"
+                android:layout_marginTop="20dp"
+                android:textSize="30dp"
+                android:layout_marginLeft="10dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit"
+                android:id="@+id/exitTeamManager"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:nestedScrollingEnabled="false"
+                android:onClick="exitTeamManagerOnClick" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Team Manager"
-            android:id="@+id/textViewTeamManager"
-            android:layout_marginTop="20dp"
-            android:textSize="30dp"
-            android:layout_gravity="center_horizontal" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Create, edit or delete teams"
+            android:id="@+id/teamManagerDescription"
+            android:textSize="15dp"
+            android:layout_marginLeft="15dp" />
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="376dp"
+            android:layout_height="338dp"
             android:id="@+id/teamListView"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.42" />
 
         <Button
             android:layout_width="250dp"

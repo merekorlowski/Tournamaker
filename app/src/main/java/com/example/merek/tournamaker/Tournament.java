@@ -14,7 +14,7 @@ public class Tournament implements Serializable {
     private String name;
     private boolean active;
     private ArrayList<Team> teams;
-    private Round[] rounds;
+    private ArrayList<Round> rounds;
 
     //tournament constructor
     public Tournament(String type, String name, boolean active, ArrayList<Team> teams) {
@@ -22,22 +22,23 @@ public class Tournament implements Serializable {
         this.name = name;
         this.active = active;
         this.teams = teams;
+        rounds = new ArrayList<>();
 
         //determine number of rounds by type
-        if(type.equals("Round Robin"))
+        /*if(type.equals("Round Robin"))
             rounds = new Round[teams.size()];
 
         else if(type.equals("Knockout"))
             rounds = new Round[(int)Math.log(2)*teams.size()];
 
         else
-            rounds = new Round[(teams.size()) + (int)Math.log(2)*((teams.size())/3)];
+            rounds = new Round[(teams.size()) + (int)Math.log(2)*((teams.size())/3)];*/
 
     }
 
     //initialize a new round
     public void initializeRound(int i, ArrayList<Team> teams) {
-        rounds[i] = new Round(i, teams);
+        rounds.set(i, new Round(i, teams));
     }
 
     //getters and setters
@@ -102,11 +103,11 @@ public class Tournament implements Serializable {
     }
 
     public Round getRound(int i) {
-        return rounds[i];
+        return rounds.get(i);
     }
 
     public int getNumberOfRounds() {
-        return rounds.length;
+        return rounds.size();
     }
 
     public void add(Team t) {

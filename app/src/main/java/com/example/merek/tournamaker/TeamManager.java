@@ -92,6 +92,13 @@ public class TeamManager extends AppCompatActivity {
         });
     }
 
+    public void exitTeamManagerOnClick(View view) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+    }
+
 
     /*
     -----The Drawer-----

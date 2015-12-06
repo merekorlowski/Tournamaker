@@ -38,7 +38,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ArrayList<String> stats = tournament.getStatistics();
 
         //populate
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, stats);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, stats);
         ListView listview = (ListView) findViewById(R.id.statsListView);
         listview.setAdapter(adapter);
 

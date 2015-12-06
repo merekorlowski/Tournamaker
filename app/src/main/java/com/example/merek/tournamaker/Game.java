@@ -24,12 +24,16 @@ public class Game {
 
             return teamTournamentStatsOne;
 
-        } else {
+        } else if(teamTournamentStatsOne.getNumOfGoals() < teamTournamentStatsTwo.getNumOfGoals()) {
 
             teamTournamentStatsOne.incrementNumGamesLost(); //increment t1's number of loses
             teamTournamentStatsTwo.incrementNumGamesWon(); //increment t2's number of wins
 
             return teamTournamentStatsTwo;
+
+        } else {
+
+            return null;
 
         }
 

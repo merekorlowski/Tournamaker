@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Tournament teamTournamentStats statistics"
+        android:text="Tournament team statistics"
         android:id="@+id/statisticsDescription"
         android:layout_marginLeft="20dp" />
 

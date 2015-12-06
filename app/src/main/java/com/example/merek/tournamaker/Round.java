@@ -50,8 +50,17 @@ public class Round implements Serializable {
 
         //initialize arraylist of winners
         ArrayList<TeamTournamentStats> winners = new ArrayList<>();
+
         for(int i = 0; i < numOfGames; i++) {
-            winners.add(games[i].getWinner());
+
+            if(games[i].getWinner() == null) {
+
+                winners.add(games[i].getTeamTournamentStatsOne());
+                winners.add(games[i].getTeamTournamentStatsTwo());
+
+            } else
+                winners.add(games[i].getWinner());
+
         }
         return winners;
 

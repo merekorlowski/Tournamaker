@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Play against each teamTournamentStats for a fair chance!"
+            android:text="Play against each team for a fair chance!"
             android:id="@+id/roundRobinDescription"
             android:textSize="14dp" />
 
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Round robin and top teamTournamentStatsList move to knockout"
+            android:text="Round robin and top teams move to knockout"
             android:id="@+id/roundRobinAndKnockoutDescription"
             android:layout_gravity="center_horizontal"
             android:textSize="14dp" />

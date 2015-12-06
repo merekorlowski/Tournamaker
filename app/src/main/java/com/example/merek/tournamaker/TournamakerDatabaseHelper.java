@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Alexandre Lara on 05/12/2015.
  */
-public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
+/*public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
     private static TournamakerDatabaseHelper tInstance;
     private static final String TAG = "TournamakerDBHelper";
 
@@ -73,10 +73,10 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                 "(" +
                     KEY_TEAM_ID + " INTEGER PRIMARY KEY," + // Define primary key
                     KEY_TEAM_NAME + " TEXT UNIQUE," +
-                    KEY_TEAM_NUM_GOALS + " INTEGER," +
-                    KEY_TEAM_NUM_WINS + " INTEGER," +
-                    KEY_TEAM_NUM_LOSES + " INTEGER," +
-                    KEY_TEAM_LEAGUE_POS + " INTEGER," +
+                    KEY_TEAM_TOURNAMENT_NUM_GOALS + " INTEGER," +
+                    KEY_TEAM_TOURNAMENT_NUM_WINS + " INTEGER," +
+                    KEY_TEAM_TOURNAMENT_NUM_LOSES + " INTEGER," +
+                    KEY_TEAM_TOURNAMENT_LEAGUE_POS + " INTEGER," +
                     KEY_TEAM_ICON_NAME + " TEXT," +
                     KEY_TEAM_ICON_PATH + " TEXT UNIQUE," +
                     KEY_TEAM_ICON_IS_DRAWABLE + " BOOLEAN" +
@@ -108,10 +108,10 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             //values.put(KEY_TEAM_ID, teamId);
             values.put(KEY_TEAM_NAME, teamTournamentStats.getTeamName());
-            values.put(KEY_TEAM_NUM_GOALS, teamTournamentStats.getNumOfGoals());
-            values.put(KEY_TEAM_NUM_WINS, teamTournamentStats.getNumGamesWon());
-            values.put(KEY_TEAM_NUM_LOSES, teamTournamentStats.getNumGamesLost());
-            values.put(KEY_TEAM_LEAGUE_POS, teamTournamentStats.getLeaguePosition());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, teamTournamentStats.getNumOfGoals());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, teamTournamentStats.getNumGamesWon());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_LOSES, teamTournamentStats.getNumGamesLost());
+            values.put(KEY_TEAM_TOURNAMENT_LEAGUE_POS, teamTournamentStats.getLeaguePosition());
             values.put(KEY_TEAM_ICON_NAME, teamIconName);
             values.put(KEY_TEAM_ICON_PATH, iconPath);
             values.put(KEY_TEAM_ICON_IS_DRAWABLE, isDrawable);
@@ -224,10 +224,10 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     String name = cursor.getString(cursor.getColumnIndex(KEY_TEAM_NAME));
-                    int numOfGoals = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_NUM_GOALS));
-                    int numOfWins = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_NUM_WINS));
-                    int numOfLoses = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_NUM_LOSES));
-                    int numOfLeaguePosition = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_LEAGUE_POS));
+                    int numOfGoals = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_GOALS));
+                    int numOfWins = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_WINS));
+                    int numOfLoses = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_LOSES));
+                    int numOfLeaguePosition = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_LEAGUE_POS));
                     String path = cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_PATH)) + cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_NAME));
                     boolean isIconDrawable = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_ICON_IS_DRAWABLE))>0;
 
@@ -250,4 +250,4 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         return teamTournamentStatsList;
     }
 
-}
+}*/

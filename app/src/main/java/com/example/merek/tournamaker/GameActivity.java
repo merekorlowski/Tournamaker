@@ -102,4 +102,13 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(this, RoundActivity.class);
+        intent.putExtra("gameNumber", gameNumber);
+        startActivity(intent);
+
+    }
+
 }

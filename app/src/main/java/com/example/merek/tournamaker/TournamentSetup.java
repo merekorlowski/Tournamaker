@@ -11,6 +11,7 @@ public class TournamentSetup extends AppCompatActivity {
 
     //declare variable
     Tournament tournament;
+    Round round;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -18,6 +19,12 @@ public class TournamentSetup extends AppCompatActivity {
 
         //initialize tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
+
+        if(tournament.isActive()) {
+
+            round = (Round)i.getSerializableExtra("round");
+
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
@@ -66,28 +73,43 @@ public class TournamentSetup extends AppCompatActivity {
     //start first round of tournament
     public void startClick(View view) {
 
-        if(tournament.getTeamList().size() < 3) {
+        Intent intent;
 
-            Context context = getApplicationContext();
-            CharSequence text = "Requires at least 3 teams to start.";
-            int duration = Toast.LENGTH_SHORT;
+        if(!tournament.isActive()) {
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            if(tournament.getTeamList().size() < 3) {
+
+                Context context = getApplicationContext();
+                CharSequence text = "Requires at least 3 teams to start.";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+            } else {
+
+                //set tournament to active
+                tournament.setIsActive(true);
+
+                intent = new Intent(this, RoundActivity.class);
+
+                //send this tournament and set round number to 1
+                intent.putExtra("Tournament", tournament);
+                intent.putExtra("roundNumber", 1);
+                intent.putExtra("gameNumber", 1);
+                startActivity(intent);
+
+            }
 
         } else {
 
-            //set tournament to active
-            tournament.setIsActive(true);
-
-            Intent intent = new Intent(this, RoundActivity.class);
-
-            //send this tournament and set round number to 1
-            intent.putExtra("Tournament", tournament);
-            intent.putExtra("roundNumber", 1);
+            intent = new Intent(this, ResultsActivity.class);
+            intent.putExtra("round", round);
             startActivity(intent);
 
         }
+
+
 
     }
 

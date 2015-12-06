@@ -15,6 +15,7 @@ public class RoundActivity extends AppCompatActivity {
     Round round;
     int roundNumber;
     ArrayList<Team> winningTeamList;
+    int gameNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class RoundActivity extends AppCompatActivity {
         //initialize roundNumber and tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
         roundNumber = (int)i.getSerializableExtra("roundNumber");
+        gameNumber = (int)i.getSerializableExtra("gameNumber");
 
         if(roundNumber > 1)
             winningTeamList = (ArrayList<Team>)i.getSerializableExtra("teams");
@@ -69,7 +71,7 @@ public class RoundActivity extends AppCompatActivity {
 
         //track round by sending it as an extra
         intent.putExtra("Round", round);
-        intent.putExtra("gameNumber", 1);
+        intent.putExtra("gameNumber", gameNumber);
 
         startActivity(intent);
     }
@@ -99,7 +101,7 @@ public class RoundActivity extends AppCompatActivity {
 
         }
 
-        intent.putExtra("round", tournament.getRound(roundNumber));
+        intent.putExtra("round", round);
         startActivity(intent);
 
     }

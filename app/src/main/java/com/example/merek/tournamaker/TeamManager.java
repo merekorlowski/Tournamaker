@@ -78,28 +78,12 @@ public class TeamManager extends AppCompatActivity {
     //populates list view with team names
     public void populateListView() {
 
-//        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeamNames();
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, teamNames);
-//        ListView listview = (ListView) findViewById(R.id.teamListView);
-//        listview.setAdapter(adapter);
+        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeams();
 
-        String[] itemname ={
-                "Safari",
-                "Camera",
-                "Global",
-                "FireFox",
-                "UC Browser",
-                "Android Folder",
-                "VLC Player",
-                "Cold War"
-        };
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, teamNames);
+        ListView listview = (ListView) findViewById(R.id.teamListView);
+        listview.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-            this, R.layout.team_list,
-            R.id.Itemname,itemname);
-            ListView listview = (ListView) findViewById(R.id.teamListView);
-            listview.setAdapter(adapter);
     }
 
     //edit selected team

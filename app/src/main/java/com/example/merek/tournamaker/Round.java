@@ -9,31 +9,31 @@ public class Round implements Serializable {
 
     //declare variables
     private int roundNumber;
-    private ArrayList<TeamTournamentStats> teamTournamentStatsList;
+    private ArrayList<Team> teams;
     private int numOfGames;
     private Game[] games;
 
     //round constructor
-    public Round(int roundNumber, ArrayList<TeamTournamentStats> teamTournamentStatsList) {
+    public Round(int roundNumber, ArrayList<Team> teams) {
         this.roundNumber = roundNumber;
-        this.teamTournamentStatsList = teamTournamentStatsList;
-        numOfGames = teamTournamentStatsList.size()/2;
+        this.teams = teams;
+        numOfGames = teams.size()/2;
         games = new Game[numOfGames]; //initialize array of games of size numOfGames
     }
 
     public void setGames() {
 
         //initialize team to pass
-        TeamTournamentStats pass = null;
+        Team pass = null;
 
         //if there is an impair number of teamTournamentStatsList, pass the last one to the next round
-        if(teamTournamentStatsList.size() % 2 == 1) {
-            pass = teamTournamentStatsList.get(teamTournamentStatsList.size() - 1);
-            teamTournamentStatsList.remove(teamTournamentStatsList.size() - 1);
+        if(teams.size() % 2 == 1) {
+            pass = teams.get(teams.size() - 1);
+            teams.remove(teams.size() - 1);
         }
         //initialize games
         for(int i = 0; i < numOfGames; i += 2) {
-            games[i] = new Game(teamTournamentStatsList.get(i), teamTournamentStatsList.get(i + 1));
+            games[i] = new Game(teams.get(i), teams.get(i + 1));
         }
 
         //randomize play order
@@ -41,17 +41,26 @@ public class Round implements Serializable {
 
         //place pass team to the front of the list to ensure it plays next round
         if(pass != null)
-            teamTournamentStatsList.add(0, pass);
+            teams.add(0, pass);
 
     }
 
     //returns an arraylist of all the winners of this round
-    public ArrayList<TeamTournamentStats> getRoundWinners() {
+    public ArrayList<Team> getRoundWinners() {
 
         //initialize arraylist of winners
-        ArrayList<TeamTournamentStats> winners = new ArrayList<>();
+        ArrayList<Team> winners = new ArrayList<>();
+
         for(int i = 0; i < numOfGames; i++) {
-            winners.add(games[i].getWinner());
+
+            if(games[i].getWinner() == null) {
+
+                winners.add(games[i].getTeamOne());
+                winners.add(games[i].getTeamTwo());
+
+            } else
+                winners.add(games[i].getWinner());
+
         }
         return winners;
 

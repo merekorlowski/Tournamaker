@@ -27,7 +27,7 @@ public class TeamEdit extends AppCompatActivity {
         setContentView(R.layout.activity_team_edit);
 
         EditText team = (EditText) findViewById(R.id.editTextTeam);
-        team.setText(TournamentMaker.getInstance().getTeamNames().get(position));
+        team.setText(TournamentMaker.getInstance().getTeams().get(position));
     }
 
 

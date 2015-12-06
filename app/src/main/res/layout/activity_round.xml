@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="View current teamTournamentStats statistics"
+        android:text="View current team statistics"
         android:id="@+id/viewStatsDescription"
         android:layout_gravity="center_horizontal" />
 

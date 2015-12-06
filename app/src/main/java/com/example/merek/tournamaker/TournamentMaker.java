@@ -8,7 +8,7 @@ public class TournamentMaker {
 
     //initialize variables
     private ArrayList<Tournament> tournaments = new ArrayList<>(); // All tournaments in the app
-    private ArrayList<Team> teams = new ArrayList<>(); // ALl teams in the app
+    private ArrayList<String> teams = new ArrayList<>(); // ALl teams in the app
     private static TournamentMaker instance;
 
     //private tournament maker constructor
@@ -44,21 +44,12 @@ public class TournamentMaker {
 
     }
 
-    public ArrayList<Team> getTeamTournamentStatsList() {
+    public ArrayList<String> getTeams() {
         return teams;
     }
 
-    //used to populate team list
-    public ArrayList<String> getTeamNames() {
-
-        ArrayList<String> names = new ArrayList<>();
-
-        for(int i = 0; i < teams.size(); i++) {
-            names.add(teams.get(i).getName());
-        }
-
-        return names;
-
+    public void setTeamName(int i, String name) {
+        teams.set(i, name);
     }
 
     public void addTournament(Tournament t) {
@@ -69,13 +60,11 @@ public class TournamentMaker {
         tournaments.remove(t);
     }
 
-    public void addTeam(Team t) {
-        TournamakerDatabaseHelper.getInstance(this).addTeam(t); // Adding to the database
+    public void add(String team) {
+        teams.add(team);
     }
 
-    public void setTeamName(int i, String name) {
-        teams.get(i).setName(name);
-    }
+
 
     public void deleteTeam(int i) {
         teams.remove(i);

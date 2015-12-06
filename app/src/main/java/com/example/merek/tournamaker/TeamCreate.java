@@ -35,7 +35,7 @@ public class TeamCreate extends AppCompatActivity {
             toast.show();
 
             //displays message if team by that name already exists
-        } else if(TournamentMaker.getInstance().getTeamNames().contains(name)) {
+        } else if(TournamentMaker.getInstance().getTeams().contains(name)) {
 
             Context context = getApplicationContext();
             CharSequence text = "A team already has this name.";
@@ -45,7 +45,8 @@ public class TeamCreate extends AppCompatActivity {
             toast.show();
 
         } else {
-            TournamentMaker.getInstance().addTeam(new Team(name));
+
+            TournamentMaker.getInstance().add(name);
 
             Intent intent = new Intent(this, TeamManager.class);
             startActivity(intent);

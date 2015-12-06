@@ -36,7 +36,7 @@ public class SelectTeams extends AppCompatActivity {
     public void populateList() {
 
         //initialize arraylist of teams
-        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeamNames();
+        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeams();
 
         //add to listview
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, teamNames);
@@ -46,40 +46,21 @@ public class SelectTeams extends AppCompatActivity {
 
     }
 
-    //add selected teams to this tournament
-   /* public void registerClickCallback() {
-
-        list = (ListView) findViewById(R.id.listviewSelectTeams);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-
-                //get team at position selected
-                TeamTournamentStats team = TournamentMaker.getInstance().getTeamTournamentStatsList().get(position);
-
-                //add team to tournament
-                tournament.add(team);
-
-            }
-        });
-
-    }*/
-
     public void submitTeamSelection(View view) {
 
-        ArrayList<TeamTournamentStats> teamTournamentStatsList = new ArrayList<>();
+        ArrayList<Team> teams = new ArrayList<>();
 
         SparseBooleanArray sba = listview.getCheckedItemPositions();
 
         for(int i = 0; i < sba.size(); i++) {
             if(sba.valueAt(i)) {
-                Team team = TournamentMaker.getInstance().getTeamTournamentStatsList().get(sba.keyAt(i));
-                teamTournamentStatsList.add(new TeamTournamentStats(team, tournament));
+                String name = TournamentMaker.getInstance().getTeams().get(sba.keyAt(i));
+                teams.add(new Team(name, tournament));
             }
         }
 
-        if(!teamTournamentStatsList.isEmpty())
-            tournament.setTeamTournamentStatsList(teamTournamentStatsList);
+        if(!teams.isEmpty())
+            tournament.setTeamList(teams);
 
         Intent intent = new Intent(this, TournamentSetup.class);
         startActivity(intent);

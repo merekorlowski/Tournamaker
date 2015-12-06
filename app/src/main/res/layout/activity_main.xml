@@ -25,11 +25,10 @@
         android:layout_marginTop="40dp">
 
         <ImageView
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="200dp"
             android:id="@+id/logo"
             android:src="@drawable/tmaker_logo"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal" />
 
         <Button
@@ -37,12 +36,20 @@
             android:layout_height="wrap_content"
             android:text="Create Tournament"
             android:id="@+id/startBtn"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:onClick="goToCreateTournament"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:textSize="20dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Create a new tournament"
+            android:id="@+id/textView2"
             android:layout_gravity="center_horizontal" />
 
         <Button
@@ -59,6 +66,14 @@
             android:layout_gravity="center_horizontal"
             android:onClick="goToLoadTournament" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Load an existing tournament"
+            android:id="@+id/textView4"
+            android:layout_gravity="center_horizontal" />
+
         <Button
             android:layout_width="260dp"
             android:layout_height="wrap_content"
@@ -72,6 +87,14 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:onClick="goToManageTeams" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Create, edit or delete teams"
+            android:id="@+id/textView5"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 

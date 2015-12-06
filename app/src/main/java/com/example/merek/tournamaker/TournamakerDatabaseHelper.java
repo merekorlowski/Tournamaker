@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+/*package com.example.merek.tournamaker;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,6 +26,9 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
     // Teams Table Columns
     private static final String KEY_TEAM_ID = "id";
     private static final String KEY_TEAM_NAME = "name";
+    private static final String KEY_TEAM_ICON_NAME = "icon_name"; // Name of the icon
+    private static final String KEY_TEAM_ICON_PATH = "icon_path"; // Check if icon is stored on drawables or in a SD card
+    private static final String KEY_TEAM_ICON_IS_DRAWABLE = "icon_is_drawable";
 
     // Tournaments Table Columns
     private static final String KEY_TOURNAMENT_ID = "id";
@@ -68,7 +71,10 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         String CREATE_TEAMS_TABLE = "CREATE TABLE " + TABLE_TEAMS +
                 "(" +
                     KEY_TEAM_ID + " INTEGER PRIMARY KEY," + // Define primary key
-                    KEY_TEAM_NAME + " TEXT UNIQUE" +
+                    KEY_TEAM_NAME + " TEXT UNIQUE," +
+                    KEY_TEAM_ICON_NAME + " TEXT," +
+                    KEY_TEAM_ICON_PATH + " TEXT UNIQUE," +
+                    KEY_TEAM_ICON_IS_DRAWABLE + " BOOLEAN" +
                 ")";
 
         // Create tournament table
@@ -124,6 +130,9 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             //values.put(KEY_TEAM_ID, teamId);
             values.put(KEY_TEAM_NAME, team.getName());
+            values.put(KEY_TEAM_ICON_NAME, teamIconName);
+            values.put(KEY_TEAM_ICON_PATH, iconPath);
+            values.put(KEY_TEAM_ICON_IS_DRAWABLE, isDrawable);
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_TEAMS, null, values);
@@ -161,7 +170,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addTeamTournamentStats(TeamTournamentStats teamTournamentStats) {
+    public void addTeam(Team team) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 
@@ -173,12 +182,12 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             //long teamId = addOrUpdateTeam(teamTournamentStats, teamIconName, iconPath, isDrawable);
 
             ContentValues values = new ContentValues();
-            values.put(KEY_TEAM_REFERENCE_ID, getTeamID(teamTournamentStats.getTeamName()));
-            values.put(KEY_TOURNAMENT_REFERENCE_ID, getTournamentID(teamTournamentStats.getTournamentName()));
-            values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, teamTournamentStats.getNumOfGoals());
-            values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, teamTournamentStats.getNumGamesWon());
-            values.put(KEY_TEAM_TOURNAMENT_NUM_LOSES, teamTournamentStats.getNumGamesLost());
-            values.put(KEY_TEAM_TOURNAMENT_LEAGUE_POS, teamTournamentStats.getLeaguePosition());
+            values.put(KEY_TEAM_REFERENCE_ID, getTeamID(team.getTeamName()));
+            values.put(KEY_TOURNAMENT_REFERENCE_ID, getTournamentID(team.getTournamentName()));
+            values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, team.getNumOfGoals());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, team.getNumGamesWon());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_LOSES, team.getNumGamesLost());
+            values.put(KEY_TEAM_TOURNAMENT_LEAGUE_POS, team.getLeaguePosition());
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_TEAM_TOURNAMENT, null, values);
@@ -316,9 +325,11 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     String name = cursor.getString(cursor.getColumnIndex(KEY_TEAM_NAME));
+                    String path = cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_PATH)) + cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_NAME));
+                    boolean isIconDrawable = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_ICON_IS_DRAWABLE))>0;
 
                     // Instantiate team
-                    Team team = new Team(name);
+                    Team team = new Team(name, path, isIconDrawable);
 
                     teams.add(team);
                 } while(cursor.moveToNext());
@@ -333,4 +344,4 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         return teams;
     }
 
-}
+}*/

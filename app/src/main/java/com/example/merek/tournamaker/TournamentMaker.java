@@ -48,6 +48,10 @@ public class TournamentMaker {
         return teams;
     }
 
+    public String getTeam(int i) {
+        return teams.get(i);
+    }
+
     public void setTeamName(int i, String name) {
         teams.set(i, name);
     }

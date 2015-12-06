@@ -20,11 +20,8 @@ public class TournamentSetup extends AppCompatActivity {
         //initialize tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
 
-        if(tournament.isActive()) {
-
-            round = (Round)i.getSerializableExtra("round");
-
-        }
+        if(tournament.isActive())
+            round = (Round) i.getSerializableExtra("round");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
@@ -108,8 +105,6 @@ public class TournamentSetup extends AppCompatActivity {
             startActivity(intent);
 
         }
-
-
 
     }
 

@@ -54,7 +54,7 @@ public class SelectTeams extends AppCompatActivity {
 
         for(int i = 0; i < sba.size(); i++) {
             if(sba.valueAt(i)) {
-                String name = TournamentMaker.getInstance().getTeams().get(sba.keyAt(i));
+                String name = TournamentMaker.getInstance().getTeam(sba.keyAt(i));
                 teams.add(new Team(name, tournament));
             }
         }

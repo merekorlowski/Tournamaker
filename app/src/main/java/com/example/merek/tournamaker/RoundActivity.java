@@ -24,7 +24,9 @@ public class RoundActivity extends AppCompatActivity {
         //initialize roundNumber and tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
         roundNumber = (int)i.getSerializableExtra("roundNumber");
-        winningTeams = (ArrayList<Team>)i.getSerializableExtra("teams");
+
+        if(roundNumber > 1)
+            winningTeams = (ArrayList<Team>)i.getSerializableExtra("teams");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Merek on 2015-12-01.
  */
-public class Team implements Comparable, Serializable {
+public class Team implements Comparable {
 
     //declare variables
     private String name;

@@ -24,9 +24,10 @@
         <activity android:name=".StatisticsActivity" >
         </activity>
         <activity android:name=".CreateTournament"
-            android:theme="@style/AppTheme.PopupWindowTheme">
+            android:theme="@style/Theme.AppCompat">
         </activity>
-        <activity android:name=".TeamEdit" >
+        <activity android:name=".TeamEdit"
+            android:theme="@style/Theme.AppCompat">
         </activity>
         <activity android:name=".TeamManager" >
         </activity>
@@ -34,7 +35,8 @@
         </activity>
         <activity android:name=".LoadScreen" >
         </activity>
-        <activity android:name=".TeamCreate" >
+        <activity android:name=".TeamCreate"
+            android:theme="@style/Theme.AppCompat">
         </activity>
         <activity android:name=".SelectTeams" >
         </activity>

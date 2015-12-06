@@ -23,11 +23,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Results"
         android:id="@+id/textResults"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:textSize="30dp"
         android:layout_marginLeft="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -40,16 +41,28 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Results of last rounds games"
+        android:id="@+id/resultsDescription"
+        android:layout_below="@+id/textResults"
+        android:layout_alignLeft="@+id/textResults"
+        android:layout_alignStart="@+id/textResults" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gamesList"
         android:layout_toStartOf="@+id/buttonContinue"
-        android:layout_below="@+id/buttonContinue"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/resultsDescription"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp" />
 
 </RelativeLayout>

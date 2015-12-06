@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+/*package com.example.merek.tournamaker;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -344,4 +344,4 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         return teams;
     }
 
-}
+}*/

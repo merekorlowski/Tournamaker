@@ -1,4 +1,4 @@
-package com.example.merek.tournamaker;
+/*package com.example.merek.tournamaker;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -170,7 +170,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addTeamTournamentStats(TeamTournamentStats teamTournamentStats) {
+    public void addTeam(Team team) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 
@@ -182,12 +182,12 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             //long teamId = addOrUpdateTeam(teamTournamentStats, teamIconName, iconPath, isDrawable);
 
             ContentValues values = new ContentValues();
-            values.put(KEY_TEAM_REFERENCE_ID, getTeamID(teamTournamentStats.getTeamName()));
-            values.put(KEY_TOURNAMENT_REFERENCE_ID, getTournamentID(teamTournamentStats.getTournamentName()));
-            values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, teamTournamentStats.getNumOfGoals());
-            values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, teamTournamentStats.getNumGamesWon());
-            values.put(KEY_TEAM_TOURNAMENT_NUM_LOSES, teamTournamentStats.getNumGamesLost());
-            values.put(KEY_TEAM_TOURNAMENT_LEAGUE_POS, teamTournamentStats.getLeaguePosition());
+            values.put(KEY_TEAM_REFERENCE_ID, getTeamID(team.getTeamName()));
+            values.put(KEY_TOURNAMENT_REFERENCE_ID, getTournamentID(team.getTournamentName()));
+            values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, team.getNumOfGoals());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, team.getNumGamesWon());
+            values.put(KEY_TEAM_TOURNAMENT_NUM_LOSES, team.getNumGamesLost());
+            values.put(KEY_TEAM_TOURNAMENT_LEAGUE_POS, team.getLeaguePosition());
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_TEAM_TOURNAMENT, null, values);
@@ -344,4 +344,4 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         return teams;
     }
 
-}
+}*/

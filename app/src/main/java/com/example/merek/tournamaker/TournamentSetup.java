@@ -53,7 +53,7 @@ public class TournamentSetup extends AppCompatActivity {
     //start first round of tournament
     public void startClick(View view) {
 
-        if(tournament.getTeamTournamentStatsList().size() < 3) {
+        if(tournament.getTeamList().size() < 3) {
 
             Context context = getApplicationContext();
             CharSequence text = "Requires at least 3 teams to start.";

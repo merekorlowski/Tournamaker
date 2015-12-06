@@ -23,17 +23,29 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
 
     // Table names
     private static final String TABLE_TEAMS = "teams";
+    private static final String TABLE_TOURNAMENTS = "tournaments";
+    private static final String TABLE_TEAM_TOURNAMENT = "team_tournament_stats";
 
     // Teams Table Columns
     private static final String KEY_TEAM_ID = "id";
     private static final String KEY_TEAM_NAME = "name";
-    private static final String KEY_TEAM_NUM_GOALS = "goals";
-    private static final String KEY_TEAM_NUM_WINS = "wins";
-    private static final String KEY_TEAM_NUM_LOSES = "loses";
-    private static final String KEY_TEAM_LEAGUE_POS = "pos";
     private static final String KEY_TEAM_ICON_NAME = "icon_name"; // Name of the icon
     private static final String KEY_TEAM_ICON_PATH = "icon_path"; // Check if icon is stored on drawables or in a SD card
     private static final String KEY_TEAM_ICON_IS_DRAWABLE = "icon_is_drawable";
+
+    // Tournaments Table Columns
+    private static final String KEY_TEAM_ID = "id";
+    private static final String KEY_TEAM_NAME = "name";
+    private static final String KEY_TEAM_ICON_NAME = "icon_name"; // Name of the icon
+    private static final String KEY_TEAM_ICON_PATH = "icon_path"; // Check if icon is stored on drawables or in a SD card
+    private static final String KEY_TEAM_ICON_IS_DRAWABLE = "icon_is_drawable";
+
+    // Teams Tournament Stats Table Columns
+    private static final String KEY_TEAM_TOURNAMENT_ID = "id";
+    private static final String KEY_TEAM_TOURNAMENT_NUM_GOALS = "goals";
+    private static final String KEY_TEAM_TOURNAMENT_NUM_WINS = "wins";
+    private static final String KEY_TEAM_TOURNAMENT_NUM_LOSES = "loses";
+    private static final String KEY_TEAM_TOURNAMENT_LEAGUE_POS = "pos";
 
     public static synchronized TournamakerDatabaseHelper getInstance(Context context){
         if (tInstance == null){
@@ -82,7 +94,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addTeam(Team team, String teamIconName, String iconPath, Boolean isDrawable) {
+        public void addTeam(TeamTournamentStats teamTournamentStats, String teamIconName, String iconPath, Boolean isDrawable) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 
@@ -91,15 +103,15 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         db.beginTransaction();
         try {
             // The user might already exist in the database (i.e. the same user created multiple posts).
-            //long teamId = addOrUpdateTeam(team, teamIconName, iconPath, isDrawable);
+            //long teamId = addOrUpdateTeam(teamTournamentStats, teamIconName, iconPath, isDrawable);
 
             ContentValues values = new ContentValues();
             //values.put(KEY_TEAM_ID, teamId);
-            values.put(KEY_TEAM_NAME, team.getName());
-            values.put(KEY_TEAM_NUM_GOALS, team.getNumOfGoals());
-            values.put(KEY_TEAM_NUM_WINS, team.getNumGamesWon());
-            values.put(KEY_TEAM_NUM_LOSES, team.getNumGamesLost());
-            values.put(KEY_TEAM_LEAGUE_POS, team.getLeaguePosition());
+            values.put(KEY_TEAM_NAME, teamTournamentStats.getTeamName());
+            values.put(KEY_TEAM_NUM_GOALS, teamTournamentStats.getNumOfGoals());
+            values.put(KEY_TEAM_NUM_WINS, teamTournamentStats.getNumGamesWon());
+            values.put(KEY_TEAM_NUM_LOSES, teamTournamentStats.getNumGamesLost());
+            values.put(KEY_TEAM_LEAGUE_POS, teamTournamentStats.getLeaguePosition());
             values.put(KEY_TEAM_ICON_NAME, teamIconName);
             values.put(KEY_TEAM_ICON_PATH, iconPath);
             values.put(KEY_TEAM_ICON_IS_DRAWABLE, isDrawable);
@@ -114,7 +126,39 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public long addOrUpdateTeam(Team team, String teamIconName, String iconPath, Boolean isDrawable) {
+//    public void addTeam(TeamTournamentStats teamTournamentStats, String teamIconName, String iconPath, Boolean isDrawable) {
+//        // Create and/or open the database for writing
+//        SQLiteDatabase db = getWritableDatabase();
+//
+//        // It's a good idea to wrap our insert in a transaction. This helps with performance and ensures
+//        // consistency of the database.
+//        db.beginTransaction();
+//        try {
+//            // The user might already exist in the database (i.e. the same user created multiple posts).
+//            //long teamId = addOrUpdateTeam(teamTournamentStats, teamIconName, iconPath, isDrawable);
+//
+//            ContentValues values = new ContentValues();
+//            //values.put(KEY_TEAM_ID, teamId);
+//            values.put(KEY_TEAM_NAME, teamTournamentStats.getTeamName());
+//            values.put(KEY_TEAM_NUM_GOALS, teamTournamentStats.getNumOfGoals());
+//            values.put(KEY_TEAM_NUM_WINS, teamTournamentStats.getNumGamesWon());
+//            values.put(KEY_TEAM_NUM_LOSES, teamTournamentStats.getNumGamesLost());
+//            values.put(KEY_TEAM_LEAGUE_POS, teamTournamentStats.getLeaguePosition());
+//            values.put(KEY_TEAM_ICON_NAME, teamIconName);
+//            values.put(KEY_TEAM_ICON_PATH, iconPath);
+//            values.put(KEY_TEAM_ICON_IS_DRAWABLE, isDrawable);
+//
+//            // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
+//            db.insertOrThrow(TABLE_TEAMS, null, values);
+//            db.setTransactionSuccessful();
+//        } catch (Exception e) {
+//            Log.d(TAG, "Error while trying to add post to database");
+//        } finally {
+//            db.endTransaction();
+//        }
+//    }
+
+//    public long addOrUpdateTeam(TeamTournamentStats team, String teamIconName, String iconPath, Boolean isDrawable) {
 //        // The database connection is cached so it's not expensive to call getWriteableDatabase() multiple times.
 //        SQLiteDatabase db = getWritableDatabase();
 //        long teamId = -1;
@@ -164,8 +208,8 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
 //        return teamId;
 //    }
 
-    public List<Team> getAllTeams() {
-        List<Team> teams = new ArrayList<>();
+    public List<TeamTournamentStats> getAllTeams() {
+        List<TeamTournamentStats> teamTournamentStatsList = new ArrayList<>();
 
         // SELECT * FROM TEAMS
         String POSTS_SELECT_QUERY =
@@ -186,9 +230,14 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                     int numOfLeaguePosition = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_LEAGUE_POS));
                     String path = cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_PATH)) + cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_NAME));
                     boolean isIconDrawable = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_ICON_IS_DRAWABLE))>0;
-                    Team newTeam = new Team(name, numOfGoals, numOfWins, numOfLoses, numOfLeaguePosition, path, isIconDrawable);
-                    newTeam.setIconPath(path);
-                    teams.add(newTeam);
+
+                    // Instantiate team
+                    Team team = new Team(name, path, isIconDrawable);
+
+
+                    TeamTournamentStats newTeamTournamentStats = new TeamTournamentStats(name, numOfGoals, numOfWins, numOfLoses, numOfLeaguePosition, path, isIconDrawable);
+                    newTeamTournamentStats.setTeamIconPath(path);
+                    teamTournamentStatsList.add(newTeamTournamentStats);
                 } while(cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -198,7 +247,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-        return teams;
+        return teamTournamentStatsList;
     }
 
 }

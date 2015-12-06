@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Select teams to add to tournament"
+        android:text="Select teamTournamentStatsList to add to tournament"
         android:id="@+id/selectTeamsDescription"
         android:layout_gravity="center_horizontal"
         android:textSize="14dp" />
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Create, edit or delete teams"
+        android:text="Create, edit or delete teamTournamentStatsList"
         android:id="@+id/teamManagerDescription"
         android:layout_gravity="center_horizontal"
         android:textSize="14dp" />

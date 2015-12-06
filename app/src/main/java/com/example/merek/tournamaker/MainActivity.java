@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
 //            TournamakerDatabaseHelper databaseHelper = TournamakerDatabaseHelper.getInstance(this);
 //
-//            Team team = new Team("Real Madrid");
+//            TeamTournamentStats team = new TeamTournamentStats("Real Madrid");
 //            databaseHelper.addTeam(team,"aia.png",null,true);
 //
-//            List<Team> teams = databaseHelper.getAllTeams();
-//            for (Team oneteam : teams) {
+//            List<TeamTournamentStats> teams = databaseHelper.getAllTeams();
+//            for (TeamTournamentStats oneteam : teams) {
 //
 //                Log.d("MainActivity", oneteam.getName());
 //                //Log.d("MainActivity", databaseHelper.getIconName(team.getName()));

@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Select teams to add to tournament"
+        android:text="Select teamTournamentStatsList to add to tournament"
         android:id="@+id/selectTeamsDescription"
         android:textSize="14dp"
         android:layout_marginBottom="10dp"

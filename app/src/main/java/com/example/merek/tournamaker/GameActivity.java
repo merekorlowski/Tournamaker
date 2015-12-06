@@ -66,7 +66,7 @@ public class GameActivity extends AppCompatActivity {
 
         NumberPicker num = (NumberPicker) findViewById(R.id.teamOneScore);
         teamOneGoals = num.getValue();
-        game.getTeamOne().setNumOfGoals(teamOneGoals);
+        game.getTeamTournamentStatsOne().setNumOfGoals(teamOneGoals);
 
     }
 
@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
 
         NumberPicker num = (NumberPicker) findViewById(R.id.teamTwoScore);
         teamTwoGoals = num.getValue();
-        game.getTeamTwo().setNumOfGoals(teamTwoGoals);
+        game.getTeamTournamentStatsTwo().setNumOfGoals(teamTwoGoals);
 
     }
 

@@ -1,12 +1,10 @@
 package com.example.merek.tournamaker;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -57,7 +55,7 @@ public class SelectTeams extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 
                 //get team at position selected
-                Team team = TournamentMaker.getInstance().getTeams().get(position);
+                TeamTournamentStats team = TournamentMaker.getInstance().getTeamTournamentStatsList().get(position);
 
                 //add team to tournament
                 tournament.add(team);
@@ -69,18 +67,18 @@ public class SelectTeams extends AppCompatActivity {
 
     public void submitTeamSelection(View view) {
 
-        ArrayList<Team> teams = new ArrayList<>();
+        ArrayList<TeamTournamentStats> teamTournamentStatsList = new ArrayList<>();
 
         SparseBooleanArray sba = listview.getCheckedItemPositions();
 
         for(int i = 0; i < sba.size(); i++) {
             if(sba.valueAt(i)) {
-                teams.add(TournamentMaker.getInstance().getTeams().get(sba.keyAt(i)));
+                teamTournamentStatsList.add(TournamentMaker.getInstance().getTeamTournamentStatsList().get(sba.keyAt(i)));
             }
         }
 
-        if(!teams.isEmpty())
-            tournament.setTeams(teams);
+        if(!teamTournamentStatsList.isEmpty())
+            tournament.setTeamTournamentStatsList(teamTournamentStatsList);
 
         Intent intent = new Intent(this, TournamentSetup.class);
         startActivity(intent);

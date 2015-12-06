@@ -1,64 +1,61 @@
 package com.example.merek.tournamaker;
 
-/**
- * Created by Merek on 2015-12-01.
- */
 public class Game {
 
     //declare variables
-    private Team teamOne;
-    private Team teamTwo;
+    private TeamTournamentStats teamTournamentStatsOne;
+    private TeamTournamentStats teamTournamentStatsTwo;
 
     //game constructor
-    public Game(Team teamOne, Team teamTwo) {
+    public Game(TeamTournamentStats teamTournamentStatsOne, TeamTournamentStats teamTournamentStatsTwo) {
 
-        this.teamOne = teamOne;
-        this.teamTwo = teamTwo;
+        this.teamTournamentStatsOne = teamTournamentStatsOne;
+        this.teamTournamentStatsTwo = teamTournamentStatsTwo;
 
     }
 
     //returns winner of this game
-    public Team getWinner() {
+    public TeamTournamentStats getWinner() {
 
-        if(teamOne.getNumOfGoals() > teamTwo.getNumOfGoals()) {
+        if(teamTournamentStatsOne.getNumOfGoals() > teamTournamentStatsTwo.getNumOfGoals()) {
 
-            teamOne.incrementNumGamesWon(); //increment t1's number of wins
-            teamTwo.incrementNumGamesLost(); //increment t2's number of loses
+            teamTournamentStatsOne.incrementNumGamesWon(); //increment t1's number of wins
+            teamTournamentStatsTwo.incrementNumGamesLost(); //increment t2's number of loses
 
-            return teamOne;
+            return teamTournamentStatsOne;
 
         } else {
 
-            teamOne.incrementNumGamesLost(); //increment t1's number of loses
-            teamTwo.incrementNumGamesWon(); //increment t2's number of wins
+            teamTournamentStatsOne.incrementNumGamesLost(); //increment t1's number of loses
+            teamTournamentStatsTwo.incrementNumGamesWon(); //increment t2's number of wins
 
-            return teamTwo;
+            return teamTournamentStatsTwo;
 
         }
 
     }
 
     //getters
-    public Team getTeamOne() {
-        return teamOne;
+    public TeamTournamentStats getTeamTournamentStatsOne() {
+        return teamTournamentStatsOne;
     }
 
-    public Team getTeamTwo() {
-        return teamTwo;
+    public TeamTournamentStats getTeamTournamentStatsTwo() {
+        return teamTournamentStatsTwo;
     }
 
     public String getTeamOneName() {
-        return teamOne.getName();
+        return teamTournamentStatsOne.getTeamName();
     }
 
     public String getTeamTwoName() {
-        return teamTwo.getName();
+        return teamTournamentStatsTwo.getTeamName();
     }
 
 
     //return String of this games score
     public String getScore() {
-        return (teamOne.getName() + "-" + teamOne.getNumOfGoals() + " " + teamTwo.getNumOfGoals() + "-" + teamTwo.getName());
+        return (teamTournamentStatsOne.getTeamName() + "-" + teamTournamentStatsOne.getNumOfGoals() + " " + teamTournamentStatsTwo.getNumOfGoals() + "-" + teamTournamentStatsTwo.getTeamName());
     }
 
 }

@@ -6,12 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.merek.tournamaker.R;
-import com.example.merek.tournamaker.Team;
-import com.example.merek.tournamaker.Tournament;
-
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class StatisticsActivity extends AppCompatActivity {
 

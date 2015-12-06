@@ -2,9 +2,6 @@ package com.example.merek.tournamaker;
 
 import java.util.ArrayList;
 
-/**
- * Created by Merek on 2015-12-02.
- */
 
 //Singleton
 public class TournamentMaker {
@@ -47,7 +44,7 @@ public class TournamentMaker {
 
     }
 
-    public ArrayList<Team> getTeams() {
+    public ArrayList<Team> getTeamTournamentStatsList() {
         return teams;
     }
 

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editTextTeam"
             android:layout_marginTop="75dp"
-            android:hint="(Please enter team name)"
+            android:hint="(Please enter teamTournamentStats name)"
             android:gravity="center_horizontal"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"

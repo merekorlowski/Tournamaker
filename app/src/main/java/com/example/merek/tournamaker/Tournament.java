@@ -4,41 +4,38 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Created by Merek on 2015-12-01.
- */
 public class Tournament implements Serializable {
 
     //declare variables
     private String type;
     private String name;
     private boolean active;
-    private ArrayList<Team> teams;
+    private ArrayList<TeamTournamentStats> teamTournamentStatsList;
     private ArrayList<Round> rounds;
 
     //tournament constructor
-    public Tournament(String type, String name, boolean active, ArrayList<Team> teams) {
+    public Tournament(String type, String name, boolean active, ArrayList<TeamTournamentStats> teamTournamentStatsList) {
         this.type = type;
         this.name = name;
         this.active = active;
-        this.teams = teams;
+        this.teamTournamentStatsList = teamTournamentStatsList;
         rounds = new ArrayList<>();
 
         //determine number of rounds by type
         /*if(type.equals("Round Robin"))
-            rounds = new Round[teams.size()];
+            rounds = new Round[teamTournamentStatsList.size()];
 
         else if(type.equals("Knockout"))
-            rounds = new Round[(int)Math.log(2)*teams.size()];
+            rounds = new Round[(int)Math.log(2)*teamTournamentStatsList.size()];
 
         else
-            rounds = new Round[(teams.size()) + (int)Math.log(2)*((teams.size())/3)];*/
+            rounds = new Round[(teamTournamentStatsList.size()) + (int)Math.log(2)*((teamTournamentStatsList.size())/3)];*/
 
     }
 
     //initialize a new round
-    public void initializeRound(int i, ArrayList<Team> teams) {
-        rounds.set(i, new Round(i, teams));
+    public void initializeRound(int i, ArrayList<TeamTournamentStats> teamTournamentStatsList) {
+        rounds.set(i, new Round(i, teamTournamentStatsList));
     }
 
     //getters and setters
@@ -54,8 +51,8 @@ public class Tournament implements Serializable {
         name = n;
     }
 
-    public ArrayList<Team> getTeams() {
-        return teams;
+    public ArrayList<TeamTournamentStats> getTeamTournamentStatsList() {
+        return teamTournamentStatsList;
     }
 
     public ArrayList<String> getTeamNames() {
@@ -64,8 +61,8 @@ public class Tournament implements Serializable {
         //used to populate team select and edit lists
         ArrayList<String> names = new ArrayList<>();
 
-        for(int i = 0; i < teams.size(); i++) {
-            names.add(teams.get(i).getName());
+        for(int i = 0; i < teamTournamentStatsList.size(); i++) {
+            names.add(teamTournamentStatsList.get(i).getTeamName());
         }
 
         return names;
@@ -78,28 +75,28 @@ public class Tournament implements Serializable {
         //used to populate statistics page
         ArrayList<String> stats = new ArrayList<>();
 
-        Collections.sort(teams);
+        Collections.sort(teamTournamentStatsList);
 
-        for(int i = 0; i < teams.size(); i++) {
-            stats.add(teams.get(i).getStats());
+        for(int i = 0; i < teamTournamentStatsList.size(); i++) {
+            stats.add(teamTournamentStatsList.get(i).getStats());
         }
 
         return stats;
     }
 
     //returns team by a specific name
-    public Team getTeam(String name) {
+    public TeamTournamentStats getTeam(String name) {
 
         int i = 0;
-        while(teams.get(i).getName() != name) {
+        while(teamTournamentStatsList.get(i).getTeamName() != name) {
             i++;
         }
 
-        return teams.get(i);
+        return teamTournamentStatsList.get(i);
     }
 
-    public void setTeams(ArrayList<Team> t) {
-        teams = t;
+    public void setTeamTournamentStatsList(ArrayList<TeamTournamentStats> t) {
+        teamTournamentStatsList = t;
     }
 
     public Round getRound(int i) {
@@ -110,13 +107,13 @@ public class Tournament implements Serializable {
         return rounds.size();
     }
 
-    public void add(Team t) {
-        teams.add(t);
+    public void add(TeamTournamentStats t) {
+        teamTournamentStatsList.add(t);
     }
 
     //remove team from tournament
-    public void remove(Team t) {
-        teams.remove(t);
+    public void remove(TeamTournamentStats t) {
+        teamTournamentStatsList.remove(t);
     }
 
     //tests to see if this tournament is active

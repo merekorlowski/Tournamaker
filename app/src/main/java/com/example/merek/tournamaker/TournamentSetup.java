@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class TournamentSetup extends AppCompatActivity {
 
     //declare variable
@@ -55,7 +53,7 @@ public class TournamentSetup extends AppCompatActivity {
     //start first round of tournament
     public void startClick(View view) {
 
-        if(tournament.getTeams().size() < 3) {
+        if(tournament.getTeamTournamentStatsList().size() < 3) {
 
             Context context = getApplicationContext();
             CharSequence text = "Requires at least 3 teams to start.";

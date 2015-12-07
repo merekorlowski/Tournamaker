@@ -10,45 +10,59 @@ public class Round implements Serializable {
     //declare variables
     private int roundNumber;
     private ArrayList<Team> teams;
-    private int numOfGames;
-    private Game[] games;
+    private Tournament tournament;
+    private ArrayList<Game> games;
 
     //round constructor
-    public Round(int roundNumber, ArrayList<Team> teams) {
+    public Round(int roundNumber, ArrayList<Team> teams, Tournament tournament) {
         this.roundNumber = roundNumber;
         this.teams = teams;
-        numOfGames = teams.size()/2;
-        games = new Game[numOfGames]; //initialize array of games of size numOfGames
+        this.tournament = tournament;
+        games = new ArrayList<>();
     }
 
     public void setGames() {
 
         //initialize team to pass
-        Team pass = null;
+        Team pass;
+
+        //initialize games
+        int k = 0;
+        for(int i = 0; i < teams.size(); i++) {
+            for(int j = i + 1; j < teams.size(); j++) {
+                if(roundNumber > 0) {
+                    if (!teams.get(i).hasPlayed(teams.get(j), tournament.getRound(roundNumber - 1))
+                            && (!teams.get(i).isPlaying() || !teams.get(i).isPlaying())) {
+                        games.add(new Game(teams.get(i), teams.get(j)));
+                        k++;
+                    }
+                } else {
+                    if (!teams.get(i).isPlaying() || !teams.get(i).isPlaying()) {
+                        games.add(new Game(teams.get(i), teams.get(j)));
+                        k++;
+                    }
+                }
+            }
+        }
+
+        //randomize play order
+        Collections.shuffle(games);
 
         //if there is an impair number of teams, pass the last one to the next round
         if(teams.size() % 2 == 1) {
             pass = teams.get(teams.size() - 1);
             teams.remove(teams.size() - 1);
-        }
-        //initialize games
-        int j = 0;
-        for(int i = 0; i < numOfGames; i++) {
-            games[i] = new Game(teams.get(j), teams.get(j + 1));
-            j += 2;
-        }
-
-        //randomize play order
-        Collections.shuffle(Arrays.asList(games));
-
-        //place pass team to the front of the list to ensure it plays next round
-        if(pass != null)
             teams.add(0, pass);
+        }
 
     }
 
     public ArrayList<Team> getTeamList() {
         return teams;
+    }
+
+    public Tournament getTournament() {
+        return tournament;
     }
 
     //returns an arraylist of all the winners of this round
@@ -57,15 +71,15 @@ public class Round implements Serializable {
         //initialize arraylist of winners
         ArrayList<Team> winners = new ArrayList<>();
 
-        for(int i = 0; i < numOfGames; i++) {
+        for(int i = 0; i < games.size(); i++) {
 
-            if(games[i].getWinner() == null) {
+            if(games.get(i).getWinner() == null) {
 
-                winners.add(games[i].getTeamOne());
-                winners.add(games[i].getTeamTwo());
+                winners.add(games.get(i).getTeamOne());
+                winners.add(games.get(i).getTeamTwo());
 
             } else
-                winners.add(games[i].getWinner());
+                winners.add(games.get(i).getWinner());
 
         }
         return winners;
@@ -78,8 +92,8 @@ public class Round implements Serializable {
         //initialize arraylist of game scores
         ArrayList<String> gameList = new ArrayList<>();
 
-        for(int i = 0; i < games.length; i++) {
-            gameList.add(games[i].getScore());
+        for(int i = 0; i < games.size(); i++) {
+            gameList.add(games.get(i).getScore());
         }
 
         return gameList;
@@ -93,11 +107,11 @@ public class Round implements Serializable {
     }
 
     public Game getGame(int i) {
-        return games[i];
+        return games.get(i);
     }
 
     public int getNumOfGames() {
-        return numOfGames;
+        return games.size();
     }
 
 }

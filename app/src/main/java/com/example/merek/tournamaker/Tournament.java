@@ -15,6 +15,7 @@ public class Tournament implements Serializable {
     private ArrayList<Round> rounds;
     private int numOfRounds;
 
+
     //tournament constructors
     public Tournament(String type, String name, ArrayList<Team> teams) {
 
@@ -40,7 +41,11 @@ public class Tournament implements Serializable {
 
     //initialize a new round
     public void initializeRound(int i, ArrayList<Team> teams) {
-        rounds.add(new Round(i, teams));
+        rounds.add(new Round(i, teams, this));
+    }
+
+    public ArrayList<Round> getRounds() {
+        return rounds;
     }
 
     //getters and setters

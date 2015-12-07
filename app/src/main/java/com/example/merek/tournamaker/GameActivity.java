@@ -41,15 +41,21 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
-        setGameNumber();
-        setTeamNames();
+        TextView textView = (TextView) findViewById(R.id.gameNumberTextView);
+        textView.setText("" + (currentGameIndex + 1));
 
-        final NumberPicker teamOneNumberSelect = (NumberPicker) findViewById(R.id.teamOneScore);
+        TextView teamOneText = (TextView) findViewById(R.id.teamOneTextView);
+        teamOneText.setText(game.getTeamOneName());
+
+        TextView teamTwoText = (TextView) findViewById(R.id.teamTwoTextView);
+        teamTwoText.setText(game.getTeamTwoName());
+
+        NumberPicker teamOneNumberSelect = (NumberPicker) findViewById(R.id.teamOneScore);
         teamOneNumberSelect.setMinValue(0);
         teamOneNumberSelect.setMaxValue(50);
         teamOneNumberSelect.setWrapSelectorWheel(false);
 
-        final NumberPicker teamTwoNumberSelect = (NumberPicker) findViewById(R.id.teamTwoScore);
+        NumberPicker teamTwoNumberSelect = (NumberPicker) findViewById(R.id.teamTwoScore);
         teamTwoNumberSelect.setMinValue(0);
         teamTwoNumberSelect.setMaxValue(50);
         teamTwoNumberSelect.setWrapSelectorWheel(false);
@@ -68,28 +74,19 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        game.editWinsAndLosses();
+        if(game.getWinner() == game.getTeamOne()) {
 
-    }
+            game.getTeamOne().incrementNumGamesWon();
+            game.getTeamTwo().incrementNumGamesLost();
 
-    //set game number to current game
-    public void setGameNumber() {
+        }
 
-        TextView textView = (TextView) findViewById(R.id.gameNumberTextView);
-        textView.setText("" + (currentGameIndex + 1));
+        if(game.getWinner() == game.getTeamTwo()) {
 
-    }
+            game.getTeamOne().incrementNumGamesLost();
+            game.getTeamTwo().incrementNumGamesWon();
 
-    //set team names to teams in this game
-    public void setTeamNames() {
-
-        TextView teamOneText = (TextView) findViewById(R.id.teamOneTextView);
-        teamOneText.setText(game.getTeamOneName());
-
-        TextView teamTwoText = (TextView) findViewById(R.id.teamTwoTextView);
-        teamTwoText.setText(game.getTeamTwoName());
-
-
+        }
 
     }
 

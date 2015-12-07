@@ -97,18 +97,17 @@ public class ResultsActivity extends AppCompatActivity {
 
             //sets tournament to inactive
             tournament.setIsActive(false);
-
             intent = new Intent(this, StatisticsActivity.class);
-            intent.putExtra("Tournament", tournament);
+            intent.putExtra("roundIndex", currentRoundIndex);
 
         } else {
 
             intent = new Intent(this, RoundActivity.class);
-            intent.putExtra("Tournament", tournament);
             intent.putExtra("roundIndex", nextRoundIndex);
 
         }
 
+        intent.putExtra("Tournament", tournament);
         startActivity(intent);
 
     }

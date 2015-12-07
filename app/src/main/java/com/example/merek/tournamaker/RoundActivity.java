@@ -32,9 +32,9 @@ public class RoundActivity extends AppCompatActivity {
         if(tournament.getType().equals("Round Robin"))
             tournament.setNumOfRounds(teamList.size() - 1);
         else if(tournament.getType().equals("Knockout"))
-            tournament.setNumOfRounds((int)Math.round(Math.log(2)*(teamList.size() - 1)));
+            tournament.setNumOfRounds((int)Math.round(Math.log(2)*(teamList.size())));
         else
-            tournament.setNumOfRounds(teamList.size() - 1 + (int)Math.round(Math.log(2)*((teamList.size() - 1)/3)));
+            tournament.setNumOfRounds(teamList.size() - 1 + (int)Math.round(Math.log(2)*((teamList.size())/3)));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
@@ -73,6 +73,7 @@ public class RoundActivity extends AppCompatActivity {
         //Open the stats page
         Intent intent = new Intent(this, StatisticsActivity.class);
         intent.putExtra("Tournament", tournament);
+        intent.putExtra("roundIndex", currentRoundIndex);
         startActivity(intent);
 
     }

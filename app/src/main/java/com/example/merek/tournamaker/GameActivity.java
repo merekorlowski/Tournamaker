@@ -68,6 +68,8 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
+        game.editWinsAndLosses();
+
     }
 
     //set game number to current game
@@ -87,7 +89,7 @@ public class GameActivity extends AppCompatActivity {
         TextView teamTwoText = (TextView) findViewById(R.id.teamTwoTextView);
         teamTwoText.setText(game.getTeamTwoName());
 
-        game.editWinsAndLoses();
+
 
     }
 

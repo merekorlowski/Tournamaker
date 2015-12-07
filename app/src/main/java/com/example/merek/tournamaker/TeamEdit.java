@@ -27,7 +27,7 @@ public class TeamEdit extends AppCompatActivity {
         setContentView(R.layout.activity_team_edit);
 
         EditText team = (EditText) findViewById(R.id.editTextTeam);
-        team.setText(TournamentMaker.getInstance().getTeams().get(position));
+        team.setText(TournamentMaker.getInstance().getTeams(this).get(position));
     }
 
 
@@ -61,7 +61,7 @@ public class TeamEdit extends AppCompatActivity {
         } else {
 
             //edit team name in list
-            TournamentMaker.getInstance().setTeamName(position, name);
+            TournamentMaker.getInstance().setTeamName(this, position, name);
 
             Intent intent = new Intent(this, TeamManager.class);
             startActivity(intent);
@@ -72,7 +72,7 @@ public class TeamEdit extends AppCompatActivity {
     public void deleteTeam(View view) {
 
         //delete team from list
-        TournamentMaker.getInstance().deleteTeam(position);
+        TournamentMaker.getInstance().deleteTeam(this, position);
 
         Intent intent = new Intent(this, TeamManager.class);
         startActivity(intent);

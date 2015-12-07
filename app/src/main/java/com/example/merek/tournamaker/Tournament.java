@@ -1,6 +1,7 @@
 package com.example.merek.tournamaker;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -63,7 +64,7 @@ public class Tournament implements Serializable {
         ArrayList<String> names = new ArrayList<>();
 
         for(int i = 0; i < teams.size(); i++) {
-            names.add(teams.get(i).getTeamName());
+            names.add(teams.get(i).getName());
         }
 
         return names;
@@ -89,7 +90,7 @@ public class Tournament implements Serializable {
     public Team getTeam(String name) {
 
         int i = 0;
-        while(teams.get(i).getTeamName() != name) {
+        while(teams.get(i).getName() != name) {
             i++;
         }
 

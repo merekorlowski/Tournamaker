@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.merek.tournamaker.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TeamManager extends AppCompatActivity {
 
@@ -78,7 +79,7 @@ public class TeamManager extends AppCompatActivity {
     //populates list view with team names
     public void populateListView() {
 
-        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeams();
+        List<String> teamNames = TournamentMaker.getInstance().getTeams(this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, teamNames);
         ListView listview = (ListView) findViewById(R.id.teamListView);

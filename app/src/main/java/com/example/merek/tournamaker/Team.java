@@ -23,6 +23,17 @@ public class Team implements Comparable, Serializable {
         this.leaguePosition = leaguePosition;
     }
 
+    // Used in the database to create a team without knowing the tournament
+    public Team(String name, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition) {
+        this.name = name;
+        this.tournament = null;
+        this.numOfGoals = numOfGoals;
+        this.numGamesWon = numGamesWon;
+        this.numGamesLost = numGamesLost;
+        this.leaguePosition = leaguePosition;
+    }
+
+
     public Team(String name, Tournament tournament){
         this.name = name;
         this.tournament = tournament;
@@ -33,11 +44,11 @@ public class Team implements Comparable, Serializable {
     }
 
     //getters and setters
-    public String getTeamName(){
+    public String getName(){
         return name;
     }
 
-    public void setTeamName(String name){
+    public void setName(String name){
         this.name = name;
     }
 

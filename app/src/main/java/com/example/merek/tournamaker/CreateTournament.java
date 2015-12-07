@@ -69,7 +69,7 @@ public class CreateTournament extends AppCompatActivity {
             tournament = new Tournament(type, name);
 
             //add to list of tournaments
-            TournamentMaker.getInstance().addTournament(tournament);
+            TournamentMaker.getInstance().addTournament(this, tournament);
 
             Intent intent = new Intent(this, TournamentSetup.class);
             intent.putExtra("Tournament", tournament);

@@ -51,17 +51,17 @@ public class Game implements Serializable{
     }
 
     public String getTeamOneName() {
-        return teamOne.getTeamName();
+        return teamOne.getName();
     }
 
     public String getTeamTwoName() {
-        return teamTwo.getTeamName();
+        return teamTwo.getName();
     }
 
 
     //return String of this games score
     public String getScore() {
-        return (teamOne.getTeamName() + "-" + teamOne.getNumOfGoals() + " " + teamTwo.getNumOfGoals() + "-" + teamTwo.getTeamName());
+        return (teamOne.getName() + "-" + teamOne.getNumOfGoals() + " " + teamTwo.getNumOfGoals() + "-" + teamTwo.getName());
     }
 
 }

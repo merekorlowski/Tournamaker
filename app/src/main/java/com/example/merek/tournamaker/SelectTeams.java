@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SelectTeams extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class SelectTeams extends AppCompatActivity {
     public void populateList() {
 
         //initialize arraylist of teams
-        ArrayList<String> teamNames = TournamentMaker.getInstance().getTeams();
+        List<String> teamNames = TournamentMaker.getInstance().getTeams(this);
 
         //add to listview
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, teamNames);
@@ -48,14 +49,19 @@ public class SelectTeams extends AppCompatActivity {
 
     public void submitTeamSelection(View view) {
 
+        ArrayList<Team> teams = new ArrayList<>();
+
         SparseBooleanArray sba = listview.getCheckedItemPositions();
 
         for(int i = 0; i < sba.size(); i++) {
             if(sba.valueAt(i)) {
-                String name = TournamentMaker.getInstance().getTeam(i);
-                tournament.add(new Team(name, tournament));
+                String name = TournamentMaker.getInstance().getTeams(this).get(sba.keyAt(i));
+                teams.add(new Team(name, tournament));
             }
         }
+
+        if(!teams.isEmpty())
+            tournament.setTeamList(teams);
 
         Intent intent = new Intent(this, TournamentSetup.class);
         intent.putExtra("Tournament", tournament);

@@ -1,4 +1,4 @@
-/*package com.example.merek.tournamaker;
+package com.example.merek.tournamaker;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -68,7 +68,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // Create teams table
-        String CREATE_TEAMS_TABLE = "CREATE TABLE " + TABLE_TEAMS +
+        String CREATE_TEAMS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_TEAMS +
                 "(" +
                     KEY_TEAM_ID + " INTEGER PRIMARY KEY," + // Define primary key
                     KEY_TEAM_NAME + " TEXT UNIQUE," +
@@ -78,7 +78,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                 ")";
 
         // Create tournament table
-        String CREATE_TOURNAMENTS_TABLE = "CREATE TABLE " + TABLE_TEAMS +
+        String CREATE_TOURNAMENTS_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_TEAMS +
                 "(" +
                 KEY_TOURNAMENT_ID + " INTEGER PRIMARY KEY," + // Define primary key
                 KEY_TOURNAMENT_NAME + " TEXT UNIQUE," +
@@ -87,7 +87,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                 ")";
 
         // Create team tournament stats table
-        String CREATE_TEAM_TOURNAMENT_TABLE = "CREATE TABLE " + TABLE_TEAMS +
+        String CREATE_TEAM_TOURNAMENT_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_TEAMS +
                 "(" +
                 KEY_TEAM_REFERENCE_ID + " INTEGER NOT NULL," + // Define primary key
                 KEY_TOURNAMENT_REFERENCE_ID + " INTEGER NOT NULL," +
@@ -116,7 +116,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addTeam(Team team) {
+    public void addTeam(String teamName) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 
@@ -129,10 +129,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
 
             ContentValues values = new ContentValues();
             //values.put(KEY_TEAM_ID, teamId);
-            values.put(KEY_TEAM_NAME, team.getName());
-            values.put(KEY_TEAM_ICON_NAME, teamIconName);
-            values.put(KEY_TEAM_ICON_PATH, iconPath);
-            values.put(KEY_TEAM_ICON_IS_DRAWABLE, isDrawable);
+            values.put(KEY_TEAM_NAME, teamName);
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_TEAMS, null, values);
@@ -170,7 +167,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addTeam(Team team) {
+    public void addTeamTournamentStat(Team team) {
         // Create and/or open the database for writing
         SQLiteDatabase db = getWritableDatabase();
 
@@ -182,7 +179,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             //long teamId = addOrUpdateTeam(teamTournamentStats, teamIconName, iconPath, isDrawable);
 
             ContentValues values = new ContentValues();
-            values.put(KEY_TEAM_REFERENCE_ID, getTeamID(team.getTeamName()));
+            values.put(KEY_TEAM_REFERENCE_ID, getTeamID(team.getName()));
             values.put(KEY_TOURNAMENT_REFERENCE_ID, getTournamentID(team.getTournamentName()));
             values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, team.getNumOfGoals());
             values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, team.getNumGamesWon());
@@ -309,8 +306,8 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
 //        return teamId;
 //    }
 
-    public List<Team> getAllTeams() {
-        List<Team> teams = new ArrayList<>();
+    public List<String> getAllTeams() {
+        List<String> teams = new ArrayList<>();
 
         // SELECT * FROM TEAMS
         String POSTS_SELECT_QUERY =
@@ -325,12 +322,73 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     String name = cursor.getString(cursor.getColumnIndex(KEY_TEAM_NAME));
-                    String path = cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_PATH)) + cursor.getString(cursor.getColumnIndex(KEY_TEAM_ICON_NAME));
-                    boolean isIconDrawable = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_ICON_IS_DRAWABLE))>0;
+                    teams.add(name);
+                } while(cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to get posts from database");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return teams;
+    }
 
-                    // Instantiate team
-                    Team team = new Team(name, path, isIconDrawable);
+    public ArrayList<Tournament> getAllTournaments() {
+        ArrayList<Tournament> tournaments = new ArrayList<>();
 
+        // SELECT * FROM TEAMS
+        String POSTS_SELECT_QUERY =
+                String.format("SELECT * FROM %s",
+                        TABLE_TOURNAMENTS);
+
+        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+        // disk space scenarios)
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(POSTS_SELECT_QUERY, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+
+                    String name = cursor.getString(cursor.getColumnIndex(KEY_TOURNAMENT_NAME));
+                    String type = cursor.getString(cursor.getColumnIndex(KEY_TOURNAMENT_TYPE));
+                    boolean active = cursor.getInt(cursor.getColumnIndex(KEY_TOURNAMENT_ACTIVE))>0;
+                    Tournament t = new Tournament(type, name, active, getAllTeamsFromTournament(name));
+                    tournaments.add(t);
+                } while(cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to get posts from database");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return tournaments;
+    }
+
+    private ArrayList<Team> getAllTeamsFromTournament(String name) {
+        ArrayList<Team> teams = new ArrayList<>();
+        // SELECT * FROM TEAMS
+        String TEAMS_SELECT_QUERY =
+                String.format("SELECT * FROM %s WHERE %s=%s",
+                        TABLE_TEAM_TOURNAMENT, KEY_TOURNAMENT_ID, getTournamentID(name));
+
+        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+        // disk space scenarios)
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(TEAMS_SELECT_QUERY, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    // create team and add to the list
+                    String teamName = getTeamName(cursor.getInt(cursor.getColumnIndex(KEY_TEAM_REFERENCE_ID)));
+                    int numOfGoals = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_GOALS));
+                    int numGamesWon = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_WINS));
+                    int numGamesLost = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_LOSES));
+                    int leaguePosition = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_LEAGUE_POS));
+                    Team team = new Team(teamName, numOfGoals, numGamesWon, numGamesLost, leaguePosition);
                     teams.add(team);
                 } while(cursor.moveToNext());
             }
@@ -344,4 +402,100 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         return teams;
     }
 
-}*/
+    private String getTeamName( int teamID ){
+        List<String> teamNameList = new ArrayList<>();
+
+        // SELECT * FROM TEAMS
+        String TEAM_ID_SELECT_QUERY =
+                String.format("SELECT * FROM %s WHERE %s=%s",
+                        TABLE_TEAMS, KEY_TEAM_ID, teamID);
+
+        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+        // disk space scenarios)
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(TEAM_ID_SELECT_QUERY, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    String teamName = cursor.getString(cursor.getColumnIndex(KEY_TOURNAMENT_NAME));
+
+                    teamNameList.add(teamName);
+                } while(cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to get posts from database");
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return teamNameList.get(0);
+    }
+
+//    private String getTeamFromID( int teamID ){
+//        List<Team> teams = new ArrayList<>();
+//
+//        // SELECT * FROM TEAMS
+//        String TEAM_ID_SELECT_QUERY =
+//                String.format("SELECT * FROM %s WHERE %s=%s",
+//                        TABLE_TEAM_TOURNAMENT, KEY_TEAM_REFERENCE_ID, teamID);
+//
+//        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+//        // disk space scenarios)
+//        SQLiteDatabase db = getReadableDatabase();
+//        Cursor cursor = db.rawQuery(TEAM_ID_SELECT_QUERY, null);
+//        try {
+//            if (cursor.moveToFirst()) {
+//                do {
+//                    String teamName = getTeamName(teamID);
+//                    int goals = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_GOALS));
+//                    int wins = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_WINS));
+//                    int loses = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_LOSES));
+//                    int position = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_LEAGUE_POS));
+//                    Team team = new Team(teamName, );
+//                    teamNameList.add(teamName);
+//                } while(cursor.moveToNext());
+//            }
+//        } catch (Exception e) {
+//            Log.d(TAG, "Error while trying to get posts from database");
+//        } finally {
+//            if (cursor != null && !cursor.isClosed()) {
+//                cursor.close();
+//            }
+//        }
+//        return teamNameList.get(0);
+//    }
+
+    /*** BEGIN - EDIT METHODS ***/
+    public int editTeamName( String oldName, String newName ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TEAM_NAME, newName);
+
+        // Updating profile picture url for user with that userName
+        return db.update(TABLE_TEAMS, values, KEY_TEAM_NAME + " = ?",
+                new String[] { oldName });
+    }
+
+    /*** END - EDIT METHODS ***/
+
+    /*** BEGIN - DELETE METHODS ***/
+    public void deleteTeam(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            db.delete(TABLE_TEAMS, KEY_TEAM_NAME + "=?" , new String[]{ name });
+        } catch (Exception e) {
+            Log.d(TAG, "Error while trying to delete team");
+        } finally {
+            //db.endTransaction();
+        }
+
+    }
+
+    /*** END - DELETE METHODS ***/
+
+
+}

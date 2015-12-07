@@ -89,13 +89,13 @@ public class TournamentSetup extends AppCompatActivity {
 
                 //set tournament to active
                 tournament.setIsActive(true);
+                tournament.initializeRound(0, tournament.getTeamList());
 
                 intent = new Intent(this, RoundActivity.class);
 
                 //send this tournament and set round number to 1
                 intent.putExtra("Tournament", tournament);
-                intent.putExtra("roundNumber", 1);
-                intent.putExtra("gameNumber", 1);
+                intent.putExtra("roundIndex", 0);
                 startActivity(intent);
 
             }

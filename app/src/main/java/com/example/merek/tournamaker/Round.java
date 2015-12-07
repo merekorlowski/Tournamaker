@@ -26,14 +26,16 @@ public class Round implements Serializable {
         //initialize team to pass
         Team pass = null;
 
-        //if there is an impair number of teamTournamentStatsList, pass the last one to the next round
+        //if there is an impair number of teams, pass the last one to the next round
         if(teams.size() % 2 == 1) {
             pass = teams.get(teams.size() - 1);
             teams.remove(teams.size() - 1);
         }
         //initialize games
-        for(int i = 0; i < numOfGames; i += 2) {
-            games[i] = new Game(teams.get(i), teams.get(i + 1));
+        int j = 0;
+        for(int i = 0; i < numOfGames; i++) {
+            games[i] = new Game(teams.get(j), teams.get(j + 1));
+            j += 2;
         }
 
         //randomize play order
@@ -43,6 +45,10 @@ public class Round implements Serializable {
         if(pass != null)
             teams.add(0, pass);
 
+    }
+
+    public ArrayList<Team> getTeamList() {
+        return teams;
     }
 
     //returns an arraylist of all the winners of this round
@@ -71,10 +77,13 @@ public class Round implements Serializable {
 
         //initialize arraylist of game scores
         ArrayList<String> gameList = new ArrayList<>();
+
         for(int i = 0; i < games.length; i++) {
             gameList.add(games[i].getScore());
         }
+
         return gameList;
+
     }
 
     //getters
@@ -85,10 +94,6 @@ public class Round implements Serializable {
 
     public Game getGame(int i) {
         return games[i];
-    }
-
-    public Game[] getGames() {
-        return games;
     }
 
     public int getNumOfGames() {

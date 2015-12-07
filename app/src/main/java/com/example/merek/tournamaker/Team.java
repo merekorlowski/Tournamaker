@@ -26,7 +26,7 @@ public class Team implements Comparable, Serializable {
     // Used in the database to create a team without knowing the tournament
     public Team(String name, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition) {
         this.name = name;
-        this.tournament = null;
+        tournament = null;
         this.numOfGoals = numOfGoals;
         this.numGamesWon = numGamesWon;
         this.numGamesLost = numGamesLost;
@@ -37,10 +37,10 @@ public class Team implements Comparable, Serializable {
     public Team(String name, Tournament tournament){
         this.name = name;
         this.tournament = tournament;
-        this.numOfGoals = 0;
-        this.numGamesWon = 0;
-        this.numGamesLost = 0;
-        this.leaguePosition = 0;
+        numOfGoals = 0;
+        numGamesWon = 0;
+        numGamesLost = 0;
+        leaguePosition = 0;
     }
 
     //getters and setters
@@ -78,12 +78,12 @@ public class Team implements Comparable, Serializable {
 
     //increment this teams number of games won
     public void incrementNumGamesWon() {
-        numGamesWon++;
+        numGamesWon += 1;
     }
 
     //increment this teams number of games lost
     public void incrementNumGamesLost() {
-        numGamesLost++;
+        numGamesLost += 1;
     }
 
     //used to sort teams by order of number of games won
@@ -93,6 +93,6 @@ public class Team implements Comparable, Serializable {
     }
 
     public String getStats() {
-        return name + ", " + numGamesWon + " wins, " + numGamesLost + " loses";
+        return name + ", " + numGamesWon + " wins, " + numGamesLost + " losses";
     }
 }

@@ -13,9 +13,8 @@ public class RoundActivity extends AppCompatActivity {
     //declare variables
     Tournament tournament;
     Round round;
-    int roundNumber;
-    ArrayList<Team> winningTeamList;
-    int gameNumber;
+    int currentRoundIndex;
+    int numOfRounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +23,18 @@ public class RoundActivity extends AppCompatActivity {
 
         //initialize roundNumber and tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
-        roundNumber = (int)i.getSerializableExtra("roundNumber");
-        gameNumber = (int)i.getSerializableExtra("gameNumber");
+        currentRoundIndex = (int)i.getSerializableExtra("roundIndex");
 
-        if(roundNumber > 1)
-            winningTeamList = (ArrayList<Team>)i.getSerializableExtra("teams");
+        round = tournament.getRound(currentRoundIndex);
+
+        ArrayList<Team> teamList = tournament.getTeamList();
+
+        if(tournament.getType().equals("Round Robin"))
+            tournament.setNumOfRounds(teamList.size() - 1);
+        else if(tournament.getType().equals("Knockout"))
+            tournament.setNumOfRounds((int)Math.round(Math.log(2)*(teamList.size() - 1)));
+        else
+            tournament.setNumOfRounds(teamList.size() - 1 + (int)Math.round(Math.log(2)*((teamList.size() - 1)/3)));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_round);
@@ -43,64 +49,20 @@ public class RoundActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.roundNumberTextView);
 
         //set round number
-        textView.setText("" + roundNumber);
+        textView.setText("" + (currentRoundIndex + 1));
 
     }
 
     public void startRoundClick(View v){
 
-        //initialize round
-        ArrayList<Team> teamList = tournament.getTeamList();
-        int numOfRounds;
+        round.setGames();
 
-        if(tournament.getType().equals("Round Robin")) {
+        Intent intent = new Intent(this, GameActivity.class);
 
-            numOfRounds = teamList.size() - 1;
-
-            if (roundNumber < numOfRounds)
-                tournament.initializeRound(roundNumber - 1, teamList);
-
-        } else if(tournament.getType().equals("Knockout")) {
-
-            numOfRounds = (int)Math.round(Math.log(2) * teamList.size());
-
-            if (roundNumber < numOfRounds)
-                tournament.initializeRound(roundNumber - 1, winningTeamList);
-
-        } else {
-
-            numOfRounds = teamList.size() - 1 + (int)Math.round(Math.log(2)*((teamList.size() - 1)/3));
-
-            if (roundNumber < numOfRounds) {
-
-                if (roundNumber < teamList.size() - 1)
-                    tournament.initializeRound(roundNumber - 1, teamList);
-                else
-                    tournament.initializeRound(roundNumber - 1, winningTeamList);
-
-            }
-
-        }
-
-        Intent intent;
-
-        if(roundNumber == numOfRounds) {
-
-            intent = new Intent(this, StatisticsActivity.class);
-            intent.putExtra("Tournament", tournament);
-
-        } else {
-
-            round = tournament.getRound(roundNumber - 1);
-            round.setGames();
-
-            intent = new Intent(this, GameActivity.class);
-
-            //track round by sending it as an extra
-            intent.putExtra("Round", round);
-            intent.putExtra("gameNumber", gameNumber);
-
-        }
+        //track round by sending it as an extra
+        intent.putExtra("Tournament", tournament);
+        intent.putExtra("Round", round);
+        intent.putExtra("gameIndex", 0);
 
         startActivity(intent);
 
@@ -115,7 +77,7 @@ public class RoundActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
 
         Intent intent;
@@ -134,6 +96,6 @@ public class RoundActivity extends AppCompatActivity {
         intent.putExtra("round", round);
         startActivity(intent);
 
-    }
+    }*/
 
 }

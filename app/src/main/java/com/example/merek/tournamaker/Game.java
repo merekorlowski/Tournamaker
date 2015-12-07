@@ -19,26 +19,28 @@ public class Game implements Serializable{
     //returns winner of this game
     public Team getWinner() {
 
+        if(teamOne.getNumOfGoals() > teamTwo.getNumOfGoals())
+            return teamOne;
+        else if(teamOne.getNumOfGoals() < teamTwo.getNumOfGoals())
+            return teamTwo;
+        else
+            return null;
+
+    }
+
+    public void editWinsAndLosses() {
+
         if(teamOne.getNumOfGoals() > teamTwo.getNumOfGoals()) {
 
             teamOne.incrementNumGamesWon(); //increment t1's number of wins
             teamTwo.incrementNumGamesLost(); //increment t2's number of loses
 
-            return teamOne;
-
-        } else if(teamOne.getNumOfGoals() < teamTwo.getNumOfGoals()) {
+        } else {
 
             teamOne.incrementNumGamesLost(); //increment t1's number of loses
             teamTwo.incrementNumGamesWon(); //increment t2's number of wins
 
-            return teamTwo;
-
-        } else {
-
-            return null;
-
         }
-
     }
 
     //getters
@@ -61,7 +63,7 @@ public class Game implements Serializable{
 
     //return String of this games score
     public String getScore() {
-        return (teamOne.getName() + "-" + teamOne.getNumOfGoals() + " " + teamTwo.getNumOfGoals() + "-" + teamTwo.getName());
+        return (teamOne.getName() + " - " + teamOne.getNumOfGoals() + " , " + teamTwo.getName() + " - " + teamTwo.getNumOfGoals());
     }
 
 }

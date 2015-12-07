@@ -13,8 +13,9 @@ public class Tournament implements Serializable {
     private boolean active;
     private ArrayList<Team> teams;
     private ArrayList<Round> rounds;
+    private int numOfRounds;
 
-    //tournament constructor
+    //tournament constructors
     public Tournament(String type, String name, ArrayList<Team> teams) {
 
         this.type = type;
@@ -22,16 +23,7 @@ public class Tournament implements Serializable {
         active = false;
         this.teams = teams;
         rounds = new ArrayList<>();
-
-        //determine number of rounds by type
-        /*if(type.equals("Round Robin"))
-            rounds = new Round[teamList.size()];
-
-        else if(type.equals("Knockout"))
-            rounds = new Round[(int)Math.log(2)*teamList.size()];
-
-        else
-            rounds = new Round[(teamList.size()) + (int)Math.log(2)*((teamList.size())/3)];*/
+        numOfRounds = 0;
 
     }
 
@@ -42,16 +34,7 @@ public class Tournament implements Serializable {
         active = false;
         teams = new ArrayList<>();
         rounds = new ArrayList<>();
-
-        //determine number of rounds by type
-        /*if(type.equals("Round Robin"))
-            rounds = new Round[teamList.size()];
-
-        else if(type.equals("Knockout"))
-            rounds = new Round[(int)Math.log(2)*teamList.size()];
-
-        else
-            rounds = new Round[(teamList.size()) + (int)Math.log(2)*((teamList.size())/3)];*/
+        numOfRounds = 0;
 
     }
 
@@ -77,20 +60,6 @@ public class Tournament implements Serializable {
         return teams;
     }
 
-    public ArrayList<String> getTeamNames() {
-
-        //initialize arraylist of team names,
-        //used to populate team select and edit lists
-        ArrayList<String> names = new ArrayList<>();
-
-        for(int i = 0; i < teams.size(); i++) {
-            names.add(teams.get(i).getName());
-        }
-
-        return names;
-
-    }
-
     public ArrayList<String> getStatistics() {
 
         //initialize array list of stats,
@@ -106,17 +75,6 @@ public class Tournament implements Serializable {
         return stats;
     }
 
-    //returns team by a specific name
-    public Team getTeam(String name) {
-
-        int i = 0;
-        while(teams.get(i).getName() != name) {
-            i++;
-        }
-
-        return teams.get(i);
-    }
-
     public void setTeamList(ArrayList<Team> t) {
         teams = t;
     }
@@ -126,7 +84,11 @@ public class Tournament implements Serializable {
     }
 
     public int getNumberOfRounds() {
-        return rounds.size();
+        return numOfRounds;
+    }
+
+    public void setNumOfRounds(int n) {
+        numOfRounds = n;
     }
 
     public void add(Team t) {

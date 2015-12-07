@@ -91,4 +91,8 @@ public class Round implements Serializable {
         return games;
     }
 
+    public int getNumOfGames() {
+        return numOfGames;
+    }
+
 }

@@ -36,7 +36,7 @@ public class Tournament implements Serializable {
 
     //initialize a new round
     public void initializeRound(int i, ArrayList<Team> teams) {
-        rounds.set(i, new Round(i, teams));
+        rounds.add(new Round(i, teams));
     }
 
     //getters and setters

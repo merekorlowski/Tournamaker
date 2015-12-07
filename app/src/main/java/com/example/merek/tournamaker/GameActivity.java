@@ -28,15 +28,16 @@ public class GameActivity extends AppCompatActivity {
         game = round.getGame(gameNumber - 1);
 
         //change next round button to see results at last game
-        if(gameNumber == round.getGames().length) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game);
+
+        if(gameNumber == round.getNumOfGames()) {
 
             Button nextGameBtn = (Button) findViewById(R.id.nextGameBtn);
             nextGameBtn.setText("See results");
 
         }
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
 
         setGameNumber();
         setTeamNames();

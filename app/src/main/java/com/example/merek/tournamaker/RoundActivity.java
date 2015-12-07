@@ -92,6 +92,7 @@ public class RoundActivity extends AppCompatActivity {
         } else {
 
             round = tournament.getRound(roundNumber - 1);
+            round.setGames();
 
             intent = new Intent(this, GameActivity.class);
 

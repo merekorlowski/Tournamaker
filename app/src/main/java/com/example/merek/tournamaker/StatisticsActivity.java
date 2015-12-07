@@ -39,17 +39,17 @@ public class StatisticsActivity extends AppCompatActivity {
 
     }
 
-    public void exitStats() {
-
-        Intent intent;
-
-        if(!tournament.isActive())
-            intent = new Intent(this, MainActivity.class);
-        else
-            intent = new Intent(this, RoundActivity.class);
-
-        startActivity(intent);
-
-    }
+//    public void exitStats() {
+//
+//        Intent intent;
+//
+//        if(!tournament.isActive())
+//            intent = new Intent(this, MainActivity.class);
+//        else
+//            intent = new Intent(this, RoundActivity.class);
+//
+//        startActivity(intent);
+//
+//    }
 
 }

@@ -114,7 +114,7 @@ public class TeamManager extends AppCompatActivity {
      */
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Tournament Setup"};
+        String[] osArray = { "Home"};
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         drawerList.setAdapter(adapter);
 
@@ -128,10 +128,6 @@ public class TeamManager extends AppCompatActivity {
                     startActivity(home);
                 }
 
-                if (itemName == "Tournament Setup") {
-                    //Toast.makeText(getBaseContext(), "Working", Toast.LENGTH_LONG).show();
-                    startActivity(tournamentSetup);
-                }
             }
         });
     }

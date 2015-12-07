@@ -21,34 +21,15 @@
         android:gravity="fill"
         android:weightSum="1">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Team Manager"
-                android:id="@+id/textViewTeamManager"
-                android:layout_marginTop="20dp"
-                android:textSize="30dp"
-                android:layout_marginLeft="20dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Exit"
-                android:id="@+id/exitTeamManager"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:nestedScrollingEnabled="false"
-                android:onClick="exitTeamManagerOnClick"
-                android:textSize="20dp"
-                android:layout_marginRight="20dp" />
-
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Team Manager"
+            android:id="@+id/textViewTeamManager"
+            android:layout_marginTop="20dp"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,14 +38,6 @@
             android:text="Create, edit or delete team"
             android:id="@+id/teamManagerDescription"
             android:textSize="15dp"
-            android:layout_marginLeft="20dp" />
-
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="338dp"
-            android:id="@+id/teamListView"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0.42"
             android:layout_marginLeft="20dp" />
 
         <Button
@@ -76,7 +49,17 @@
             android:textSize="20dp"
             android:layout_below="@+id/textView3"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="left|center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/teamListView"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.merek.tournamaker;
 
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,10 +14,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.merek.tournamaker.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TeamManager extends AppCompatActivity {
@@ -29,20 +30,12 @@ public class TeamManager extends AppCompatActivity {
     private String activityTitle;
     private Intent home;
     private Intent tournamentSetup;
-    //private Intent tournamentSetup = new Intent(this, MainActivity.class);
 
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_manager);
-
-//       new Thread(new Runnable() {
-//            public void run() {
-//                LinearLayout layout =(LinearLayout)findViewById(R.id.teamManagerLinearLayout);
-//                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
-//            }
-//        }).start();
 
         populateListView();
         registerClickCallback();
@@ -124,8 +117,13 @@ public class TeamManager extends AppCompatActivity {
                 }
 
                 if (itemName == "Back to Tournament") {
-                    tournamentSetup.setFlags(tournamentSetup.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(tournamentSetup);
+
+                    try {
+                        tournamentSetup.setFlags(tournamentSetup.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(tournamentSetup);
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "Problem", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

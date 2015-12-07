@@ -6,10 +6,19 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/background_repeat</item>
+    </style>
+
+    <style name="Background">
+
     </style>
 
     <style name="AppTheme.PopupWindowTheme" >
         <item name="android:windowIsTranslucent"> true </item>
     </style>
+
+
+
+
 
 </resources>

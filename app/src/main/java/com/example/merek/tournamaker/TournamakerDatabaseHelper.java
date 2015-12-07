@@ -354,7 +354,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                     String name = cursor.getString(cursor.getColumnIndex(KEY_TOURNAMENT_NAME));
                     String type = cursor.getString(cursor.getColumnIndex(KEY_TOURNAMENT_TYPE));
                     boolean active = cursor.getInt(cursor.getColumnIndex(KEY_TOURNAMENT_ACTIVE))>0;
-                    Tournament t = new Tournament(type, name, active, getAllTeamsFromTournament(name));
+                    Tournament t = new Tournament(type, name, getAllTeamsFromTournament(name));
                     tournaments.add(t);
                 } while(cursor.moveToNext());
             }
@@ -484,7 +484,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
     public void deleteTeam(String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.beginTransaction();
+        //db.beginTransaction();
         try {
             db.delete(TABLE_TEAMS, KEY_TEAM_NAME + "=?" , new String[]{ name });
         } catch (Exception e) {

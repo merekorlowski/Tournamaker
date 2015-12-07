@@ -15,12 +15,32 @@ public class Tournament implements Serializable {
     private ArrayList<Round> rounds;
 
     //tournament constructor
+    public Tournament(String type, String name, ArrayList<Team> teams) {
+
+        this.type = type;
+        this.name = name;
+        active = false;
+        this.teams = teams;
+        rounds = new ArrayList<>();
+
+        //determine number of rounds by type
+        /*if(type.equals("Round Robin"))
+            rounds = new Round[teamList.size()];
+
+        else if(type.equals("Knockout"))
+            rounds = new Round[(int)Math.log(2)*teamList.size()];
+
+        else
+            rounds = new Round[(teamList.size()) + (int)Math.log(2)*((teamList.size())/3)];*/
+
+    }
+
     public Tournament(String type, String name) {
 
         this.type = type;
         this.name = name;
         active = false;
-        teams = new ArrayList<>();
+        this.teams = new ArrayList<>();
         rounds = new ArrayList<>();
 
         //determine number of rounds by type

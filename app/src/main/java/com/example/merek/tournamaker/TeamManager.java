@@ -72,6 +72,7 @@ public class TeamManager extends AppCompatActivity {
 
         //goes to team create activity
         Intent intent = new Intent(this, TeamCreate.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
     }
@@ -101,12 +102,7 @@ public class TeamManager extends AppCompatActivity {
         });
     }
 
-    public void exitTeamManagerOnClick(View view) {
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
-    }
 
 
     /*
@@ -114,7 +110,7 @@ public class TeamManager extends AppCompatActivity {
      */
 
     private void addDrawerItems() {
-        String[] osArray = { "Home"};
+        String[] osArray = { "Home", "Back to Tournament"};
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         drawerList.setAdapter(adapter);
 
@@ -124,8 +120,12 @@ public class TeamManager extends AppCompatActivity {
                 String itemName = ((TextView)view).getText().toString();
 
                 if (itemName == "Home") {
-                    //Toast.makeText(getBaseContext(), "Working", Toast.LENGTH_LONG).show();
                     startActivity(home);
+                }
+
+                if (itemName == "Back to Tournament") {
+                    tournamentSetup.setFlags(tournamentSetup.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(tournamentSetup);
                 }
 
             }

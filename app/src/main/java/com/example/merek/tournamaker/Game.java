@@ -1,6 +1,8 @@
 package com.example.merek.tournamaker;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable{
 
     //declare variables
     private Team teamOne;

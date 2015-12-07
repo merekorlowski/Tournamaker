@@ -51,29 +51,58 @@ public class RoundActivity extends AppCompatActivity {
 
         //initialize round
         ArrayList<Team> teamList = tournament.getTeamList();
+        int numOfRounds;
 
-        if(tournament.getType().equals("Round Robin"))
-            tournament.initializeRound(roundNumber - 1, teamList);
-        else if(tournament.getType().equals("Knockout"))
-            tournament.initializeRound(roundNumber - 1, winningTeamList);
-        else {
+        if(tournament.getType().equals("Round Robin")) {
 
-            if(roundNumber < teamList.size() - 1)
+            numOfRounds = teamList.size() - 1;
+
+            if (roundNumber < numOfRounds)
                 tournament.initializeRound(roundNumber - 1, teamList);
-            else
+
+        } else if(tournament.getType().equals("Knockout")) {
+
+            numOfRounds = (int)Math.round(Math.log(2) * teamList.size());
+
+            if (roundNumber < numOfRounds)
                 tournament.initializeRound(roundNumber - 1, winningTeamList);
+
+        } else {
+
+            numOfRounds = teamList.size() - 1 + (int)Math.round(Math.log(2)*((teamList.size() - 1)/3));
+
+            if (roundNumber < numOfRounds) {
+
+                if (roundNumber < teamList.size() - 1)
+                    tournament.initializeRound(roundNumber - 1, teamList);
+                else
+                    tournament.initializeRound(roundNumber - 1, winningTeamList);
+
+            }
 
         }
 
-        round = tournament.getRound(roundNumber - 1);
+        Intent intent;
 
-        Intent intent = new Intent(this, GameActivity.class);
+        if(roundNumber == numOfRounds) {
 
-        //track round by sending it as an extra
-        intent.putExtra("Round", round);
-        intent.putExtra("gameNumber", gameNumber);
+            intent = new Intent(this, StatisticsActivity.class);
+            intent.putExtra("Tournament", tournament);
+
+        } else {
+
+            round = tournament.getRound(roundNumber - 1);
+
+            intent = new Intent(this, GameActivity.class);
+
+            //track round by sending it as an extra
+            intent.putExtra("Round", round);
+            intent.putExtra("gameNumber", gameNumber);
+
+        }
 
         startActivity(intent);
+
     }
 
     public void viewStatsClick(View v){

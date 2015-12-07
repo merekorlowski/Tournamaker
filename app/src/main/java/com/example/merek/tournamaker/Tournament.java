@@ -15,11 +15,12 @@ public class Tournament implements Serializable {
     private ArrayList<Round> rounds;
 
     //tournament constructor
-    public Tournament(String type, String name, boolean active, ArrayList<Team> teams) {
+    public Tournament(String type, String name) {
+
         this.type = type;
         this.name = name;
-        this.active = active;
-        this.teams = teams;
+        active = false;
+        teams = new ArrayList<>();
         rounds = new ArrayList<>();
 
         //determine number of rounds by type

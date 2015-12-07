@@ -24,7 +24,7 @@ public class SelectTeams extends AppCompatActivity {
         Intent i = getIntent();
 
         //initialize tournament from intent
-        tournament = (Tournament) i.getSerializableExtra("Tournament");
+        tournament = (Tournament)i.getSerializableExtra("Tournament");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_teams);
 
@@ -64,6 +64,7 @@ public class SelectTeams extends AppCompatActivity {
             tournament.setTeamList(teams);
 
         Intent intent = new Intent(this, TournamentSetup.class);
+        intent.putExtra("Tournament", tournament);
         startActivity(intent);
 
     }

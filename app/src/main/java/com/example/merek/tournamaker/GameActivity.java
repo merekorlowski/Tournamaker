@@ -85,7 +85,7 @@ public class GameActivity extends AppCompatActivity {
         //continues round until until all games are played
         if(gameNumber < round.getGames().length) {
 
-            Intent intent = new Intent(this, Game.class);
+            Intent intent = new Intent(this, GameActivity.class);
 
             intent.putExtra("Round", round);
             intent.putExtra("gameNumber", gameNumber++);

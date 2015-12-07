@@ -1,6 +1,8 @@
 package com.example.merek.tournamaker;
 
-public class Team implements Comparable {
+import java.io.Serializable;
+
+public class Team implements Comparable, Serializable {
 
     //declare variables
     private String name;

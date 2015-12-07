@@ -23,7 +23,7 @@ public class SelectTeams extends AppCompatActivity {
         Intent i = getIntent();
 
         //initialize tournament from intent
-        tournament = (Tournament) i.getSerializableExtra("Tournament");
+        tournament = (Tournament)i.getSerializableExtra("Tournament");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_teams);
 
@@ -48,21 +48,17 @@ public class SelectTeams extends AppCompatActivity {
 
     public void submitTeamSelection(View view) {
 
-        ArrayList<Team> teams = new ArrayList<>();
-
         SparseBooleanArray sba = listview.getCheckedItemPositions();
 
         for(int i = 0; i < sba.size(); i++) {
             if(sba.valueAt(i)) {
-                String name = TournamentMaker.getInstance().getTeam(sba.keyAt(i));
-                teams.add(new Team(name, tournament));
+                String name = TournamentMaker.getInstance().getTeam(i);
+                tournament.add(new Team(name, tournament));
             }
         }
 
-        if(!teams.isEmpty())
-            tournament.setTeamList(teams);
-
         Intent intent = new Intent(this, TournamentSetup.class);
+        intent.putExtra("Tournament", tournament);
         startActivity(intent);
 
     }

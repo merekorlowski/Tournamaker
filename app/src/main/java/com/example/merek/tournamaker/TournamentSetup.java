@@ -17,14 +17,16 @@ public class TournamentSetup extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        //initialize tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
 
         if(tournament.isActive())
-            round = (Round) i.getSerializableExtra("round");
+            round = (Round)i.getSerializableExtra("round");
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
+
+        //initialize tournament from intent
 
         /*new Thread(new Runnable() {
             public void run() {

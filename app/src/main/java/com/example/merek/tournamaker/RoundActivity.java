@@ -51,7 +51,7 @@ public class RoundActivity extends AppCompatActivity {
 
         //initialize round
         ArrayList<Team> teamList = tournament.getTeamList();
-        int numOfRounds = 0;
+        int numOfRounds;
 
         if(tournament.getType().equals("Round Robin")) {
 
@@ -62,14 +62,14 @@ public class RoundActivity extends AppCompatActivity {
 
         } else if(tournament.getType().equals("Knockout")) {
 
-            numOfRounds = (int)Math.log(2)*teamList.size();
+            numOfRounds = (int)Math.round(Math.log(2) * teamList.size());
 
             if (roundNumber < numOfRounds)
                 tournament.initializeRound(roundNumber - 1, winningTeamList);
 
         } else {
 
-            numOfRounds = teamList.size() - 1 + (int)Math.log(2)*((teamList.size() - 1)/3);
+            numOfRounds = teamList.size() - 1 + (int)Math.round(Math.log(2)*((teamList.size() - 1)/3));
 
             if (roundNumber < numOfRounds) {
 

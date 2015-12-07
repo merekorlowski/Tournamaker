@@ -484,7 +484,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
     public void deleteTeam(String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.beginTransaction();
+        //db.beginTransaction();
         try {
             db.delete(TABLE_TEAMS, KEY_TEAM_NAME + "=?" , new String[]{ name });
         } catch (Exception e) {

@@ -19,6 +19,7 @@ public class TournamentSetup extends AppCompatActivity {
 
         tournament = (Tournament)i.getSerializableExtra("Tournament");
 
+
         if(tournament.isActive())
             round = (Round)i.getSerializableExtra("round");
 

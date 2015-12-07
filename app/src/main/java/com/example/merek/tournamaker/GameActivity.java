@@ -16,6 +16,8 @@ public class GameActivity extends AppCompatActivity {
     Game game;
     int teamOneGoals;
     int teamTwoGoals;
+    NumberPicker teamOneNumberSelect;
+    NumberPicker teamTwoNumberSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class GameActivity extends AppCompatActivity {
 
         setGameNumber();
         setTeamNames();
+        setNumberPickers();
+
     }
 
     //set game number to current game
@@ -62,11 +66,24 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    public void setNumberPickers() {
+
+        teamOneNumberSelect = (NumberPicker) findViewById(R.id.teamOneScore);
+        teamOneNumberSelect.setMinValue(0);
+        teamOneNumberSelect.setMaxValue(50);
+        teamOneNumberSelect.setWrapSelectorWheel(false);
+
+        teamTwoNumberSelect = (NumberPicker) findViewById(R.id.teamTwoScore);
+        teamTwoNumberSelect.setMinValue(0);
+        teamTwoNumberSelect.setMaxValue(50);
+        teamTwoNumberSelect.setWrapSelectorWheel(false);
+
+    }
+
     //set team one score with number picker
     public void setTeamOneScore(View view) {
 
-        NumberPicker num = (NumberPicker) findViewById(R.id.teamOneScore);
-        teamOneGoals = num.getValue();
+        teamOneGoals = teamOneNumberSelect.getValue();
         game.getTeamOne().setNumOfGoals(teamOneGoals);
 
     }
@@ -74,8 +91,7 @@ public class GameActivity extends AppCompatActivity {
     //set team two score with number picker
     public void setTeamTwoScore(View view) {
 
-        NumberPicker num = (NumberPicker) findViewById(R.id.teamTwoScore);
-        teamTwoGoals = num.getValue();
+        teamTwoGoals = teamTwoNumberSelect.getValue();
         game.getTeamTwo().setNumOfGoals(teamTwoGoals);
 
     }
@@ -83,23 +99,25 @@ public class GameActivity extends AppCompatActivity {
     //called when next game or see results button is clicked
     public void nextGame(View view) {
 
-        //continues round until until all games are played
-        if(gameNumber < round.getGames().length) {
+        Intent intent;
 
-            Intent intent = new Intent(this, GameActivity.class);
+        //continues round until until all games are played
+        if(gameNumber < round.getNumOfGames()) {
+
+            intent = new Intent(this, GameActivity.class);
 
             intent.putExtra("Round", round);
             intent.putExtra("gameNumber", gameNumber++);
 
-            startActivity(intent);
-
         //goes to results page when round is over
         } else {
 
-            Intent intent2 = new Intent(this, ResultsActivity.class);
-            intent2.putExtra("Round", round);
+            intent = new Intent(this, ResultsActivity.class);
+            intent.putExtra("Round", round);
 
         }
+
+        startActivity(intent);
 
     }
 

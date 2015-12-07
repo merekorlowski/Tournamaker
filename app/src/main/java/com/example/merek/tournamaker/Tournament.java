@@ -40,7 +40,7 @@ public class Tournament implements Serializable {
         this.type = type;
         this.name = name;
         active = false;
-        this.teams = new ArrayList<>();
+        teams = new ArrayList<>();
         rounds = new ArrayList<>();
 
         //determine number of rounds by type

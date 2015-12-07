@@ -23,37 +23,25 @@ public class Round implements Serializable {
 
     public void setGames() {
 
-        //initialize team to pass
-        Team pass;
-
         //initialize games
-        int k = 0;
-        for(int i = 0; i < teams.size(); i++) {
-            for(int j = i + 1; j < teams.size(); j++) {
-                if(roundNumber > 0) {
-                    if (!teams.get(i).hasPlayed(teams.get(j), tournament.getRound(roundNumber - 1))
-                            && (!teams.get(i).isPlaying() || !teams.get(i).isPlaying())) {
-                        games.add(new Game(teams.get(i), teams.get(j)));
-                        k++;
+        for (int i = 0; i < teams.size(); i++) {
+            for (int j = i + 1; j < teams.size(); j++) {
+                if(games.size() < teams.size()/2) {
+                    if (roundNumber > 0) {
+                        if (!teams.get(i).hasPlayed(teams.get(j), tournament.getRound(roundNumber - 1))
+                                && (!teams.get(i).isPlaying() || !teams.get(i).isPlaying()))
+                            games.add(new Game(teams.get(i), teams.get(j)));
+                    } else {
+                        if (!teams.get(i).isPlaying() || !teams.get(i).isPlaying())
+                            games.add(new Game(teams.get(i), teams.get(j)));
                     }
-                } else {
-                    if (!teams.get(i).isPlaying() || !teams.get(i).isPlaying()) {
-                        games.add(new Game(teams.get(i), teams.get(j)));
-                        k++;
-                    }
-                }
+                } else
+                    break;
             }
         }
 
         //randomize play order
         Collections.shuffle(games);
-
-        //if there is an impair number of teams, pass the last one to the next round
-        if(teams.size() % 2 == 1) {
-            pass = teams.get(teams.size() - 1);
-            teams.remove(teams.size() - 1);
-            teams.add(0, pass);
-        }
 
     }
 

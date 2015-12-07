@@ -99,9 +99,8 @@ public class Team implements Comparable, Serializable {
         boolean played = false;
 
         for(int i = 0; i < lastRound.getNumOfGames(); i++) {
-            if(lastRound.getGame(i).contains(this, another)) {
+            if(lastRound.getGame(i).contains(this, another) && !played) {
                 played = true;
-                break;
             }
         }
 

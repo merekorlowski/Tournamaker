@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -75,5 +76,9 @@ public class RoundActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void showHelp4(View v) {
+        Toast.makeText(getApplicationContext(), "Press 'Start Round' when ready to begin the current round or view the current standings", Toast.LENGTH_LONG).show();
+    }
+
 
 }

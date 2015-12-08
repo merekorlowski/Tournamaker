@@ -98,5 +98,8 @@ public class TournamentSetup extends AppCompatActivity {
         }
 
     }
+    public void showHelp3(View v) {
+        Toast.makeText(getApplicationContext(), "Use Team Manager to add teams first, then select which teams will participate before starting", Toast.LENGTH_LONG).show();
+    }
 
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -117,5 +118,9 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void showHelp5(View v) {
+        Toast.makeText(getApplicationContext(), "Set the score of each team, then hit 'Next Game' to continue", Toast.LENGTH_LONG).show();
+    }
+
 
 }

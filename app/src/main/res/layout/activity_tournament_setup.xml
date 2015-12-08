@@ -11,7 +11,17 @@
     tools:context=".TournamentSetup"
     android:padding="0dp"
     android:gravity="fill"
-    android:id="@+id/tournamentSetupLinearLayout">
+    android:id="@+id/tournamentSetupLinearLayout"
+    android:onClick="showHelp3">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:id="@+id/button4"
+        android:layout_gravity="right"
+        android:onClick="showHelp3" />
 
     <TextView
         android:layout_width="250dp"

@@ -10,49 +10,40 @@ import android.widget.Button;
 public class SelectTypeActivity extends AppCompatActivity {
 
     //declare variables
-    Button btnTxt;
-    String type;
+    private Button btnTxt;
+    private String type;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_type);
     }
 
-    public void roundRobin(View view){
+    public void typeBtn(View view){
 
         //initialize variables
-        btnTxt = (Button) findViewById(R.id.roundRobinBtn);
+        switch(view.getId())
+        {
+            case R.id.roundRobinBtn:
+                btnTxt = (Button) findViewById(R.id.roundRobinBtn);
+                break;
+
+            case R.id.knockoutBtn:
+                btnTxt = (Button) findViewById(R.id.knockoutBtn);
+                break;
+
+            case R.id.roundRobinKnockoutBtn:
+                btnTxt = (Button) findViewById(R.id.roundRobinKnockoutBtn);
+                break;
+        }
+
         type = btnTxt.getText().toString();
 
         //create round-robin tournament
         Intent intent = new Intent(this, CreateTournament.class);
-        intent.putExtra("type", type);
+        intent.putExtra("type", type); //pass the tournament type to the next activity
         startActivity(intent);
     }
 
-    public void knockout(View view){
-
-        //initialize variables
-        btnTxt = (Button) findViewById(R.id.knockoutBtn);
-        type = btnTxt.getText().toString();
-
-        //create knockout tournament
-        Intent intent = new Intent(this, CreateTournament.class);
-        intent.putExtra("type", type);
-        startActivity(intent);
-    }
-
-    public void roundRobinKnockout(View view){
-
-        //initialize variables
-        btnTxt = (Button) findViewById(R.id.roundRobinKnockoutBtn);
-        type = btnTxt.getText().toString();
-
-        //create round-robin & knockout tournament
-        Intent intent = new Intent(this, CreateTournament.class);
-        intent.putExtra("type", type);
-        startActivity(intent);
-    }
 }
 
 

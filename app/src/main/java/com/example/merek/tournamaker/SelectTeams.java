@@ -15,8 +15,8 @@ import java.util.List;
 public class SelectTeams extends AppCompatActivity {
 
     //declare variable
-    Tournament tournament;
-    ListView listview;
+    private Tournament tournament;
+    private ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

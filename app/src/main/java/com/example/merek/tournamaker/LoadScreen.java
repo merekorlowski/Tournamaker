@@ -42,7 +42,7 @@ public class LoadScreen extends AppCompatActivity {
 
                 if(TournamentMaker.getInstance().getTournament(position).isActive() == true) {
 
-                    //go to last saved place
+
 
                 } else {
 

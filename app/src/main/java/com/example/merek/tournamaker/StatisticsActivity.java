@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class StatisticsActivity extends AppCompatActivity {
 
     //declare variable
-    Tournament tournament;
+    private Tournament tournament;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +36,6 @@ public class StatisticsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.select_dialog_item, stats);
         ListView listview = (ListView) findViewById(R.id.statsListView);
         listview.setAdapter(adapter);
-
-    }
-
-    public void exitStats() {
-
-        Intent intent;
-
-        if(!tournament.isActive())
-            intent = new Intent(this, MainActivity.class);
-        else
-            intent = new Intent(this, RoundActivity.class);
-
-        startActivity(intent);
 
     }
 

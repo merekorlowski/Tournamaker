@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class ResultsActivity extends AppCompatActivity {
 
     //declare variables
-    Tournament tournament;
-    Round round;
-    ArrayList<Team> teamList;
-    ArrayList<Team> winningTeamList;
-    int currentRoundIndex;
-    int nextRoundIndex;
-    int numOfRounds;
+    private Tournament tournament;
+    private Round round;
+    private ArrayList<Team> teamList;
+    private ArrayList<Team> winningTeamList;
+    private int currentRoundIndex;
+    private int nextRoundIndex;
+    private int numOfRounds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class ResultsActivity extends AppCompatActivity {
         //initialize variables from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
         round = (Round)i.getSerializableExtra("Round");
-
         teamList = round.getTeamList();
         winningTeamList = round.getRoundWinners();
         currentRoundIndex = round.getRoundNumber();
@@ -62,12 +61,6 @@ public class ResultsActivity extends AppCompatActivity {
     //go to next round when clicked
     public void gotToNextRoundClick(View view) {
 
-        ArrayList<Team> teamList = round.getTeamList();
-        ArrayList<Team> winningTeamList = round.getRoundWinners();
-        int currentRoundIndex = round.getRoundNumber();
-        int nextRoundIndex = currentRoundIndex + 1;
-        int numOfRounds = tournament.getNumberOfRounds();
-
         if(tournament.getType().equals("Round Robin")) {
 
             if (currentRoundIndex < numOfRounds - 1)
@@ -97,17 +90,18 @@ public class ResultsActivity extends AppCompatActivity {
 
             //sets tournament to inactive
             tournament.setIsActive(false);
+
             intent = new Intent(this, StatisticsActivity.class);
-            intent.putExtra("roundIndex", currentRoundIndex);
+            intent.putExtra("Tournament", tournament);
 
         } else {
 
             intent = new Intent(this, RoundActivity.class);
+            intent.putExtra("Tournament", tournament);
             intent.putExtra("roundIndex", nextRoundIndex);
 
         }
 
-        intent.putExtra("Tournament", tournament);
         startActivity(intent);
 
     }

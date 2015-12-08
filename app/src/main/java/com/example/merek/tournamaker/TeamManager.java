@@ -39,11 +39,12 @@ public class TeamManager extends AppCompatActivity {
 
         populateListView();
         registerClickCallback();
+        setDrawer();
 
-        /*
-        ---for the Drawer---
-         */
-        //drawer layout title
+    }
+
+    public void setDrawer() {
+
         drawerList = (ListView)findViewById(R.id.navList);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         activityTitle = getTitle().toString();
@@ -94,9 +95,6 @@ public class TeamManager extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     /*
     -----The Drawer-----

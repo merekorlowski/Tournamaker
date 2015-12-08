@@ -11,11 +11,11 @@ import android.widget.TextView;
 public class GameActivity extends AppCompatActivity {
 
     //declare variables
-    Tournament tournament;
-    Round round;
-    Game game;
-    int currentGameIndex;
-    Button nextGameBtn;
+    private Tournament tournament;
+    private Round round;
+    private Game game;
+    private int currentGameIndex;
+    private Button nextGameBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,21 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
+        setGameNumber();
+        setTeamNames();
+        setNumberPickers();
+    }
+
+    //set game number to current game
+    public void setGameNumber() {
+
         TextView textView = (TextView) findViewById(R.id.gameNumberTextView);
         textView.setText("" + (currentGameIndex + 1));
+
+    }
+
+    //set team names to teams in this game
+    public void setTeamNames() {
 
         TextView teamOneText = (TextView) findViewById(R.id.teamOneTextView);
         teamOneText.setText(game.getTeamOneName());
@@ -50,12 +63,16 @@ public class GameActivity extends AppCompatActivity {
         TextView teamTwoText = (TextView) findViewById(R.id.teamTwoTextView);
         teamTwoText.setText(game.getTeamTwoName());
 
-        NumberPicker teamOneNumberSelect = (NumberPicker) findViewById(R.id.teamOneScore);
+    }
+
+    public void setNumberPickers() {
+
+        final NumberPicker teamOneNumberSelect = (NumberPicker) findViewById(R.id.teamOneScore);
         teamOneNumberSelect.setMinValue(0);
         teamOneNumberSelect.setMaxValue(50);
         teamOneNumberSelect.setWrapSelectorWheel(false);
 
-        NumberPicker teamTwoNumberSelect = (NumberPicker) findViewById(R.id.teamTwoScore);
+        final NumberPicker teamTwoNumberSelect = (NumberPicker) findViewById(R.id.teamTwoScore);
         teamTwoNumberSelect.setMinValue(0);
         teamTwoNumberSelect.setMaxValue(50);
         teamTwoNumberSelect.setWrapSelectorWheel(false);
@@ -74,19 +91,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        if(game.getWinner() == game.getTeamOne()) {
-
-            game.getTeamOne().incrementNumGamesWon();
-            game.getTeamTwo().incrementNumGamesLost();
-
-        }
-
-        if(game.getWinner() == game.getTeamTwo()) {
-
-            game.getTeamOne().incrementNumGamesLost();
-            game.getTeamTwo().incrementNumGamesWon();
-
-        }
+        game.editWinsAndLosses();
 
     }
 
@@ -99,31 +104,18 @@ public class GameActivity extends AppCompatActivity {
         if(currentGameIndex < round.getNumOfGames() - 1) {
 
             intent = new Intent(this, GameActivity.class);
-
-            intent.putExtra("Tournament", tournament);
-            intent.putExtra("Round", round);
             intent.putExtra("gameIndex", currentGameIndex + 1);
 
-        //goes to results page when round is over
-        } else {
+        } else { //goes to results page when round is over
 
             intent = new Intent(this, ResultsActivity.class);
-            intent.putExtra("Tournament", tournament);
-            intent.putExtra("Round", round);
 
         }
 
+        intent.putExtra("Tournament", tournament);
+        intent.putExtra("Round", round);
         startActivity(intent);
 
     }
-
-    /*@Override
-    public void onBackPressed() {
-
-        Intent intent = new Intent(this, RoundActivity.class);
-        intent.putExtra("gameIndex", currentGameIndex);
-        startActivity(intent);
-
-    }*/
 
 }

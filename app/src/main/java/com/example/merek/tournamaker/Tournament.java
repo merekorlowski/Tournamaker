@@ -15,7 +15,6 @@ public class Tournament implements Serializable {
     private ArrayList<Round> rounds;
     private int numOfRounds;
 
-
     //tournament constructors
     public Tournament(String type, String name, ArrayList<Team> teams) {
 
@@ -41,11 +40,7 @@ public class Tournament implements Serializable {
 
     //initialize a new round
     public void initializeRound(int i, ArrayList<Team> teams) {
-        rounds.add(new Round(i, teams, this));
-    }
-
-    public ArrayList<Round> getRounds() {
-        return rounds;
+        rounds.add(new Round(i, teams));
     }
 
     //getters and setters
@@ -98,11 +93,6 @@ public class Tournament implements Serializable {
 
     public void add(Team t) {
         teams.add(t);
-    }
-
-    //remove team from tournament
-    public void remove(Team t) {
-        teams.remove(t);
     }
 
     //tests to see if this tournament is active

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -11,10 +12,9 @@ import java.util.ArrayList;
 public class RoundActivity extends AppCompatActivity {
 
     //declare variables
-    Tournament tournament;
-    Round round;
-    int currentRoundIndex;
-    int numOfRounds;
+    private Tournament tournament;
+    private Round round;
+    private int currentRoundIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,12 @@ public class RoundActivity extends AppCompatActivity {
         //initialize roundNumber and tournament from intent
         tournament = (Tournament)i.getSerializableExtra("Tournament");
         currentRoundIndex = (int)i.getSerializableExtra("roundIndex");
-
         round = tournament.getRound(currentRoundIndex);
 
         ArrayList<Team> teamList = tournament.getTeamList();
 
+
+        //initialize number of rounds by tournament type
         if(tournament.getType().equals("Round Robin"))
             tournament.setNumOfRounds(teamList.size() - 1);
         else if(tournament.getType().equals("Knockout"))
@@ -47,13 +48,11 @@ public class RoundActivity extends AppCompatActivity {
     public void setRoundNumber() {
 
         TextView textView = (TextView) findViewById(R.id.roundNumberTextView);
-
-        //set round number
-        textView.setText("" + (currentRoundIndex + 1));
+        textView.setText("" + (currentRoundIndex + 1)); //set round number
 
     }
 
-    public void startRoundClick(View v){
+    public void startRoundClick(View view){
 
         round.setGames();
 
@@ -68,35 +67,13 @@ public class RoundActivity extends AppCompatActivity {
 
     }
 
-    public void viewStatsClick(View v){
+    public void viewStatsClick(View view){
 
         //Open the stats page
         Intent intent = new Intent(this, StatisticsActivity.class);
         intent.putExtra("Tournament", tournament);
-        intent.putExtra("roundIndex", currentRoundIndex);
         startActivity(intent);
 
     }
-
-    /*@Override
-    public void onBackPressed() {
-
-        Intent intent;
-
-        if(roundNumber > 1) {
-
-            intent = new Intent(this, ResultsActivity.class);
-            intent.putExtra("Tournament", tournament);
-
-        } else {
-
-            intent = new Intent(this, TournamentSetup.class);
-
-        }
-
-        intent.putExtra("round", round);
-        startActivity(intent);
-
-    }*/
 
 }

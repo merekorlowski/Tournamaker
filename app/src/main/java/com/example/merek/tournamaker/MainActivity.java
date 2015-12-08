@@ -14,25 +14,6 @@ public class MainActivity extends AppCompatActivity {
             //show the home menu
             setContentView(com.example.merek.tournamaker.R.layout.activity_main);
 
-            //Background Image Thread
-           /* new Thread(new Runnable() {
-                public void run() {
-                    RelativeLayout layout =(RelativeLayout)findViewById(R.id.backgroundRelativeLayout);
-                    layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
-                }
-            }).start();*/
-
-//            TournamakerDatabaseHelper databaseHelper = TournamakerDatabaseHelper.getInstance(this);
-//
-//            TeamTournamentStats team = new TeamTournamentStats("Real Madrid");
-//            databaseHelper.addTeam(team,"aia.png",null,true);
-//
-//            List<TeamTournamentStats> teams = databaseHelper.getAllTeams();
-//            for (TeamTournamentStats oneteam : teams) {
-//
-//                Log.d("MainActivity", oneteam.getName());
-//                //Log.d("MainActivity", databaseHelper.getIconName(team.getName()));
-//            }
         }
         //go to select type menu
         public void goToCreateTournament(View v){

@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class TeamEdit extends AppCompatActivity {
 
     //declare variables
-    int position;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

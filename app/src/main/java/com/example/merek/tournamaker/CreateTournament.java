@@ -10,30 +10,20 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
-
 public class CreateTournament extends AppCompatActivity {
 
-    String type;
-    String name;
-    Tournament tournament;
 
+    //declare variables
+    private String type;
+    private String name;
+    private Tournament tournament;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        type = (String)i.getSerializableExtra("type");
+        type = (String)i.getSerializableExtra("type"); //retrieve tournament type from intent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tournament);
-
-        // Background Thread
-        /*new Thread(new Runnable() {
-            public void run() {
-                LinearLayout layout =(LinearLayout)findViewById(R.id.createTournamentBackgroundLinearLayout);
-                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
-            }
-        }).start();*/
-
     }
 
     public void createTournamentClick(View view) {
@@ -72,7 +62,7 @@ public class CreateTournament extends AppCompatActivity {
             TournamentMaker.getInstance().addTournament(this, tournament);
 
             Intent intent = new Intent(this, TournamentSetup.class);
-            intent.putExtra("Tournament", tournament);
+            intent.putExtra("Tournament", tournament); //sends tournament to next activity
             startActivity(intent);
 
         }

@@ -1,7 +1,6 @@
 package com.example.merek.tournamaker;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Team implements Comparable, Serializable {
 
@@ -11,28 +10,14 @@ public class Team implements Comparable, Serializable {
     private int numOfGoals;
     private int numGamesWon;
     private int numGamesLost;
-    private int leaguePosition;
-    private boolean playing;
-
-
-    //team tournament stats constructor
-    public Team(String name, Tournament tournament, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition) {
-        this.name = name;
-        this.tournament = tournament;
-        this.numOfGoals = numOfGoals;
-        this.numGamesWon = numGamesWon;
-        this.numGamesLost = numGamesLost;
-        this.leaguePosition = leaguePosition;
-    }
 
     // Used in the database to create a team without knowing the tournament
-    public Team(String name, int numOfGoals, int numGamesWon, int numGamesLost, int leaguePosition) {
+    public Team(String name, int numOfGoals, int numGamesWon, int numGamesLost) {
         this.name = name;
         tournament = null;
         this.numOfGoals = numOfGoals;
         this.numGamesWon = numGamesWon;
         this.numGamesLost = numGamesLost;
-        this.leaguePosition = leaguePosition;
     }
 
     public Team(String name, Tournament tournament){
@@ -41,8 +26,6 @@ public class Team implements Comparable, Serializable {
         numOfGoals = 0;
         numGamesWon = 0;
         numGamesLost = 0;
-        leaguePosition = 0;
-        playing = false;
     }
 
     //getters and setters
@@ -74,46 +57,20 @@ public class Team implements Comparable, Serializable {
         return numGamesLost;
     }
 
-    public int getLeaguePosition() {
-        return leaguePosition;
-    }
-
     //increment this teams number of games won
     public void incrementNumGamesWon() {
-        numGamesWon += 1;
+        numGamesWon++;
     }
 
     //increment this teams number of games lost
     public void incrementNumGamesLost() {
-        numGamesLost += 1;
+        numGamesLost++;
     }
 
     //used to sort teams by order of number of games won
     @Override
     public int compareTo(Object another) {
         return getNumGamesWon() - ((Team)another).getNumGamesWon();
-    }
-
-    public boolean hasPlayed(Team another, Round lastRound) {
-
-        boolean played = false;
-
-        for(int i = 0; i < lastRound.getNumOfGames(); i++) {
-            if(lastRound.getGame(i).contains(this, another) && !played) {
-                played = true;
-            }
-        }
-
-        return played;
-
-    }
-
-    public void setIsPlaying(boolean isPlaying) {
-        playing = isPlaying;
-    }
-
-    public boolean isPlaying() {
-        return playing;
     }
 
     public String getStats() {

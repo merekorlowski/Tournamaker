@@ -10,15 +10,14 @@ import android.widget.Toast;
 public class TournamentSetup extends AppCompatActivity {
 
     //declare variable
-    Tournament tournament;
-    Round round;
+    private Tournament tournament;
+    private Round round;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         Intent i = getIntent();
 
         tournament = (Tournament)i.getSerializableExtra("Tournament");
-
 
         if(tournament.isActive())
             round = (Round)i.getSerializableExtra("round");
@@ -27,20 +26,10 @@ public class TournamentSetup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_setup);
 
-        //initialize tournament from intent
-
-        /*new Thread(new Runnable() {
-            public void run() {
-                LinearLayout layout =(LinearLayout)findViewById(R.id.tournamentSetupLinearLayout);
-                layout.setBackgroundResource(R.drawable.adidas_soccer_ball);
-            }
-        }).start();*/
-
     }
 
     //select teams to add to tournament
     public void selectTeamsClick(View view) {
-
         if(tournament.isActive()) {
 
             Context context = getApplicationContext();
@@ -57,7 +46,6 @@ public class TournamentSetup extends AppCompatActivity {
             //send this tournament to intent
             intent.putExtra("Tournament", tournament);
             startActivity(intent);
-
         }
 
     }

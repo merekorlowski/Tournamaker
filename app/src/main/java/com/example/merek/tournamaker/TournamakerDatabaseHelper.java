@@ -184,7 +184,6 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
             values.put(KEY_TEAM_TOURNAMENT_NUM_GOALS, team.getNumOfGoals());
             values.put(KEY_TEAM_TOURNAMENT_NUM_WINS, team.getNumGamesWon());
             values.put(KEY_TEAM_TOURNAMENT_NUM_LOSES, team.getNumGamesLost());
-            values.put(KEY_TEAM_TOURNAMENT_LEAGUE_POS, team.getLeaguePosition());
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_TEAM_TOURNAMENT, null, values);
@@ -255,56 +254,6 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         }
         return tournamentIDList.get(0);
     }
-
-//    public long addOrUpdateTeam(TeamTournamentStats team, String teamIconName, String iconPath, Boolean isDrawable) {
-//        // The database connection is cached so it's not expensive to call getWriteableDatabase() multiple times.
-//        SQLiteDatabase db = getWritableDatabase();
-//        long teamId = -1;
-//
-//        db.beginTransaction();
-//        try {
-//            ContentValues values = new ContentValues();
-//            values.put(KEY_TEAM_NAME, team.getName());
-//            values.put(KEY_TEAM_NUM_GOALS, team.getNumOfGoals());
-//            values.put(KEY_TEAM_NUM_WINS, team.getNumGamesWon());
-//            values.put(KEY_TEAM_NUM_LOSES, team.getNumGamesLost());
-//            values.put(KEY_TEAM_LEAGUE_POS, team.getLeaguePosition());
-//            values.put(KEY_TEAM_ICON_NAME, teamIconName);
-//            values.put(KEY_TEAM_ICON_PATH, iconPath);
-//            values.put(KEY_TEAM_ICON_IS_DRAWABLE, isDrawable);
-//
-//            // First try to update the user in case the user already exists in the database
-//            // This assumes userNames are unique
-//            int rows = db.update(TABLE_TEAMS, values, KEY_TEAM_NAME + "= ?", new String[]{team.getName()});
-//
-//            // Check if update succeeded
-//            if (rows == 1) {
-//                // Get the primary key of the user we just updated
-//                String usersSelectQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
-//                        KEY_TEAM_ID, TABLE_TEAMS, KEY_TEAM_NAME);
-//                Cursor cursor = db.rawQuery(usersSelectQuery, new String[]{String.valueOf(team.getName())});
-//                try {
-//                    if (cursor.moveToFirst()) {
-//                        teamId = cursor.getInt(0);
-//                        db.setTransactionSuccessful();
-//                    }
-//                } finally {
-//                    if (cursor != null && !cursor.isClosed()) {
-//                        cursor.close();
-//                    }
-//                }
-//            } else {
-//                // user with this userName did not already exist, so insert new user
-//                teamId = db.insertOrThrow(TABLE_TEAMS, null, values);
-//                db.setTransactionSuccessful();
-//            }
-//        } catch (Exception e) {
-//            Log.d(TAG, "Error while trying to add or update user");
-//        } finally {
-//            db.endTransaction();
-//        }
-//        return teamId;
-//    }
 
     public List<String> getAllTeams() {
         List<String> teams = new ArrayList<>();
@@ -387,8 +336,7 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
                     int numOfGoals = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_GOALS));
                     int numGamesWon = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_WINS));
                     int numGamesLost = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_LOSES));
-                    int leaguePosition = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_LEAGUE_POS));
-                    Team team = new Team(teamName, numOfGoals, numGamesWon, numGamesLost, leaguePosition);
+                    Team team = new Team(teamName, numOfGoals, numGamesWon, numGamesLost);
                     teams.add(team);
                 } while(cursor.moveToNext());
             }
@@ -431,40 +379,6 @@ public class TournamakerDatabaseHelper extends SQLiteOpenHelper {
         }
         return teamNameList.get(0);
     }
-
-//    private String getTeamFromID( int teamID ){
-//        List<Team> teams = new ArrayList<>();
-//
-//        // SELECT * FROM TEAMS
-//        String TEAM_ID_SELECT_QUERY =
-//                String.format("SELECT * FROM %s WHERE %s=%s",
-//                        TABLE_TEAM_TOURNAMENT, KEY_TEAM_REFERENCE_ID, teamID);
-//
-//        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
-//        // disk space scenarios)
-//        SQLiteDatabase db = getReadableDatabase();
-//        Cursor cursor = db.rawQuery(TEAM_ID_SELECT_QUERY, null);
-//        try {
-//            if (cursor.moveToFirst()) {
-//                do {
-//                    String teamName = getTeamName(teamID);
-//                    int goals = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_GOALS));
-//                    int wins = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_WINS));
-//                    int loses = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_NUM_LOSES));
-//                    int position = cursor.getInt(cursor.getColumnIndex(KEY_TEAM_TOURNAMENT_LEAGUE_POS));
-//                    Team team = new Team(teamName, );
-//                    teamNameList.add(teamName);
-//                } while(cursor.moveToNext());
-//            }
-//        } catch (Exception e) {
-//            Log.d(TAG, "Error while trying to get posts from database");
-//        } finally {
-//            if (cursor != null && !cursor.isClosed()) {
-//                cursor.close();
-//            }
-//        }
-//        return teamNameList.get(0);
-//    }
 
     /*** BEGIN - EDIT METHODS ***/
     public int editTeamName( String oldName, String newName ){
